@@ -1,6 +1,7 @@
+// components/ServicesSection.tsx
 'use client'
 
-import { Shield, Home, Heart, Building, ArrowRight, Sparkles, Phone } from 'lucide-react'
+import { Shield, Home, Heart, Building, ArrowRight, Sparkles, Phone, CheckCircle, ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 
 const services = [
@@ -10,9 +11,11 @@ const services = [
     description: 'The firm has extensive experience in representing clients\' criminal matters at pan India level across different courts with a proven track record of success.',
     link: '/criminal',
     gradient: 'from-red-600 to-pink-700',
-    cardGradient: 'from-red-50/80 via-white to-rose-50/60',
-    glowColor: 'shadow-red-200/50',
-    accentColor: 'text-red-600'
+    cardGradient: 'from-red-50/90 via-cream-50 to-rose-50/80',
+    glowColor: 'shadow-red-200/40',
+    accentColor: 'text-red-700',
+    category: 'Litigation',
+    features: ['High Court Appeals', 'Bail Applications', 'Trial Defense', 'Investigation Support']
   },
   {
     icon: Home,
@@ -20,9 +23,11 @@ const services = [
     description: 'Disputes may arise regarding the possession of property when it is claimed that the property is not possessed or ownership rights are contested.',
     link: '/property',
     gradient: 'from-green-600 to-emerald-700',
-    cardGradient: 'from-green-50/80 via-white to-emerald-50/60',
-    glowColor: 'shadow-green-200/50',
-    accentColor: 'text-green-600'
+    cardGradient: 'from-emerald-50/90 via-cream-50 to-green-50/80',
+    glowColor: 'shadow-emerald-200/40',
+    accentColor: 'text-emerald-700',
+    category: 'Property Law',
+    features: ['Title Disputes', 'Possession Rights', 'Real Estate Laws', 'Property Documentation']
   },
   {
     icon: Heart,
@@ -30,9 +35,11 @@ const services = [
     description: 'Matrimonial disputes involve emotions, feelings and ego. We deal with matrimonial disputes with sensitivity, providing guidance and advice.',
     link: '/matrimonial',
     gradient: 'from-purple-600 to-violet-700',
-    cardGradient: 'from-purple-50/80 via-white to-violet-50/60',
-    glowColor: 'shadow-purple-200/50',
-    accentColor: 'text-purple-600'
+    cardGradient: 'from-purple-50/90 via-cream-50 to-violet-50/80',
+    glowColor: 'shadow-purple-200/40',
+    accentColor: 'text-purple-700',
+    category: 'Family Law',
+    features: ['Divorce Proceedings', 'Child Custody', 'Alimony Matters', 'Family Counseling']
   },
   {
     icon: Building,
@@ -40,9 +47,11 @@ const services = [
     description: 'We assist corporate entities, entrepreneurs, banks, financial institutions, bondholders, other lenders and stakeholders in complex insolvency matters.',
     link: '/insolvency',
     gradient: 'from-blue-600 to-indigo-700',
-    cardGradient: 'from-blue-50/80 via-white to-indigo-50/60',
-    glowColor: 'shadow-blue-200/50',
-    accentColor: 'text-blue-600'
+    cardGradient: 'from-blue-50/90 via-cream-50 to-indigo-50/80',
+    glowColor: 'shadow-blue-200/40',
+    accentColor: 'text-blue-700',
+    category: 'Corporate Law',
+    features: ['Corporate Insolvency', 'CIRP Process', 'Liquidation', 'Debt Restructuring']
   }
 ]
 
@@ -97,43 +106,62 @@ export default function ServicesSection() {
             return (
               <div
                 key={service.title}
-                className="relative group"
+                className="group relative"
                 style={{ animationDelay: `${index * 200}ms` }}
               >
-                <Link
-                  href={service.link}
-                  className={`block relative bg-gradient-to-br ${service.cardGradient} rounded-3xl p-8 hover:shadow-2xl ${service.glowColor} transition-all duration-700 transform hover:scale-105 hover:-translate-y-3 animate-in slide-in-from-bottom border border-white/60 backdrop-blur-sm overflow-hidden`}
-                >
-                  {/* Animated Background Layers */}
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/80 via-transparent to-white/40 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                <div className={`relative bg-gradient-to-br ${service.cardGradient} rounded-3xl p-8 hover:shadow-2xl ${service.glowColor} transition-all duration-700 transform hover:scale-105 hover:-translate-y-2 animate-in slide-in-from-bottom border border-white/60 backdrop-blur-sm overflow-hidden h-full`}>
+                  {/* Background Effects */}
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/60 via-transparent to-white/20 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
                   <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[1500ms]"></div>
                   <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-700`}></div>
 
-                  {/* Floating Icon Container */}
-                  <div className="relative space-y-6 z-20">
-                    <div className={`w-20 h-20 bg-gradient-to-br ${service.gradient} rounded-3xl flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 relative overflow-hidden`}>
+                  <div className="relative z-20 h-full flex flex-col">
+                    {/* Category Badge */}
+                    <div className="inline-flex items-center mb-4">
+                      <span className="text-xs font-semibold text-slate-500 bg-white/60 px-3 py-1 rounded-full border border-slate-200/50">
+                        {service.category}
+                      </span>
+                    </div>
+
+                    {/* Icon */}
+                    <div className={`w-16 h-16 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 mb-6 relative overflow-hidden`}>
                       <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
-                      <Icon className="w-10 h-10 text-white drop-shadow-lg relative z-10" />
+                      <Icon className="w-8 h-8 text-white drop-shadow-lg relative z-10" />
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                     </div>
 
-                    <h3 className={`text-xl font-bold ${service.accentColor} group-hover:text-slate-800 transition-colors duration-300 leading-tight`}>
+                    {/* Content */}
+                    <h3 className={`text-xl font-bold ${service.accentColor} group-hover:text-slate-800 transition-colors duration-300 mb-4 leading-tight`}>
                       {service.title}
                     </h3>
 
-                    <p className="text-slate-600 leading-relaxed text-sm group-hover:text-slate-700 transition-colors duration-300">
+                    <p className="text-slate-600 text-sm leading-relaxed mb-6 group-hover:text-slate-700 transition-colors duration-300 flex-grow">
                       {service.description}
                     </p>
 
-                    <div className={`inline-flex items-center space-x-2 ${service.accentColor} font-semibold group-hover:translate-x-2 transition-all duration-300 text-sm`}>
-                      <span>Explore More</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    {/* Features */}
+                    <div className="space-y-2 mb-6">
+                      {service.features.slice(0, 3).map((feature, idx) => (
+                        <div key={idx} className="flex items-center text-xs text-slate-500">
+                          <CheckCircle className="w-3 h-3 text-green-500 mr-2 flex-shrink-0" />
+                          <span>{feature}</span>
+                        </div>
+                      ))}
                     </div>
+
+                    {/* Learn More Link */}
+                    <Link 
+                      href={service.link}
+                      className={`inline-flex items-center space-x-2 ${service.accentColor} font-semibold group-hover:translate-x-1 transition-all duration-300 text-sm mt-auto`}
+                    >
+                      <span>Explore More</span>
+                      <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                    </Link>
                   </div>
 
                   {/* Corner Accent */}
                   <div className={`absolute top-4 right-4 w-3 h-3 bg-gradient-to-br ${service.gradient} rounded-full opacity-30 group-hover:opacity-60 transition-opacity duration-300`}></div>
-                </Link>
+                </div>
               </div>
             )
           })}
