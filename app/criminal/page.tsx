@@ -1,5 +1,8 @@
-// criminal/page.tsx
+"use client"
+// pages/criminal.tsx
 import React from 'react';
+import Header from '@/components/Header';
+import Navbar from '@/components/Navbar';
 import PageBanner from '@/components/PageBanner';
 import ContentSection from '@/components/ContentSection';
 import PracticeAreas from '@/components/PracticeAreas';
@@ -28,6 +31,9 @@ const CriminalLitigationPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-300 to-amber-300">
+      <Header />
+      <Navbar />
+      
       <PageBanner
         title="Criminal Litigation"
         subtitle="Legal Defense"

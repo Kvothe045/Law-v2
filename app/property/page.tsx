@@ -1,6 +1,8 @@
 "use client"
 // pages/property.tsx
 import React from 'react';
+import Header from '@/components/Header';
+import Navbar from '@/components/Navbar';
 import PageBanner from '@/components/PageBanner';
 import ContentSection from '@/components/ContentSection';
 import PracticeAreas from '@/components/PracticeAreas';
@@ -28,6 +30,9 @@ const PropertyDisputesPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-300 to-amber-300">
+      <Header />
+      <Navbar />
+      
       <PageBanner
         title="Property Disputes"
         subtitle="Real Estate Law"

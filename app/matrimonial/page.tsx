@@ -1,6 +1,8 @@
 "use client"
 // pages/matrimonial.tsx
 import React from 'react';
+import Header from '@/components/Header';
+import Navbar from '@/components/Navbar';
 import PageBanner from '@/components/PageBanner';
 import ContentSection from '@/components/ContentSection';
 import PracticeAreas from '@/components/PracticeAreas';
@@ -25,7 +27,10 @@ const MatrimonialDisputesPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-300 to-amber-300">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-amber-50">
+      <Header />
+      <Navbar />
+      
       <PageBanner
         title="Matrimonial Disputes"
         subtitle="Family Law"
