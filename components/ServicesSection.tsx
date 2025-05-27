@@ -1,6 +1,7 @@
 'use client'
 
-import { Shield, Home, Heart, Building, ArrowRight } from 'lucide-react'
+import { Shield, Home, Heart, Building, ArrowRight, Sparkles } from 'lucide-react'
+import Link from 'next/link'
 
 const services = [
   {
@@ -8,121 +9,172 @@ const services = [
     title: 'Criminal Matters',
     description: 'The firm has extensive experience in representing clients\' criminal matters at pan India level across different courts with a proven track record of success.',
     link: '/criminal',
-    gradient: 'from-red-500 to-pink-600',
-    bgGradient: 'from-red-50 to-pink-50'
+    gradient: 'from-red-600 to-pink-700',
+    cardGradient: 'from-red-50/80 via-white to-rose-50/60',
+    glowColor: 'shadow-red-200/50',
+    accentColor: 'text-red-600'
   },
   {
     icon: Home,
     title: 'Property Disputes',
     description: 'Disputes may arise regarding the possession of property when it is claimed that the property is not possessed or ownership rights are contested.',
     link: '/property',
-    gradient: 'from-green-500 to-emerald-600',
-    bgGradient: 'from-green-50 to-emerald-50'
+    gradient: 'from-green-600 to-emerald-700',
+    cardGradient: 'from-green-50/80 via-white to-emerald-50/60',
+    glowColor: 'shadow-green-200/50',
+    accentColor: 'text-green-600'
   },
   {
     icon: Heart,
     title: 'Matrimonial Cases',
     description: 'Matrimonial disputes involve emotions, feelings and ego. We deal with matrimonial disputes with sensitivity, providing guidance and advice.',
     link: '/matrimonial',
-    gradient: 'from-purple-500 to-violet-600',
-    bgGradient: 'from-purple-50 to-violet-50'
+    gradient: 'from-purple-600 to-violet-700',
+    cardGradient: 'from-purple-50/80 via-white to-violet-50/60',
+    glowColor: 'shadow-purple-200/50',
+    accentColor: 'text-purple-600'
   },
   {
     icon: Building,
     title: 'Insolvency Matter',
     description: 'We assist corporate entities, entrepreneurs, banks, financial institutions, bondholders, other lenders and stakeholders in complex insolvency matters.',
     link: '/insolvency',
-    gradient: 'from-blue-500 to-indigo-600',
-    bgGradient: 'from-blue-50 to-indigo-50'
+    gradient: 'from-blue-600 to-indigo-700',
+    cardGradient: 'from-blue-50/80 via-white to-indigo-50/60',
+    glowColor: 'shadow-blue-200/50',
+    accentColor: 'text-blue-600'
   }
 ]
 
 export default function ServicesSection() {
   return (
-    <section className="py-20 bg-white/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center space-y-4 mb-16 animate-in slide-in-from-bottom duration-1000">
-          <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
-            <Shield className="w-4 h-4" />
-            <span>Our Practice Areas</span>
+    <section className="relative py-24 overflow-hidden">
+      {/* Sophisticated Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 via-white to-blue-50/40">
+        {/* Animated Orbs */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-amber-200/20 to-yellow-100/30 rounded-full -translate-x-48 -translate-y-48 animate-pulse blur-xl"></div>
+        <div className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-blue-200/30 to-indigo-100/40 rounded-full translate-x-40 animate-pulse delay-1000 blur-xl"></div>
+        <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-gradient-to-br from-slate-200/20 to-blue-100/30 rounded-full translate-y-36 animate-pulse delay-500 blur-xl"></div>
+        
+        {/* Floating Geometric Shapes */}
+        <div className="absolute top-20 right-20 w-6 h-6 bg-gradient-to-r from-amber-400 to-yellow-500 rounded-full opacity-40 animate-bounce"></div>
+        <div className="absolute bottom-32 left-16 w-4 h-4 bg-gradient-to-r from-blue-500 to-indigo-600 rotate-45 opacity-30 animate-pulse"></div>
+        <div className="absolute top-1/2 right-10 w-8 h-8 border-2 border-slate-400/30 rounded-full animate-spin-slow"></div>
+        
+        {/* Subtle Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgb(51, 65, 85) 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }}></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Enhanced Header */}
+        <div className="text-center space-y-8 mb-20 animate-in slide-in-from-bottom duration-1000">
+          <div className="inline-flex items-center space-x-3 bg-gradient-to-r from-slate-800 via-blue-900 to-slate-800 text-white px-8 py-4 rounded-full text-sm font-semibold shadow-2xl border border-white/10 backdrop-blur-sm">
+            <Sparkles className="w-5 h-5 text-amber-300 animate-pulse" />
+            <span className="tracking-wide">Our Practice Areas</span>
+            <div className="h-2 w-2 bg-amber-400 rounded-full animate-ping"></div>
           </div>
-          
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900">
+
+          <h2 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-tight">
             Legal Services We{' '}
-            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-700 via-indigo-800 to-slate-800 bg-clip-text text-transparent animate-pulse">
               Specialize In
             </span>
           </h2>
-          
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Our comprehensive legal expertise covers a wide range of practice areas, ensuring professional representation for all your legal needs.
+
+          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+            Our comprehensive legal expertise covers a wide range of practice areas, ensuring professional representation for all your legal needs with dedication and excellence.
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Enhanced Services Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
           {services.map((service, index) => {
             const Icon = service.icon
             return (
               <div
                 key={service.title}
-                className={`group relative bg-gradient-to-br ${service.bgGradient} rounded-2xl p-8 hover:shadow-xl transition-all duration-500 transform hover:scale-105 animate-in slide-in-from-bottom duration-1000`}
-                style={{ animationDelay: `${index * 150}ms` }}
+                className="relative group"
+                style={{ animationDelay: `${index * 200}ms` }}
               >
-                {/* Background Pattern */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                {/* Content */}
-                <div className="relative space-y-6">
-                  {/* Icon */}
-                  <div className={`w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="w-8 h-8 text-white" />
+                <Link
+                  href={service.link}
+                  className={`block relative bg-gradient-to-br ${service.cardGradient} rounded-3xl p-8 hover:shadow-2xl ${service.glowColor} transition-all duration-700 transform hover:scale-105 hover:-translate-y-3 animate-in slide-in-from-bottom border border-white/60 backdrop-blur-sm overflow-hidden`}
+                >
+                  {/* Animated Background Layers */}
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/80 via-transparent to-white/40 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[1500ms]"></div>
+                  <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-700`}></div>
+
+                  {/* Floating Icon Container */}
+                  <div className="relative space-y-6 z-20">
+                    <div className={`w-20 h-20 bg-gradient-to-br ${service.gradient} rounded-3xl flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 relative overflow-hidden`}>
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                      <Icon className="w-10 h-10 text-white drop-shadow-lg relative z-10" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                    </div>
+
+                    <h3 className={`text-xl font-bold ${service.accentColor} group-hover:text-slate-800 transition-colors duration-300 leading-tight`}>
+                      {service.title}
+                    </h3>
+
+                    <p className="text-slate-600 leading-relaxed text-sm group-hover:text-slate-700 transition-colors duration-300">
+                      {service.description}
+                    </p>
+
+                    <div className={`inline-flex items-center space-x-2 ${service.accentColor} font-semibold group-hover:translate-x-2 transition-all duration-300 text-sm`}>
+                      <span>Explore More</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    </div>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-slate-800 transition-colors duration-300">
-                    {service.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-slate-600 leading-relaxed">
-                    {service.description}
-                  </p>
-
-                  {/* Read More Link */}
-                  <a
-                    href={service.link}
-                    className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-semibold group-hover:translate-x-1 transition-all duration-300"
-                  >
-                    <span>Read More</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </a>
-                </div>
-
-                {/* Hover Effect Gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}></div>
+                  {/* Corner Accent */}
+                  <div className={`absolute top-4 right-4 w-3 h-3 bg-gradient-to-br ${service.gradient} rounded-full opacity-30 group-hover:opacity-60 transition-opacity duration-300`}></div>
+                </Link>
               </div>
             )
           })}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-16 animate-in slide-in-from-bottom duration-1000 delay-700">
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-center">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Need Legal Assistance?
-            </h3>
-            <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-              Our experienced legal team is ready to help you navigate complex legal challenges with expertise and dedication.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105">
-                Schedule Consultation
-              </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-xl font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300">
-                Call +91-124-4377638
-              </button>
+        {/* Enhanced CTA Section */}
+        <div className="text-center animate-in slide-in-from-bottom duration-1000 delay-1000">
+          <div className="relative bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 rounded-3xl p-12 overflow-hidden shadow-2xl border border-slate-700/50">
+            {/* Enhanced Background Elements */}
+            <div className="absolute inset-0">
+              <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-amber-400/10 to-yellow-300/5 rounded-full translate-x-40 -translate-y-40 animate-pulse"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-br from-blue-400/10 to-indigo-300/5 rounded-full -translate-x-32 translate-y-32 animate-pulse delay-1000"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-950/30 to-transparent"></div>
+            </div>
+
+            <div className="relative z-10">
+              <div className="mb-8">
+                <div className="inline-flex items-center space-x-2 bg-amber-500/20 text-amber-300 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                  <Sparkles className="w-4 h-4" />
+                  <span>Premium Legal Services</span>
+                </div>
+                <h3 className="text-4xl font-bold text-white mb-6">
+                  Need Professional Legal Assistance?
+                </h3>
+                <p className="text-blue-200 mb-8 max-w-3xl mx-auto text-lg leading-relaxed">
+                  Our experienced legal team is ready to help you navigate complex legal challenges with expertise, dedication, and a proven track record of success.
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <button className="group relative bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-10 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <span className="relative flex items-center space-x-2">
+                    <span>Schedule Free Consultation</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </span>
+                </button>
+                <button className="group border-2 border-amber-400/50 text-amber-300 hover:bg-amber-400 hover:text-slate-900 px-10 py-4 rounded-2xl font-semibold transition-all duration-300 hover:scale-105 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-400/0 to-amber-400/0 group-hover:from-amber-400/100 group-hover:to-amber-300/100 transition-all duration-300"></div>
+                  <span className="relative">Call +91-124-4377638</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
