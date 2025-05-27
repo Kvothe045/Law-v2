@@ -143,11 +143,12 @@ export default function PracticeAreasSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Enhanced Section Header */}
         <div className="text-center space-y-8 mb-20 animate-in slide-in-from-top duration-1000">
-          <div className="inline-flex items-center space-x-4 bg-gradient-to-r from-slate-800 via-blue-900 to-slate-800 text-white px-8 py-4 rounded-full text-sm font-semibold shadow-2xl border border-white/10 backdrop-blur-sm">
-            <Scale className="w-5 h-5 text-amber-300 animate-pulse" />
-            <span className="tracking-wide">Complete Legal Solutions</span>
-            <Star className="w-4 h-4 text-amber-400 animate-spin-slow" />
-          </div>
+        <div className="inline-flex items-center space-x-4 bg-gradient-to-r from-slate-800 via-blue-900 to-slate-800 text-white px-8 py-4 rounded-full text-sm font-semibold shadow-2xl border border-white/10 backdrop-blur-sm hover:shadow-3xl hover:scale-105 hover:from-blue-900 hover:via-slate-800 hover:to-blue-900 transition-all duration-300 ease-in-out cursor-pointer group animate-fade-in-up">
+  <Scale className="w-5 h-5 text-amber-300 animate-pulse group-hover:text-amber-200 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
+  <span className="tracking-wide group-hover:tracking-wider group-hover:text-blue-100 transition-all duration-300">Complete Legal Solutions</span>
+  <Star className="w-4 h-4 text-amber-400 animate-spin group-hover:text-amber-300 group-hover:scale-125 group-hover:animate-bounce transition-all duration-300" />
+</div>
+
           
           <h2 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-tight">
             Our Comprehensive{' '}
