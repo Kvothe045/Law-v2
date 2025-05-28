@@ -1,7 +1,7 @@
 'use client'
 
 import { Scale, Users, Globe, Award, Phone, Mail } from 'lucide-react'
-
+import Link from 'next/link';
 export default function HeroSection() {
   return (
     <section className="relative overflow-hidden min-h-screen">
@@ -39,7 +39,7 @@ export default function HeroSection() {
               
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-white/60">
                 <p className="text-xl text-slate-800 leading-relaxed mb-4 font-medium">
-                  <strong className="text-slate-900 font-bold">Grow-On Consultancy Services (GCS)</strong> is a full-service law firm offering cutting-edge legal solutions to corporations, individuals, and international entities across the globe.
+                  <strong className="text-slate-900 font-bold">GCS LAW FIRM</strong> is a full-service law firm offering cutting-edge legal solutions to corporations, individuals, and international entities across the globe.
                 </p>
                 
                 <p className="text-lg text-slate-700 leading-relaxed">
@@ -59,12 +59,14 @@ export default function HeroSection() {
                   <span>Get Legal Consultation</span>
                 </span>
               </a>
-              <button className="bg-white/80 backdrop-blur-sm border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-2xl font-semibold hover:bg-slate-100 hover:border-slate-400 transition-all duration-300 shadow-lg hover:shadow-xl">
-                <span className="flex items-center justify-center space-x-2">
-                  <Mail className="w-5 h-5" />
-                  <span>Our Services</span>
-                </span>
-              </button>
+              <Link href="/ourservices">
+  <button className="bg-white/80 backdrop-blur-sm border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-2xl font-semibold hover:bg-slate-100 hover:border-slate-400 transition-all duration-300 shadow-lg hover:shadow-xl">
+    <span className="flex items-center justify-center space-x-2">
+      <Mail className="w-5 h-5" />
+      <span>Our Services</span>
+    </span>
+  </button>
+</Link>
             </div>
 
             {/* Stats */}
@@ -90,100 +92,68 @@ export default function HeroSection() {
               {/* Main card with lawyer image - Enhanced with animations */}
               <div className="bg-gradient-to-br from-white/90 to-blue-50/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/50 hover:shadow-3xl hover:scale-105 transition-all duration-500 ease-in-out group">
                 
-                {/* Lawyer Portrait with premium hover effects */}
-<div className="relative mb-8">
-  <div className="relative mx-auto w-72 h-72 lg:w-80 lg:h-80 group/portrait">
-    {/* Animated background rings */}
-    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-indigo-600/20 rounded-full animate-spin-slow"></div>
-    <div className="absolute inset-4 bg-gradient-to-br from-amber-400/15 to-amber-600/15 rounded-full animate-reverse-spin"></div>
-    
-    {/* Main background with breathing effect */}
-    <div className="absolute inset-2 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl rotate-1 opacity-8 group-hover/portrait:rotate-3 group-hover/portrait:opacity-15 group-hover/portrait:scale-105 transition-all duration-1000 ease-out animate-pulse"></div>
-    
-    {/* Secondary depth layer */}
-    <div className="absolute inset-3 bg-gradient-to-br from-amber-400 to-amber-600 rounded-3xl -rotate-1 opacity-5 group-hover/portrait:rotate-1 group-hover/portrait:opacity-12 group-hover/portrait:scale-102 transition-all duration-800 ease-out delay-150"></div>
-    
-    {/* Glowing border effect */}
-    <div className="absolute inset-1 rounded-3xl bg-gradient-to-r from-blue-400/0 via-blue-400/20 to-blue-400/0 opacity-0 group-hover/portrait:opacity-100 transition-opacity duration-700 animate-pulse"></div>
-    
-    {/* Main image container with enhanced effects */}
-    <div className="relative bg-white rounded-3xl p-3 shadow-2xl border border-white/70 overflow-hidden group-hover/portrait:shadow-3xl group-hover/portrait:border-blue-200/80 group-hover/portrait:scale-102 transition-all duration-600 ease-out">
-      {/* Dynamic overlay with shimmer effect */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-blue-500/5 to-transparent opacity-0 group-hover/portrait:opacity-100 transition-all duration-700 rounded-2xl z-10 group-hover/portrait:animate-pulse"></div>
-      
-      {/* Shine effect */}
-      <div className="absolute -inset-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 opacity-0 group-hover/portrait:opacity-100 group-hover/portrait:translate-x-full transition-all duration-1000 ease-out z-20"></div>
-      
-      <img 
-        src="man.png" 
-        alt="Advocate Yatish Kumar Goel" 
-        className="w-full h-full object-cover rounded-2xl group-hover/portrait:scale-103 group-hover/portrait:brightness-110 group-hover/portrait:contrast-105 transition-all duration-600 ease-out relative z-0"
-      />
-    </div>
-    
-    {/* Premium floating badge with glow */}
-    <div className="absolute -top-4 -right-4 bg-gradient-to-r from-slate-800 via-blue-900 to-slate-800 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-2xl group-hover/portrait:shadow-blue-500/25 group-hover/portrait:shadow-3xl group-hover/portrait:scale-110 group-hover/portrait:from-blue-800 group-hover/portrait:via-slate-800 group-hover/portrait:to-blue-800 transition-all duration-400 border border-white/20 group-hover/portrait:border-blue-300/50">
-      <span className="relative z-10 tracking-wide">Lead Advocate</span>
-      <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 opacity-0 group-hover/portrait:opacity-100 transition-opacity duration-400 rounded-full animate-pulse"></div>
-    </div>
-    
-    {/* Enhanced floating particles */}
-    <div className="absolute top-6 left-6 w-2 h-2 bg-amber-400/50 rounded-full group-hover/portrait:scale-200 group-hover/portrait:bg-amber-400/80 transition-all duration-600 delay-100 animate-bounce"></div>
-    <div className="absolute bottom-8 left-8 w-3 h-3 bg-blue-500/40 rounded-full group-hover/portrait:scale-150 group-hover/portrait:bg-blue-500/70 transition-all duration-700 delay-200 animate-pulse"></div>
-    <div className="absolute top-1/4 right-6 w-1.5 h-1.5 bg-slate-400/30 rounded-full group-hover/portrait:scale-175 group-hover/portrait:bg-slate-400/60 transition-all duration-500 delay-300 animate-ping"></div>
-    <div className="absolute bottom-1/3 right-8 w-2.5 h-2.5 bg-indigo-400/35 rounded-full group-hover/portrait:scale-125 group-hover/portrait:bg-indigo-400/65 transition-all duration-650 delay-150 animate-bounce"></div>
-    
-    {/* Orbiting elements */}
-    <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-amber-300/60 rounded-full -translate-x-1/2 -translate-y-1/2 group-hover/portrait:animate-spin group-hover/portrait:scale-150 transition-all duration-500" style={{transform: 'translate(-50%, -50%) translateX(140px)'}}>
-    </div>
-  </div>
-</div>
-
-<style jsx>{`
-  @keyframes reverse-spin {
-    from {
-      transform: rotate(360deg);
-    }
-    to {
-      transform: rotate(0deg);
-    }
-  }
-  .animate-reverse-spin {
-    animation: reverse-spin 8s linear infinite;
-  }
-`}</style>
-
-
-                {/* Content below image - Enhanced with animations */}
-                <div className="space-y-6 text-center">
-                  <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl mx-auto shadow-lg group-hover:rotate-12 transition-transform duration-500">
-                    <Scale className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <h3 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:via-indigo-600 group-hover:to-blue-600 transition-all duration-500">
-                      Justice & Excellence
-                    </h3>
-                    <p className="text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
-                      Committed to delivering exceptional legal services with integrity and professionalism
-                    </p>
-                  </div>
-                  
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="bg-gradient-to-br from-blue-50 to-indigo-100 backdrop-blur-sm rounded-xl p-4 text-center shadow-lg border border-blue-200/50 hover:shadow-xl hover:scale-105 transition-all duration-300 group/item">
-                      <Users className="w-6 h-6 text-blue-600 mx-auto mb-2 group-hover/item:text-blue-700 group-hover/item:scale-110 transition-all duration-300" />
-                      <div className="text-xs font-semibold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">Expert Team</div>
+                {/* Lawyer Portrait with premium hover effects - Made bigger and centered */}
+                <div className="relative flex items-center justify-center">
+                  <div className="relative w-96 h-96 lg:w-[450px] lg:h-[450px] group/portrait">
+                    {/* Animated background rings */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-indigo-600/20 rounded-full animate-spin-slow"></div>
+                    <div className="absolute inset-4 bg-gradient-to-br from-amber-400/15 to-amber-600/15 rounded-full animate-reverse-spin"></div>
+                    
+                    {/* Main background with breathing effect */}
+                    <div className="absolute inset-2 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl rotate-1 opacity-8 group-hover/portrait:rotate-3 group-hover/portrait:opacity-15 group-hover/portrait:scale-105 transition-all duration-1000 ease-out animate-pulse"></div>
+                    
+                    {/* Secondary depth layer */}
+                    <div className="absolute inset-3 bg-gradient-to-br from-amber-400 to-amber-600 rounded-3xl -rotate-1 opacity-5 group-hover/portrait:rotate-1 group-hover/portrait:opacity-12 group-hover/portrait:scale-102 transition-all duration-800 ease-out delay-150"></div>
+                    
+                    {/* Glowing border effect */}
+                    <div className="absolute inset-1 rounded-3xl bg-gradient-to-r from-blue-400/0 via-blue-400/20 to-blue-400/0 opacity-0 group-hover/portrait:opacity-100 transition-opacity duration-700 animate-pulse"></div>
+                    
+                    {/* Main image container with enhanced effects */}
+                    <div className="relative bg-white rounded-3xl p-3 shadow-2xl border border-white/70 overflow-hidden group-hover/portrait:shadow-3xl group-hover/portrait:border-blue-200/80 group-hover/portrait:scale-102 transition-all duration-600 ease-out">
+                      {/* Dynamic overlay with shimmer effect */}
+                      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-blue-500/5 to-transparent opacity-0 group-hover/portrait:opacity-100 transition-all duration-700 rounded-2xl z-10 group-hover/portrait:animate-pulse"></div>
+                      
+                      {/* Shine effect */}
+                      <div className="absolute -inset-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 opacity-0 group-hover/portrait:opacity-100 group-hover/portrait:translate-x-full transition-all duration-1000 ease-out z-20"></div>
+                      
+                      <img 
+                        src="man.png" 
+                        alt="Advocate Yatish Kumar Goel" 
+                        className="w-full h-full object-cover rounded-2xl group-hover/portrait:scale-103 group-hover/portrait:brightness-110 group-hover/portrait:contrast-105 transition-all duration-600 ease-out relative z-0"
+                      />
                     </div>
-                    <div className="bg-gradient-to-br from-amber-50 to-yellow-100 backdrop-blur-sm rounded-xl p-4 text-center shadow-lg border border-amber-200/50 hover:shadow-xl hover:scale-105 transition-all duration-300 group/item">
-                      <Globe className="w-6 h-6 text-amber-600 mx-auto mb-2 group-hover/item:text-amber-700 group-hover/item:scale-110 transition-all duration-300" />
-                      <div className="text-xs font-semibold bg-gradient-to-r from-amber-600 to-amber-700 bg-clip-text text-transparent">Global Reach</div>
+                    
+                    {/* Premium floating badge with glow */}
+                    <div className="absolute -top-4 -right-4 bg-gradient-to-r from-slate-800 via-blue-900 to-slate-800 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-2xl group-hover/portrait:shadow-blue-500/25 group-hover/portrait:shadow-3xl group-hover/portrait:scale-110 group-hover/portrait:from-blue-800 group-hover/portrait:via-slate-800 group-hover/portrait:to-blue-800 transition-all duration-400 border border-white/20 group-hover/portrait:border-blue-300/50">
+                      <span className="relative z-10 tracking-wide">Lead Advocate</span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 opacity-0 group-hover/portrait:opacity-100 transition-opacity duration-400 rounded-full animate-pulse"></div>
                     </div>
-                    <div className="bg-gradient-to-br from-slate-50 to-slate-100 backdrop-blur-sm rounded-xl p-4 text-center shadow-lg border border-slate-200/50 hover:shadow-xl hover:scale-105 transition-all duration-300 group/item">
-                      <Award className="w-6 h-6 text-slate-600 mx-auto mb-2 group-hover/item:text-slate-700 group-hover/item:scale-110 transition-all duration-300" />
-                      <div className="text-xs font-semibold bg-gradient-to-r from-slate-600 to-slate-700 bg-clip-text text-transparent">Recognized</div>
+                    
+                    {/* Enhanced floating particles */}
+                    <div className="absolute top-6 left-6 w-2 h-2 bg-amber-400/50 rounded-full group-hover/portrait:scale-200 group-hover/portrait:bg-amber-400/80 transition-all duration-600 delay-100 animate-bounce"></div>
+                    <div className="absolute bottom-8 left-8 w-3 h-3 bg-blue-500/40 rounded-full group-hover/portrait:scale-150 group-hover/portrait:bg-blue-500/70 transition-all duration-700 delay-200 animate-pulse"></div>
+                    <div className="absolute top-1/4 right-6 w-1.5 h-1.5 bg-slate-400/30 rounded-full group-hover/portrait:scale-175 group-hover/portrait:bg-slate-400/60 transition-all duration-500 delay-300 animate-ping"></div>
+                    <div className="absolute bottom-1/3 right-8 w-2.5 h-2.5 bg-indigo-400/35 rounded-full group-hover/portrait:scale-125 group-hover/portrait:bg-indigo-400/65 transition-all duration-650 delay-150 animate-bounce"></div>
+                    
+                    {/* Orbiting elements */}
+                    <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-amber-300/60 rounded-full -translate-x-1/2 -translate-y-1/2 group-hover/portrait:animate-spin group-hover/portrait:scale-150 transition-all duration-500" style={{transform: 'translate(-50%, -50%) translateX(140px)'}}>
                     </div>
                   </div>
                 </div>
+
+                <style jsx>{`
+                  @keyframes reverse-spin {
+                    from {
+                      transform: rotate(360deg);
+                    }
+                    to {
+                      transform: rotate(0deg);
+                    }
+                  }
+                  .animate-reverse-spin {
+                    animation: reverse-spin 8s linear infinite;
+                  }
+                `}</style>
               </div>
 
               {/* Enhanced floating elements with more animations */}

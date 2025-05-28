@@ -197,13 +197,23 @@ export default function ServicesSection() {
       </div>
       
       <div className="flex flex-col sm:flex-row gap-6 justify-center">
-        <button className="group relative bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-10 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          <span className="relative flex items-center space-x-2">
-            <span>Schedule Free Consultation</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-          </span>
-        </button>
+      <button 
+  onClick={() => {
+    const phoneNumber = "919990733308"; 
+    // const message = "Hello, I hope this message finds you well. I am interested in scheduling a free consultation to discuss my legal requirements. Could you please let me know your available time slots? I would appreciate the opportunity to discuss my case with you. Thank you for your time and consideration.";
+    const message = "Good day! I would like to schedule a free consultation regarding my legal matter. When would be a convenient time for you? Thank you.";
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, '_blank');
+  }}
+  className="group relative bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-10 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl overflow-hidden"
+>
+  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+  <span className="relative flex items-center space-x-2">
+    <span>Schedule Free Consultation</span>
+    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+  </span>
+</button>
+
         <a 
           href="tel:+919990733308" 
           className="group border-2 border-amber-400/50 text-amber-300 hover:bg-amber-400 hover:text-slate-900 px-10 py-4 rounded-2xl font-semibold transition-all duration-300 hover:scale-105 relative overflow-hidden block"

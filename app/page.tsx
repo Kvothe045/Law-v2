@@ -4,6 +4,7 @@ import HeroSection from '@/components/HeroSection'
 import ServicesSection from '@/components/ServicesSection'
 import PracticeAreasSection from '@/components/PracticeAreas'
 import Awards from '@/components/Awards'
+// import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <ServicesSection />
       <PracticeAreasSection/>
       <Awards/>
+      {/* <Footer /> */}
     </main>
   )
 }
