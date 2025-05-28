@@ -7,7 +7,7 @@ import PageBanner from '@/components/PageBanner';
 import ContentSection from '@/components/ContentSection';
 import PracticeAreas from '@/components/PracticeAreas';
 import Sidebar from '@/components/Sidebar';
-// import Footer from '@/components/Footer';
+import Footer from '@/components/Footer';
 
 const PropertyDisputesPage: React.FC = () => {
   const propertyServices = [
@@ -63,7 +63,7 @@ const PropertyDisputesPage: React.FC = () => {
       </div>
 
       <PracticeAreas />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
