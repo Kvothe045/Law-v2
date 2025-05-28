@@ -26,7 +26,7 @@ import {
 } from 'lucide-react'
 import Header from '@/components/Header'
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+// import Footer from '@/components/Footer'
 
 const services = [
   {
@@ -385,7 +385,7 @@ export default function OurServicesPage() {
         </div>
       </section>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

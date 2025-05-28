@@ -7,6 +7,7 @@ import PageBanner from '@/components/PageBanner';
 import ContentSection from '@/components/ContentSection';
 import PracticeAreas from '@/components/PracticeAreas';
 import Sidebar from '@/components/Sidebar';
+// import Footer from '@/components/Footer';
 
 const MatrimonialDisputesPage: React.FC = () => {
   const matrimonialServices = [
@@ -60,6 +61,7 @@ const MatrimonialDisputesPage: React.FC = () => {
       </div>
 
       <PracticeAreas />
+      {/* <Footer /> */}
     </div>
   );
 };
