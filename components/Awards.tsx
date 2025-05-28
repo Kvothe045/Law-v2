@@ -6,19 +6,19 @@ import { Award, Star, Sparkles, Trophy, Globe } from 'lucide-react';
 
 const Awards = () => {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-800">
+    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-amber-300 via-blue-200 to-amber-200">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         {/* Floating Gold Particles */}
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full opacity-70"
+            className="absolute w-2 h-2 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full opacity-40"
             animate={{
               x: [0, 100, 0],
               y: [0, -100, 0],
               scale: [1, 1.5, 1],
-              opacity: [0.7, 1, 0.7],
+              opacity: [0.4, 0.7, 0.4],
             }}
             transition={{
               duration: 6 + i * 0.5,
@@ -34,15 +34,15 @@ const Awards = () => {
         
         {/* Geometric Background Pattern */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-20 w-32 h-32 border border-blue-300 rotate-45 animate-pulse"></div>
-          <div className="absolute top-40 right-32 w-24 h-24 border border-yellow-400 rotate-12 animate-bounce"></div>
-          <div className="absolute bottom-32 left-32 w-40 h-40 border border-blue-200 rounded-full animate-spin"></div>
-          <div className="absolute bottom-20 right-20 w-28 h-28 border border-amber-300 rotate-45 animate-pulse"></div>
+          <div className="absolute top-20 left-20 w-32 h-32 border border-blue-400 rotate-45 animate-pulse"></div>
+          <div className="absolute top-40 right-32 w-24 h-24 border border-yellow-500 rotate-12 animate-bounce"></div>
+          <div className="absolute bottom-32 left-32 w-40 h-40 border border-blue-300 rounded-full animate-spin"></div>
+          <div className="absolute bottom-20 right-20 w-28 h-28 border border-amber-400 rotate-45 animate-pulse"></div>
         </div>
 
         {/* Gradient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-yellow-500/20 to-amber-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-200/30 to-cyan-200/30 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-yellow-200/30 to-amber-200/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-6 py-20">
@@ -60,13 +60,13 @@ const Awards = () => {
             className="flex justify-center mb-6"
           >
             <div className="relative">
-              <Trophy className="w-16 h-16 text-yellow-400" />
+              <Trophy className="w-16 h-16 text-yellow-600" />
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 className="absolute -top-2 -right-2"
               >
-                <Sparkles className="w-8 h-8 text-amber-300" />
+                <Sparkles className="w-8 h-8 text-amber-500" />
               </motion.div>
             </div>
           </motion.div>
@@ -75,7 +75,7 @@ const Awards = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-200 via-cyan-200 to-yellow-300 bg-clip-text text-transparent mb-4"
+            className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-slate-700 via-blue-600 to-yellow-600 bg-clip-text text-transparent mb-4"
           >
             Excellence Recognized
           </motion.h2>
@@ -84,7 +84,7 @@ const Awards = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
           >
             Celebrating our commitment to delivering exceptional legal solutions and achieving international recognition
           </motion.p>
@@ -99,9 +99,9 @@ const Awards = () => {
             className="relative"
           >
             {/* Award Card */}
-            <div className="relative bg-gradient-to-br from-slate-800/80 via-blue-900/80 to-slate-700/80 backdrop-blur-xl rounded-3xl border border-blue-400/30 shadow-2xl overflow-hidden">
+            <div className="relative bg-gradient-to-br from-white/90 via-blue-50/90 to-slate-50/90 backdrop-blur-xl rounded-3xl border border-blue-200/60 shadow-2xl overflow-hidden">
               {/* Card Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 via-transparent to-blue-400/10 animate-pulse"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-100/20 via-transparent to-blue-100/20 animate-pulse"></div>
               
               <div className="relative p-8 md:p-12">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -114,7 +114,7 @@ const Awards = () => {
                   >
                     <div className="relative group">
                       {/* Image Container with Enhanced Styling */}
-                      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-yellow-400/20 to-amber-600/20 p-6 border border-yellow-400/40">
+                      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-yellow-100/40 to-amber-100/40 p-6 border border-yellow-300/60">
                         <motion.div
                           whileHover={{ scale: 1.05, rotate: 2 }}
                           transition={{ duration: 0.3 }}
@@ -127,7 +127,7 @@ const Awards = () => {
                           />
                           
                           {/* Image Overlay Effects */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-yellow-900/20 to-transparent rounded-xl"></div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-yellow-100/20 to-transparent rounded-xl"></div>
                         </motion.div>
                         
                         {/* Floating Icons Around Image */}
@@ -137,7 +137,7 @@ const Awards = () => {
                           className="absolute -top-4 -right-4"
                         >
                           <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full flex items-center justify-center shadow-lg">
-                            <Star className="w-6 h-6 text-slate-900" />
+                            <Star className="w-6 h-6 text-white" />
                           </div>
                         </motion.div>
                         
@@ -169,15 +169,15 @@ const Awards = () => {
                         transition={{ duration: 0.6, delay: 0.8 }}
                         className="flex items-center space-x-3"
                       >
-                        <Award className="w-8 h-8 text-yellow-400" />
-                        <span className="text-yellow-400 font-semibold text-lg tracking-wide">INTERNATIONAL RECOGNITION</span>
+                        <Award className="w-8 h-8 text-yellow-600" />
+                        <span className="text-yellow-600 font-semibold text-lg tracking-wide">INTERNATIONAL RECOGNITION</span>
                       </motion.div>
                       
                       <motion.h3
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.9 }}
-                        className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 bg-clip-text text-transparent leading-tight"
+                        className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-600 via-amber-600 to-yellow-700 bg-clip-text text-transparent leading-tight"
                       >
                         Century International Gold Quality Era Award
                       </motion.h3>
@@ -190,27 +190,27 @@ const Awards = () => {
                       transition={{ duration: 0.6, delay: 1.0 }}
                       className="space-y-6"
                     >
-                      <p className="text-blue-100 text-lg leading-relaxed">
+                      <p className="text-slate-700 text-lg leading-relaxed">
                         Over the years, owing to its commitment to provide the best legal remedies and solutions to its clients, 
-                        <span className="text-yellow-300 font-semibold"> GCS</span> has gained International repute in the field of legal consultancy services.
+                        <span className="text-yellow-700 font-semibold"> GCS</span> has gained International repute in the field of legal consultancy services.
                       </p>
 
-                      <div className="bg-gradient-to-r from-blue-900/50 to-slate-800/50 rounded-xl p-6 border border-blue-400/30">
-                        <p className="text-blue-100 text-lg leading-relaxed">
-                          <span className="text-yellow-300 font-semibold">GSC</span> was awarded the{' '}
-                          <span className="text-yellow-300 font-bold">Century International Gold Quality Era Award</span> and{' '}
-                          <span className="text-blue-300 font-semibold">Mr Jose E. Prieto</span>, Executive President of BID, 
+                      <div className="bg-gradient-to-r from-blue-50/80 to-slate-50/80 rounded-xl p-6 border border-blue-200/60">
+                        <p className="text-slate-700 text-lg leading-relaxed">
+                          <span className="text-yellow-700 font-semibold">GSC</span> was awarded the{' '}
+                          <span className="text-yellow-700 font-bold">Century International Gold Quality Era Award</span> and{' '}
+                          <span className="text-blue-700 font-semibold">Mr Jose E. Prieto</span>, Executive President of BID, 
                           Business Initiative Directions, presented in{' '}
-                          <span className="text-yellow-300 font-semibold">May 2003 in Geneva, Switzerland</span> in recognition of the 
+                          <span className="text-yellow-700 font-semibold">May 2003 in Geneva, Switzerland</span> in recognition of the 
                           outstanding commitment to quality and excellence.
                         </p>
                       </div>
 
-                      <p className="text-blue-100 text-lg">
+                      <p className="text-slate-700 text-lg">
                         The award was received by{' '}
-                        <span className="text-yellow-300 font-semibold">Mr Manish Goel</span> and{' '}
-                        <span className="text-yellow-300 font-semibold">Mr Yatish Kumar Goel</span> on behalf of{' '}
-                        <span className="text-yellow-300 font-bold">Grow-On Consultancy Services</span>.
+                        <span className="text-yellow-700 font-semibold">Mr Manish Goel</span> and{' '}
+                        <span className="text-yellow-700 font-semibold">Mr Yatish Kumar Goel</span> on behalf of{' '}
+                        <span className="text-yellow-700 font-bold">Grow-On Consultancy Services</span>.
                       </p>
                     </motion.div>
 
@@ -222,16 +222,16 @@ const Awards = () => {
                       className="grid grid-cols-3 gap-6"
                     >
                       <div className="text-center">
-                        <div className="text-3xl font-bold text-yellow-400">2003</div>
-                        <div className="text-blue-200 text-sm">Year Awarded</div>
+                        <div className="text-3xl font-bold text-yellow-600">2003</div>
+                        <div className="text-slate-600 text-sm">Year Awarded</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-3xl font-bold text-yellow-400">Geneva</div>
-                        <div className="text-blue-200 text-sm">Switzerland</div>
+                        <div className="text-3xl font-bold text-yellow-600">Geneva</div>
+                        <div className="text-slate-600 text-sm">Switzerland</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-3xl font-bold text-yellow-400">Gold</div>
-                        <div className="text-blue-200 text-sm">Quality Era</div>
+                        <div className="text-3xl font-bold text-yellow-600">Gold</div>
+                        <div className="text-slate-600 text-sm">Quality Era</div>
                       </div>
                     </motion.div>
                   </motion.div>
@@ -255,7 +255,7 @@ const Awards = () => {
                 animate={{ y: [-5, 5, -5] }}
                 transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
               >
-                <Star className="w-6 h-6 text-yellow-400 opacity-70" />
+                <Star className="w-6 h-6 text-yellow-600 opacity-70" />
               </motion.div>
             ))}
           </div>
