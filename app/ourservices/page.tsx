@@ -24,9 +24,10 @@ import {
   Globe,
   Award
 } from 'lucide-react'
+import Link from 'next/link'
 import Header from '@/components/Header'
 import Navbar from '@/components/Navbar'
-// import Footer from '@/components/Footer'
+import Footer from '@/components/Footer'
 
 const services = [
   {
@@ -37,41 +38,49 @@ const services = [
     gradient: 'from-red-600 to-rose-700',
     cardGradient: 'from-red-50/90 via-cream-50 to-rose-50/80',
     glowColor: 'shadow-red-200/40',
+    image: 'criminal.png',
     accentColor: 'text-red-700',
-    category: 'Litigation'
+    category: 'Litigation',
+    route: '/criminal'
   },
   {
     icon: Home,
     title: 'Property Disputes',
     description: 'Comprehensive legal solutions for property ownership, possession disputes, and real estate matters with strategic litigation approach.',
     features: ['Title Disputes', 'Possession Rights', 'Real Estate Laws', 'Property Documentation'],
+    image: 'property.png',
     gradient: 'from-emerald-600 to-green-700',
     cardGradient: 'from-emerald-50/90 via-cream-50 to-green-50/80',
     glowColor: 'shadow-emerald-200/40',
     accentColor: 'text-emerald-700',
-    category: 'Property Law'
+    category: 'Property Law',
+    route: '/property'
   },
   {
     icon: Heart,
     title: 'Matrimonial Disputes',
     description: 'Sensitive handling of family matters including divorce, custody, and matrimonial disputes with compassionate legal guidance.',
     features: ['Divorce Proceedings', 'Child Custody', 'Alimony Matters', 'Family Counseling'],
+    image: 'matrimonial.png',
     gradient: 'from-pink-600 to-rose-700',
     cardGradient: 'from-pink-50/90 via-cream-50 to-rose-50/80',
     glowColor: 'shadow-pink-200/40',
     accentColor: 'text-pink-700',
-    category: 'Family Law'
+    category: 'Family Law',
+    route: '/matrimonial'
   },
   {
     icon: Building,
     title: 'Insolvency & Bankruptcy',
     description: 'Strategic assistance in complex insolvency matters for corporates, financial institutions, and stakeholders under IBC framework.',
     features: ['Corporate Insolvency', 'CIRP Process', 'Liquidation', 'Debt Restructuring'],
+    image: 'insolvency.png',
     gradient: 'from-blue-600 to-indigo-700',
     cardGradient: 'from-blue-50/90 via-cream-50 to-indigo-50/80',
     glowColor: 'shadow-blue-200/40',
     accentColor: 'text-blue-700',
-    category: 'Corporate Law'
+    category: 'Corporate Law',
+    route: '/insolvency'
   },
   {
     icon: Scale,
@@ -82,7 +91,9 @@ const services = [
     cardGradient: 'from-purple-50/90 via-cream-50 to-violet-50/80',
     glowColor: 'shadow-purple-200/40',
     accentColor: 'text-purple-700',
-    category: 'ADR'
+    image: 'arbitration.png',
+    category: 'ADR',
+    route: '/arbitration'
   },
   {
     icon: Briefcase,
@@ -93,7 +104,9 @@ const services = [
     cardGradient: 'from-slate-50/90 via-cream-50 to-gray-50/80',
     glowColor: 'shadow-slate-200/40',
     accentColor: 'text-slate-700',
-    category: 'Corporate Law'
+    image: 'corporate.png',
+    category: 'Corporate Law',
+    route: '/corporate'
   },
   {
     icon: Landmark,
@@ -104,7 +117,9 @@ const services = [
     cardGradient: 'from-amber-50/90 via-cream-50 to-yellow-50/80',
     glowColor: 'shadow-amber-200/40',
     accentColor: 'text-amber-700',
-    category: 'Banking Law'
+    image: 'banking.png',
+    category: 'Banking Law',
+    route: '/banking'
   },
   {
     icon: CreditCard,
@@ -115,7 +130,9 @@ const services = [
     cardGradient: 'from-teal-50/90 via-cream-50 to-cyan-50/80',
     glowColor: 'shadow-teal-200/40',
     accentColor: 'text-teal-700',
-    category: 'Financial Law'
+    image: 'recovery.png',
+    category: 'Financial Law',
+    route: '/recovery'
   },
   {
     icon: Trophy,
@@ -126,7 +143,9 @@ const services = [
     cardGradient: 'from-orange-50/90 via-cream-50 to-red-50/80',
     glowColor: 'shadow-orange-200/40',
     accentColor: 'text-orange-700',
-    category: 'Regulatory'
+    image: 'competition.png',
+    category: 'Regulatory',
+    route: '/competition'
   },
   {
     icon: Monitor,
@@ -137,7 +156,9 @@ const services = [
     cardGradient: 'from-indigo-50/90 via-cream-50 to-blue-50/80',
     glowColor: 'shadow-indigo-200/40',
     accentColor: 'text-indigo-700',
-    category: 'Technology Law'
+    image: 'cyber.png',
+    category: 'Technology Law',
+    route: '/cyber'
   },
   {
     icon: Merge,
@@ -148,7 +169,9 @@ const services = [
     cardGradient: 'from-violet-50/90 via-cream-50 to-purple-50/80',
     glowColor: 'shadow-violet-200/40',
     accentColor: 'text-violet-700',
-    category: 'Corporate Law'
+    image: 'mergers.png',
+    category: 'Corporate Law',
+    route: '/mergers'
   },
   {
     icon: TreePine,
@@ -159,7 +182,9 @@ const services = [
     cardGradient: 'from-green-50/90 via-cream-50 to-emerald-50/80',
     glowColor: 'shadow-green-200/40',
     accentColor: 'text-green-700',
-    category: 'Environmental Law'
+    image: 'environment.png',
+    category: 'Environmental Law',
+    route: '/environment_law'
   },
   {
     icon: Users,
@@ -170,7 +195,9 @@ const services = [
     cardGradient: 'from-cyan-50/90 via-cream-50 to-blue-50/80',
     glowColor: 'shadow-cyan-200/40',
     accentColor: 'text-cyan-700',
-    category: 'Employment Law'
+    image: 'labour.png',
+    category: 'Employment Law',
+    route: '/labour'
   }
 ]
 
@@ -183,7 +210,7 @@ const stats = [
 
 export default function OurServicesPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-400  via-blue-200 via-blue-100 via-blue-50 via-orange-200 to-orange-300">
+    <div className="min-h-screen bg-gradient-to-r from-blue-400 via-blue-200 via-blue-100 via-blue-50 via-orange-200 to-orange-300">
       <Header />
       <Navbar />
       
@@ -260,12 +287,13 @@ export default function OurServicesPage() {
             {services.map((service, index) => {
               const Icon = service.icon
               return (
-                <div
+                <Link
                   key={service.title}
-                  className="group relative"
+                  href={service.route}
+                  className="group relative block"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className={`relative bg-gradient-to-br ${service.cardGradient} rounded-3xl p-8 hover:shadow-2xl ${service.glowColor} transition-all duration-700 transform hover:scale-105 hover:-translate-y-2 animate-in slide-in-from-bottom border border-white/60 backdrop-blur-sm overflow-hidden h-full`}>
+                  <div className={`relative bg-gradient-to-br ${service.cardGradient} rounded-3xl p-6 hover:shadow-2xl ${service.glowColor} transition-all duration-700 transform hover:scale-105 hover:-translate-y-2 animate-in slide-in-from-bottom border border-white/60 backdrop-blur-sm overflow-hidden h-full cursor-pointer`}>
                     {/* Background Effects */}
                     <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/60 via-transparent to-white/20 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
                     <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[1500ms]"></div>
@@ -279,10 +307,24 @@ export default function OurServicesPage() {
                         </span>
                       </div>
 
-                      {/* Icon */}
-                      <div className={`w-16 h-16 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 mb-6 relative overflow-hidden`}>
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
-                        <Icon className="w-8 h-8 text-white drop-shadow-lg relative z-10" />
+                      {/* Image */}
+                      <div className="w-full h-40 mb-6 rounded-2xl overflow-hidden shadow-xl group-hover:scale-105 transition-all duration-500 relative">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent z-10"></div>
+                        <img 
+                          src={service.image} 
+                          alt={service.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          onError={(e) => {
+                            // Fallback to icon if image fails to load
+                            e.target.style.display = 'none'
+                            e.target.nextSibling.style.display = 'flex'
+                          }}
+                        />
+                        {/* Fallback Icon */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center shadow-xl hidden`}>
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                          <Icon className="w-12 h-12 text-white drop-shadow-lg relative z-10" />
+                        </div>
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                       </div>
 
@@ -315,7 +357,7 @@ export default function OurServicesPage() {
                     {/* Corner Accent */}
                     <div className={`absolute top-4 right-4 w-3 h-3 bg-gradient-to-br ${service.gradient} rounded-full opacity-30 group-hover:opacity-60 transition-opacity duration-300`}></div>
                   </div>
-                </div>
+                </Link>
               )
             })}
           </div>
@@ -353,7 +395,7 @@ export default function OurServicesPage() {
                 <button className="group relative bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-slate-900 px-12 py-5 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <span className="relative flex items-center space-x-2">
-                    <span>Get Free Consultation</span>
+                    <span>Get Consultation</span>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 </button>
@@ -385,7 +427,7 @@ export default function OurServicesPage() {
         </div>
       </section>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   )
 }
