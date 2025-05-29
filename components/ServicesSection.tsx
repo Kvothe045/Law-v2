@@ -126,26 +126,21 @@ export default function ServicesSection() {
                       </span>
                     </div>
 
-                    {/* Image */}
-                    <div className="w-full h-40 mb-6 rounded-2xl overflow-hidden shadow-xl group-hover:scale-105 transition-all duration-500 relative">
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent z-10"></div>
-                      <img 
-                        src={service.image} 
-                        alt={service.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                        onError={(e) => {
-                          // Fallback to icon if image fails to load
-                          e.target.style.display = 'none'
-                          e.target.nextSibling.style.display = 'flex'
-                        }}
-                      />
-                      {/* Fallback Icon */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center shadow-xl hidden`}>
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
-                        <Icon className="w-12 h-12 text-white drop-shadow-lg relative z-10" />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                    </div>
+                    <img
+  src={service.image}
+  alt={service.title}
+  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+  onError={(e) => {
+    // Cast to HTMLImageElement to access style and nextSibling
+    const imgElement = e.target as HTMLImageElement;
+    // Fallback to icon if image fails to load
+    imgElement.style.display = 'none';
+    const fallbackDiv = imgElement.nextSibling as HTMLElement;
+    if (fallbackDiv) {
+      fallbackDiv.style.display = 'flex';
+    }
+  }}
+/>
 
                     {/* Content */}
                     <h3 className={`text-xl font-bold ${service.accentColor} group-hover:text-slate-800 transition-colors duration-300 mb-4 leading-tight`}>

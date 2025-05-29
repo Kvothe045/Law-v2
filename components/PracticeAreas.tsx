@@ -147,16 +147,20 @@ export default function PracticeAreasSection() {
               
               {/* Image Container - Takes most of the card */}
               <div className="flex-1 w-full overflow-hidden rounded-t-2xl relative">
-                <img 
-                  src={area.image} 
-                  alt={area.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  onError={(e) => {
-                    // Fallback to a colored background with gradient if image fails to load
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
-                  }}
-                />
+              <img
+  src={area.image}
+  alt={area.title}
+  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+  onError={(e) => {
+    // Cast to HTMLImageElement to access style and nextSibling
+    const imgElement = e.target as HTMLImageElement;
+    imgElement.style.display = 'none';
+    const fallbackDiv = imgElement.nextSibling as HTMLElement;
+    if (fallbackDiv) {
+      fallbackDiv.style.display = 'flex';
+    }
+  }}
+/>
                 {/* Fallback gradient background */}
                 <div className={`absolute inset-0 w-full h-full bg-gradient-to-br ${area.gradient} hidden items-center justify-center`}>
                   <Scale className="w-8 h-8 text-white" />
