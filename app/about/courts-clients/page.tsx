@@ -17,6 +17,9 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import Navbar from '@/components/Navbar'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 const courtsStats = [
   { number: '7+', label: 'Court Types', icon: Scale },
@@ -107,6 +110,8 @@ export default function CourtsClientsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-blue-50/30">
+      <Header />
+      <Navbar />
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         {/* Background Elements */}
@@ -436,6 +441,7 @@ export default function CourtsClientsPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   )
 }

@@ -6,31 +6,36 @@ import { Scale, Download, Phone, Mail } from 'lucide-react'
 
 export default function Header() {
   return (
-    <header className="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 border-b border-amber-200/30 sticky top-0 z-50 shadow-lg">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo Section */}
-          <div className="flex items-center">
-            <div className="relative group">
-              <img 
-                src="/logo.png" 
-                alt="GCS Law Firm" 
-                className="h-12 w-auto transition-all duration-500 group-hover:scale-110 drop-shadow-sm"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                  (e.currentTarget.nextElementSibling as HTMLElement)!.style.display = 'flex';
-                }}
-              />
-              <div className="hidden items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <Scale className="h-5 w-5 text-white" />
-                </div>
-                <span className="text-2xl font-black bg-gradient-to-r from-amber-200 via-amber-100 to-amber-200 bg-clip-text text-transparent">
-                  GCS Law
-                </span>
-              </div>
-            </div>
-          </div>
+    <header className="bg-gradient-to-r from-amber-100 via-blue-100 to-amber-100 border-b border-amber-300/40 sticky top-0 z-50 shadow-md">
+      <div className="max-w-7xl mx-auto px-3">
+      <div className="flex justify-between items-center h-24">
+  {/* Logo Section */}
+  <div className="flex items-center">
+    <div className="relative group">
+      <img
+        src="/logo.png"
+        alt="GCS Law Firm"
+        className="h-16 w-auto transition-all duration-500 group-hover:scale-110 shadow-lg image-rendering-crisp"
+        style={{
+          imageRendering: 'crisp-edges',
+          // imageRendering: '-webkit-optimize-contrast',
+          // imageRendering: 'pixelated'
+        }}
+        onError={(e) => {
+          e.currentTarget.style.display = 'none';
+          (e.currentTarget.nextElementSibling as HTMLElement)!.style.display = 'flex';
+        }}
+      />
+      <div className="hidden items-center space-x-3">
+        <div className="w-12 h-12 bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-2xl flex items-center justify-center shadow-lg">
+          <Scale className="h-6 w-6 text-white" />
+        </div>
+        <span className="text-2xl font-black bg-gradient-to-r from-amber-600 via-amber-700 to-amber-600 bg-clip-text text-transparent">
+          GCS Law
+        </span>
+      </div>
+    </div>
+  </div>
 
           {/* Center & Right Section */}
           <div className="flex items-center space-x-8">
@@ -39,10 +44,10 @@ export default function Header() {
               href="https://www.gcsl.in/wp-content/uploads/2020/01/GROW-ON-CONSULTANCY-SERVICES-23-dec.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative hidden md:flex items-center space-x-3 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:from-amber-600 hover:via-amber-700 hover:to-amber-800 text-slate-900 px-6 py-3 rounded-2xl font-semibold text-sm transition-all duration-500 transform hover:scale-105 shadow-xl hover:shadow-2xl overflow-hidden"
+              className="group relative hidden md:flex items-center space-x-3 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 hover:from-amber-400 hover:via-amber-500 hover:to-amber-600 text-slate-800 px-6 py-3 rounded-2xl font-semibold text-sm transition-all duration-500 transform hover:scale-105 shadow-lg hover:shadow-xl overflow-hidden"
             >
               {/* Animated background overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               
               <div className="relative flex items-center space-x-2">
                 <Scale className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
@@ -51,25 +56,13 @@ export default function Header() {
               </div>
             </Link>
 
-            {/* Contact Info - Enhanced Design */}
-            <div className="hidden lg:flex flex-col space-y-1 text-right">
-              <div className="flex items-center justify-end space-x-2 text-amber-100">
-                <Phone className="h-3 w-3 text-amber-400" />
-                <span className="text-sm font-bold tracking-tight">+91-124-4377638</span>
-              </div>
-              <div className="flex items-center justify-end space-x-2 text-amber-200">
-                <Mail className="h-3 w-3 text-amber-300" />
-                <span className="text-xs font-semibold">info@gcsl.in</span>
-              </div>
-            </div>
-
             {/* Social Links - Ultra Modern Design */}
             <div className="flex items-center space-x-3">
               <a
                 href="https://www.facebook.com/yatish.goel"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative w-11 h-11 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-110 overflow-hidden"
+                className="group relative w-11 h-11 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-110 overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" className="w-5 h-5 relative z-10">
@@ -81,7 +74,7 @@ export default function Header() {
                 href="https://x.com/i/flow/login?redirect_after_login=%2Fyatishgoel"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative w-11 h-11 bg-gradient-to-br from-slate-800 via-slate-900 to-black rounded-2xl flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-110 overflow-hidden"
+                className="group relative w-11 h-11 bg-gradient-to-br from-slate-600 via-slate-700 to-slate-800 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-110 overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" className="w-5 h-5 relative z-10">
@@ -93,7 +86,7 @@ export default function Header() {
                 href="https://www.linkedin.com/company/gcsl-law-firm/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative w-11 h-11 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 rounded-2xl flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-110 overflow-hidden"
+                className="group relative w-11 h-11 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-110 overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" className="w-5 h-5 relative z-10">

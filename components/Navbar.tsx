@@ -35,23 +35,23 @@ const navItems = [
   },
   {
     name: 'Practice Areas',
-    href: '/practice',
+    href: '/ourservices',
     icon: Briefcase,
     priority: 'high',
-    submenu: [
-      { name: 'Specialized Services', href: '/practice/specialized' },
-      { name: 'Other Services', href: '/practice/other' },
-    ]
+    // submenu: [
+    //   { name: 'Specialized Services', href: '/practice/specialized' },
+    //   { name: 'Other Services', href: '/practice/other' },
+    // ]
   },
   {
     name: 'International',
     href: '/international',
     icon: Globe,
     priority: 'medium',
-    submenu: [
-      { name: 'Century International Gold Quality Era Award', href: '/international/award' },
-      { name: 'International Co-operation Agreements', href: '/international/agreements' },
-    ]
+    // submenu: [
+    //   { name: 'Century International Gold Quality Era Award', href: '/international/award' },
+    //   { name: 'International Co-operation Agreements', href: '/international/agreements' },
+    // ]
   },
   { name: 'Legal Education', href: '/education', icon: GraduationCap, priority: 'medium' },
   {
