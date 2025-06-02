@@ -226,7 +226,7 @@ export default function TVChannelsPage() {
       </section>
 
       {/* Recognition Impact Section - YouTube Media Focus */}
-      <section className="py-20 bg-gradient-to-br from-slate-800 via-blue-900 to-slate-800">
+      <section className="py-20 bg-gradient-to-br from-orange-200 via-blue-400 to-orange-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
@@ -244,7 +244,7 @@ export default function TVChannelsPage() {
                   </span>
                 </h2>
 
-                <div className="space-y-4 text-red-200 leading-relaxed">
+                <div className="space-y-4 text-red-900 leading-relaxed">
                   <p className="text-lg">
                     Our televised appearances on YouTube reach thousands of
                     viewers, creating awareness and educating the public on

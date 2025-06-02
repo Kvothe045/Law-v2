@@ -210,7 +210,7 @@ const Awards = () => {
                         The award was received by{' '}
                         <span className="text-yellow-700 font-semibold">Mr Manish Goel</span> and{' '}
                         <span className="text-yellow-700 font-semibold">Mr Yatish Kumar Goel</span> on behalf of{' '}
-                        <span className="text-yellow-700 font-bold">Grow-On Consultancy Services</span>.
+                        <span className="text-yellow-700 font-bold">GCS Law Firm</span>.
                       </p>
                     </motion.div>
 

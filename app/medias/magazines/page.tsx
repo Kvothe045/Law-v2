@@ -276,7 +276,7 @@ export default function MagazinesPage() {
       </section>
 
       {/* Recognition Impact Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-800 via-blue-900 to-slate-800">
+      <section className="py-20 bg-gradient-to-br from-amber-400 via-blue-500 to-amber-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}

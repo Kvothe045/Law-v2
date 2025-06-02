@@ -81,7 +81,7 @@ export default function HeroSection() {
                 <div className="text-sm font-medium text-amber-100 mt-1">Cases Won</div>
               </div>
               <div className="text-center bg-slate-900 rounded-2xl p-4 shadow-xl border border-amber-300/30">
-                <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent">98%</div>
+                <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent">A++</div>
                 <div className="text-sm font-medium text-amber-100 mt-1">Success Rate</div>
               </div>
             </div>

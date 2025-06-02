@@ -45,7 +45,7 @@ const navItems = [
   },
   {
     name: 'International',
-    href: '/internationals',
+    href: '/international',
     icon: Globe,
     priority: 'medium',
     // submenu: [
@@ -62,7 +62,7 @@ const navItems = [
     submenu: [
       { name: 'TV Channels Coverage', href: '/medias/tv' },
       { name: 'Print Media Coverage', href: '/medias/print' },
-      { name: 'Magazines', href: '/media/magazines' },
+      { name: 'Magazines', href: '/medias/magazines' },
     ]
   },
   { name: 'News', href: '/news', icon: Newspaper, priority: 'medium' },
