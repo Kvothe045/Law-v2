@@ -56,7 +56,7 @@ const navItems = [
   { name: 'Legal Education', href: '/education', icon: GraduationCap, priority: 'medium' },
   {
     name: 'Media Coverage',
-    href: '/medias',
+    href: '/medias/tv',
     icon: Tv,
     priority: 'low',
     submenu: [
