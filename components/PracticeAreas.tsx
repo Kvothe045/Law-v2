@@ -1,5 +1,6 @@
 'use client'
 
+import { link } from 'fs'
 import { 
   Scale, 
   Globe,
@@ -15,91 +16,104 @@ const practiceAreas = [
     title: 'Criminal Litigation',
     gradient: 'from-red-600 to-rose-700',
     borderColor: 'border-red-200',
-    hoverShadow: 'hover:shadow-red-500/20'
+    hoverShadow: 'hover:shadow-red-500/20',
+    href: '/criminal'
   },
   {
     image: 'property.png',
     title: 'Property Disputes',
     gradient: 'from-green-600 to-emerald-700',
     borderColor: 'border-green-200',
-    hoverShadow: 'hover:shadow-green-500/20'
+    hoverShadow: 'hover:shadow-green-500/20',
+    href: '/property'
   },
   {
     image: 'matrimonial.png',
     title: 'Matrimonial Disputes',
     gradient: 'from-pink-600 to-rose-700',
     borderColor: 'border-pink-200',
-    hoverShadow: 'hover:shadow-pink-500/20'
+    hoverShadow: 'hover:shadow-pink-500/20',
+    href: '/matrimonial'
   },
   {
     image: 'insolvency.png',
     title: 'Insolvency & Bankruptcy',
     gradient: 'from-blue-600 to-indigo-700',
     borderColor: 'border-blue-200',
-    hoverShadow: 'hover:shadow-blue-500/20'
+    hoverShadow: 'hover:shadow-blue-500/20',
+    href : '/insolvency'
   },
   {
     image: 'arbitration.png',
     title: 'Arbitration / ADR',
     gradient: 'from-purple-600 to-violet-700',
     borderColor: 'border-purple-200',
-    hoverShadow: 'hover:shadow-purple-500/20'
+    hoverShadow: 'hover:shadow-purple-500/20',
+    href: '/arbitration'
   },
   {
     image: 'corporate.png',
     title: 'Corporate & Commercial',
     gradient: 'from-indigo-600 to-blue-700',
     borderColor: 'border-indigo-200',
-    hoverShadow: 'hover:shadow-indigo-500/20'
+    hoverShadow: 'hover:shadow-indigo-500/20',
+    href: '/corporate'
   },
   {
     image: 'banking.png',
     title: 'Banking Laws & DRT',
     gradient: 'from-amber-600 to-yellow-700',
     borderColor: 'border-amber-200',
-    hoverShadow: 'hover:shadow-amber-500/20'
+    hoverShadow: 'hover:shadow-amber-500/20',
+    href: '/banking'
   },
   {
     image: 'recovery.png',
     title: 'Recovery & Financial',
     gradient: 'from-teal-600 to-cyan-700',
     borderColor: 'border-teal-200',
-    hoverShadow: 'hover:shadow-teal-500/20'
+    hoverShadow: 'hover:shadow-teal-500/20',
+    href: '/recovery'
   },
   {
     image: 'competition.png',
     title: 'Competition Laws',
     gradient: 'from-cyan-600 to-blue-700',
     borderColor: 'border-cyan-200',
-    hoverShadow: 'hover:shadow-cyan-500/20'
+    hoverShadow: 'hover:shadow-cyan-500/20',
+    href: '/competition'
   },
   {
     image: 'cyber.png',
     title: 'IT & Cyber Cases',
     gradient: 'from-slate-600 to-gray-700',
     borderColor: 'border-slate-200',
-    hoverShadow: 'hover:shadow-slate-500/20'
+    hoverShadow: 'hover:shadow-slate-500/20',
+    href: '/cyber'
   },
   {
     image: 'mergers.png',
     title: 'Mergers & Acquisitions',
     gradient: 'from-violet-600 to-purple-700',
     borderColor: 'border-violet-200',
-    hoverShadow: 'hover:shadow-violet-500/20'
+    hoverShadow: 'hover:shadow-violet-500/20',
+    href:'/mergers'
   },
   {
     image: 'environment.png',
     title: 'Environmental Law',
     gradient: 'from-lime-600 to-green-700',
     borderColor: 'border-lime-200',
-    hoverShadow: 'hover:shadow-lime-500/20'
+    hoverShadow: 'hover:shadow-lime-500/20',
+    href: '/environment_law'
   },
   {
     image: 'labour.png',
     title: 'Labour & Industrial',
     gradient: 'from-orange-600 to-red-700',
     borderColor: 'border-orange-200',
-    hoverShadow: 'hover:shadow-orange-500/20'
+    hoverShadow: 'hover:shadow-orange-500/20',
+    href: '/labour'
   }
 ]
 
@@ -138,7 +152,7 @@ export default function PracticeAreasSection() {
           {practiceAreas.map((area, index) => (
             <Link
               key={area.title}
-              href="/ourservices"
+              href={area.href}
               className={`group relative bg-white rounded-2xl shadow-lg ${area.hoverShadow} hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer border ${area.borderColor} overflow-hidden flex flex-col h-40`}
               style={{ animationDelay: `${index * 50}ms` }}
             >
