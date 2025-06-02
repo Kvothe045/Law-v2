@@ -56,13 +56,13 @@ const navItems = [
   { name: 'Legal Education', href: '/education', icon: GraduationCap, priority: 'medium' },
   {
     name: 'Media Coverage',
-    href: '/media',
+    href: '/medias',
     icon: Tv,
     priority: 'low',
     submenu: [
-      { name: 'TV Channels Coverage', href: '/media/tv' },
-      { name: 'Print Media Coverage', href: '/media/print' },
-      { name: 'Magazines', href: '/media/magazines' },
+      { name: 'TV Channels Coverage', href: '/medias/tv' },
+      { name: 'Print Media Coverage', href: '/medias/print' },
+      { name: 'Magazines', href: '/medias/magazines' },
     ]
   },
   { name: 'News', href: '/news', icon: Newspaper, priority: 'medium' },

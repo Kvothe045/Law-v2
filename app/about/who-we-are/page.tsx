@@ -56,28 +56,32 @@ const expertise = [
     title: 'Criminal Law',
     description: 'Expert representation in criminal litigation with proven track record',
     color: 'text-red-600',
-    bg: 'bg-red-50'
+    bg: 'bg-red-50',
+    href: '/criminal'
   },
   {
     icon: Building,
     title: 'Property Matters',
     description: 'Comprehensive property dispute resolution and land acquisition services',
     color: 'text-green-600',
-    bg: 'bg-green-50'
+    bg: 'bg-green-50',
+    href: '/property'
   },
   {
     icon: Heart,
     title: 'Family Law',
     description: 'Sensitive handling of matrimonial and family disputes with care',
     color: 'text-pink-600',
-    bg: 'bg-pink-50'
+    bg: 'bg-pink-50',
+    href: '/matrimonial'
   },
   {
     icon: Briefcase,
     title: 'Corporate Matters',
     description: 'Strategic corporate legal solutions for businesses of all sizes',
     color: 'text-blue-600',
-    bg: 'bg-blue-50'
+    bg: 'bg-blue-50',
+    href: '/corporate'
   }
 ]
 
@@ -199,9 +203,10 @@ export default function WhoWeArePage() {
 
             <div className="grid gap-6">
               {expertise.map((item, index) => (
-                <div 
+                <Link 
                   key={item.title}
-                  className={`group ${item.bg} border-l-4 border-slate-800 p-6 rounded-r-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500 cursor-pointer`}
+                  href={item.href}
+                  className={`group ${item.bg} border-l-4 border-slate-800 p-6 rounded-r-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500 cursor-pointer block`}
                   style={{ 
                     animationDelay: `${index * 150}ms`,
                     borderLeftColor: item.color.includes('red') ? '#dc2626' : 
@@ -214,15 +219,18 @@ export default function WhoWeArePage() {
                       <item.icon className={`w-6 h-6 ${item.color}`} />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-slate-800 mb-2 group-hover:text-slate-900 transition-colors duration-300">
-                        {item.title}
-                      </h3>
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-xl font-bold text-slate-800 group-hover:text-slate-900 transition-colors duration-300">
+                          {item.title}
+                        </h3>
+                        <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all duration-300" />
+                      </div>
                       <p className="text-slate-600 leading-relaxed">
                         {item.description}
                       </p>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
