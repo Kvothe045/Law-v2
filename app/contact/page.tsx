@@ -13,12 +13,11 @@ const MapSection = dynamic(() => import("@/components/MapSection"), {
 const ContactUsPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-tr from-indigo-50 via-white to-amber-100 flex flex-col">
-      <header className="sticky top-0 z-50">
+      <div className="sticky top-0 z-50">
         <Header />
-      </header>
-      <nav className="sticky top-[var(--header-height,0px)] z-50">
         <Navbar />
-      </nav>
+      </div>
+
 
       <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-black py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start gap-10">
