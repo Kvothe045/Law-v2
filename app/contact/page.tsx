@@ -3,22 +3,12 @@ import React from "react";
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import dynamic from "next/dynamic";
 import { MapPin, Phone, Mail, Quote } from "lucide-react";
-import L from "leaflet";
 
-// Fix leaflet icon paths
-delete (L.Icon.Default as any).prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl:
-    "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon-2x.png",
-  iconUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png",
+const MapSection = dynamic(() => import("@/components/MapSection"), {
+  ssr: false,
 });
-
-const position: [number, number] = [28.41886, 77.06744];
 
 const ContactUsPage: React.FC = () => {
   return (
@@ -50,7 +40,6 @@ const ContactUsPage: React.FC = () => {
               </a>
             </div>
 
-            {/* Contact Card */}
             <div className="bg-white rounded-xl shadow-xl p-8 text-indigo-900 max-w-md">
               <h2 className="text-2xl font-semibold mb-6">Contact Information</h2>
               <div className="space-y-6 text-lg">
@@ -82,33 +71,13 @@ const ContactUsPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Vertical Divider */}
           <div className="hidden md:block w-px bg-amber-400 opacity-40 mx-6 h-[40rem]"></div>
 
-          {/* Right Column: OpenStreetMap */}
-          <div className="md:w-1/2 rounded-xl overflow-hidden shadow-xl max-h-[40rem] relative z-0">
-            <MapContainer
-              center={position}
-              zoom={15}
-              scrollWheelZoom={true}
-              style={{ height: "100%", minHeight: "700px", width: "100%" }}
-            >
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              <Marker position={position}>
-                <Popup>
-                  GCS Law Firm <br />
-                  836-A, Tower B-3, Spaze I-Tech Park, Sector.
-                </Popup>
-              </Marker>
-            </MapContainer>
-          </div>
+          {/* Dynamically loaded Map */}
+          <MapSection />
         </div>
       </section>
 
-      {/* Testimonials Section */}
       <section className="bg-white py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-12">
