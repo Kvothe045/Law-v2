@@ -42,24 +42,24 @@ const Footer = () => {
   };
 
   const specializedServices = [
-    { name: "Criminal Litigation", icon: Gavel },
-    { name: "Property Disputes", icon: Building },
-    { name: "Matrimonial Disputes", icon: Users },
-    { name: "Insolvency & Bankruptcy", icon: FileText },
-    { name: "Arbitration / ADR", icon: Scale }
+    { name: "Criminal Litigation", icon: Gavel , href:'/criminal'},
+    { name: "Property Disputes", icon: Building , href: '/property' },
+    { name: "Matrimonial Disputes", icon: Users , href : '/matrimonial'},
+    { name: "Insolvency & Bankruptcy", icon: FileText , href: '/insolvency'},
+    { name: "Arbitration / ADR", icon: Scale ,href: '/arbitration'}
   ];
 
   const otherServices = [
-    "Corporate & Commercial Matters",
-    "Banking Laws & DRT Matters", 
-    "Recovery & Financial Matters",
-    "Competition Laws",
-    "Information Technology Cyber Cases",
-    "Insolvency & Bankruptcy Matters",
-    "Mergers & Acquisitions",
-    "Environmental Law & NGT Matters",
-    "Service, Labour & Industrial Laws Cases"
-  ];
+  { name: "Corporate & Commercial Matters", href: "/corporate" },
+  { name: "Banking Laws & DRT Matters", href: "/banking" },
+  { name: "Recovery & Financial Matters", href: "/recovery" },
+  { name: "Competition Laws", href: "/competition" },
+  { name: "Information Technology Cyber Cases", href: "/cyber" },
+  { name: "Insolvency & Bankruptcy Matters", href: "/insolvency" },
+  { name: "Mergers & Acquisitions", href: "/mergers" },
+  { name: "Environmental Law & NGT Matters", href: "/environment_law" },
+  { name: "Service, Labour & Industrial Laws Cases", href: "/labour" }
+];
 
   const socialLinks = [
     { name: "Facebook", icon: Facebook, href: "#" },
@@ -131,8 +131,9 @@ const Footer = () => {
             </h3>
             <div className="space-y-3">
               {specializedServices.map((service, index) => (
-                <motion.div
+                <motion.a
                   key={service.name}
+                  href={service.href}
                   className="flex items-center gap-3 p-3 rounded-lg bg-white/50 hover:bg-white/80 transition-all duration-300 group cursor-pointer border border-gray-100 hover:border-amber-300"
                   whileHover={{ x: 5 }}
                   initial={{ opacity: 0, x: -20 }}
@@ -143,7 +144,7 @@ const Footer = () => {
                   <span className="text-gray-700 group-hover:text-gray-900 transition-colors duration-300">
                     {service.name}
                   </span>
-                </motion.div>
+                </motion.a>
               ))}
             </div>
           </motion.div>
@@ -156,8 +157,9 @@ const Footer = () => {
             </h3>
             <div className="space-y-2">
               {otherServices.map((service, index) => (
-                <motion.div
-                  key={service}
+                <motion.a
+                  key={service.name}
+                  href={service.href}
                   className="flex items-center gap-2 p-2 rounded-lg hover:bg-white/60 transition-all duration-300 group cursor-pointer"
                   whileHover={{ x: 3 }}
                   initial={{ opacity: 0, x: -15 }}
@@ -166,9 +168,9 @@ const Footer = () => {
                 >
                   <div className="w-2 h-2 bg-amber-600 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
                   <span className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300">
-                    {service}
+                    {service.name}
                   </span>
-                </motion.div>
+                </motion.a>
               ))}
             </div>
           </motion.div>
