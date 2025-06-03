@@ -56,12 +56,12 @@ export default function BlogAdminPage() {
     try {
       const uploadFormData = new FormData();
       uploadFormData.append('file', file);
-
+  
       const response = await fetch('/api/upload', {
         method: 'POST',
         body: uploadFormData,
       });
-
+  
       if (response.ok) {
         const data = await response.json();
         setFormData(prev => ({ ...prev, image: data.imageUrl }));
@@ -76,8 +76,7 @@ export default function BlogAdminPage() {
     }
   };
 
-  // In your BlogAdminPage component, replace the handleSave function:
-
+  
 const handleSave = async () => {
   if (!formData.title.trim() || !formData.content.trim()) {
     alert('Title and content are required');
