@@ -122,7 +122,7 @@ export default function WhoWeArePage() {
       <Navbar />
 
   {/* Hero Section */}
-  <section className="relative py-24 overflow-hidden">
+  <section className="relative py-12 overflow-hidden">
     <div className="absolute inset-0">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 opacity-95"></div>
       <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400"></div>
