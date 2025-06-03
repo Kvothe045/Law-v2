@@ -1,6 +1,5 @@
 'use client'
 
-import { link } from 'fs'
 import { 
   Scale, 
   Globe,
@@ -147,13 +146,13 @@ export default function PracticeAreasSection() {
           </p>
         </div>
 
-        {/* Modern Practice Areas Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-8">
+        {/* Modern Practice Areas Grid - Centered Layout */}
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
           {practiceAreas.map((area, index) => (
             <Link
               key={area.title}
               href={area.href}
-              className={`group relative bg-white rounded-2xl shadow-lg ${area.hoverShadow} hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer border ${area.borderColor} overflow-hidden flex flex-col h-40`}
+              className={`group relative bg-white rounded-2xl shadow-lg ${area.hoverShadow} hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer border ${area.borderColor} overflow-hidden flex flex-col w-40 h-40 sm:w-48 sm:h-48 lg:w-44 lg:h-44 xl:w-48 xl:h-48`}
               style={{ animationDelay: `${index * 50}ms` }}
             >
               {/* Hover Overlay */}
@@ -161,20 +160,20 @@ export default function PracticeAreasSection() {
               
               {/* Image Container - Takes most of the card */}
               <div className="flex-1 w-full overflow-hidden rounded-t-2xl relative">
-              <img
-  src={area.image}
-  alt={area.title}
-  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-  onError={(e) => {
-    // Cast to HTMLImageElement to access style and nextSibling
-    const imgElement = e.target as HTMLImageElement;
-    imgElement.style.display = 'none';
-    const fallbackDiv = imgElement.nextSibling as HTMLElement;
-    if (fallbackDiv) {
-      fallbackDiv.style.display = 'flex';
-    }
-  }}
-/>
+                <img
+                  src={area.image}
+                  alt={area.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  onError={(e) => {
+                    // Cast to HTMLImageElement to access style and nextSibling
+                    const imgElement = e.target as HTMLImageElement;
+                    imgElement.style.display = 'none';
+                    const fallbackDiv = imgElement.nextSibling as HTMLElement;
+                    if (fallbackDiv) {
+                      fallbackDiv.style.display = 'flex';
+                    }
+                  }}
+                />
                 {/* Fallback gradient background */}
                 <div className={`absolute inset-0 w-full h-full bg-gradient-to-br ${area.gradient} hidden items-center justify-center`}>
                   <Scale className="w-8 h-8 text-white" />

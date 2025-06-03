@@ -283,14 +283,14 @@ export default function OurServicesPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="flex flex-wrap justify-center gap-8">
             {services.map((service, index) => {
               const Icon = service.icon
               return (
                 <Link
                   key={service.title}
                   href={service.route}
-                  className="group relative block"
+                  className="group relative block w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)] xl:w-[calc(25%-1.5rem)]"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className={`relative bg-gradient-to-br ${service.cardGradient} rounded-3xl p-6 hover:shadow-2xl ${service.glowColor} transition-all duration-700 transform hover:scale-105 hover:-translate-y-2 animate-in slide-in-from-bottom border border-white/60 backdrop-blur-sm overflow-hidden h-full cursor-pointer`}>
