@@ -91,7 +91,7 @@ export default function InfrastructurePage() {
       <Header />
       <Navbar />
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-10 overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 opacity-95"></div>
