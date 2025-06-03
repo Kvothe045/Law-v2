@@ -8,7 +8,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 // ============================================
-// IMAGES CONFIGURATION - Easy to modify
+// IMAGES CONFIGURATION
 // ============================================
 const newspaperImages = [
   {

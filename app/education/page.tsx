@@ -332,7 +332,7 @@ export default function EducationPage() {
                 <Calendar className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
               <Link 
-                href="/services"
+                href="/ourservices"
                 className="group relative inline-flex items-center space-x-3 bg-white/10 text-white px-8 py-4 rounded-full font-bold shadow-2xl hover:bg-white/20 hover:scale-105 transition-all duration-300 border border-white/20 backdrop-blur-sm"
               >
                 <span>View All Services</span>

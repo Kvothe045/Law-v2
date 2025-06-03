@@ -4,6 +4,10 @@ import { PlayCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Award, Star, Trophy, ArrowRight, Users, Zap } from "lucide-react";
+import Navbar from '@/components/Navbar'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+
 
 const tvLearningFeatures = [
   {
@@ -85,6 +89,8 @@ export default function TVChannelsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-blue-50/30">
+      <Header />
+      <Navbar />
       {/* Hero Section */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">
@@ -361,7 +367,7 @@ export default function TVChannelsPage() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
               <Link
-                href="/about/who-we-are"
+                href="/about"
                 className="group inline-flex items-center space-x-3 bg-white/10 text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 hover:scale-105 transition-all duration-300 border border-white/20 backdrop-blur-sm"
               >
                 <span>Learn More</span>
@@ -371,6 +377,7 @@ export default function TVChannelsPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 'use client';
-
+import Link from "next/link";
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
@@ -62,9 +62,9 @@ const Footer = () => {
 ];
 
   const socialLinks = [
-    { name: "Facebook", icon: Facebook, href: "#" },
-    { name: "Twitter", icon: Twitter, href: "#" },
-    { name: "LinkedIn", icon: Linkedin, href: "#" }
+    { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/yatish.goel" },
+    { name: "Twitter", icon: Twitter, href: "https://twitter.com/yatishgoel" },
+    { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/company/gcsl-firm" }
   ];
 
   return (
@@ -185,6 +185,7 @@ const Footer = () => {
                   {socialLinks.map((social) => (
                     <motion.a
                       key={social.name}
+                      target="_blank"
                       href={social.href}
                       className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center hover:bg-amber-600 hover:text-white transition-all duration-300 group border border-gray-300"
                       whileHover={{ scale: 1.1, rotate: 5 }}
@@ -213,19 +214,23 @@ const Footer = () => {
               </div>
 
               {/* Contact CTA */}
-              <div className="bg-gradient-to-r from-blue-100 to-amber-100 backdrop-blur-sm rounded-xl p-6 border border-gray-200 shadow-md">
-                <h4 className="text-lg font-semibold text-blue-800 mb-2">Need Legal Assistance?</h4>
-                <p className="text-gray-700 text-sm mb-4">
-                  Get expert legal consultation from our experienced team.
-                </p>
-                <motion.button
-                  className="bg-white hover:bg-gray-50 text-gray-800 px-4 py-2 rounded-lg text-sm border border-gray-300 hover:border-amber-400 transition-all duration-300 shadow-sm hover:shadow-md"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Contact Us Today
-                </motion.button>
-              </div>
+<div className="bg-gradient-to-r from-blue-100 to-amber-100 backdrop-blur-sm rounded-xl p-6 border border-gray-200 shadow-md">
+  <h4 className="text-lg font-semibold text-blue-800 mb-2">Need Legal Assistance?</h4>
+  <p className="text-gray-700 text-sm mb-4">
+    Get expert legal consultation from our experienced team.
+  </p>
+
+  <Link href="/contact">
+    <motion.button
+      className="bg-white hover:bg-gray-50 text-gray-800 px-4 py-2 rounded-lg text-sm border border-gray-300 hover:border-amber-400 transition-all duration-300 shadow-sm hover:shadow-md"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      Contact Us Today
+    </motion.button>
+  </Link>
+</div>
+
             </div>
           </motion.div>
         </div>
