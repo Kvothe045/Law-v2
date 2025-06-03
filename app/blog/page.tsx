@@ -76,39 +76,42 @@ export default function BlogAdminPage() {
     }
   };
 
-  const handleSave = async () => {
-    if (!formData.title.trim() || !formData.content.trim()) {
-      alert('Title and content are required');
-      return;
-    }
+  // In your BlogAdminPage component, replace the handleSave function:
 
-    setSaving(true);
-    try {
-      const url = editingBlog ? `/api/news/${editingBlog.id}` : '/api/blogs';
-      const method = editingBlog ? 'PUT' : 'POST';
+const handleSave = async () => {
+  if (!formData.title.trim() || !formData.content.trim()) {
+    alert('Title and content are required');
+    return;
+  }
 
-      const response = await fetch(url, {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+  setSaving(true);
+  try {
+    // FIX: Use correct API endpoint for editing
+    const url = editingBlog ? `/api/blogs/${editingBlog.id}` : '/api/blogs';
+    const method = editingBlog ? 'PUT' : 'POST';
 
-      if (response.ok) {
-        await fetchBlogs();
-        resetForm();
-        setShowEditor(false);
-      } else {
-        alert('Failed to save blog');
-      }
-    } catch (error) {
-      console.error('Error saving blog:', error);
+    const response = await fetch(url, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      await fetchBlogs();
+      resetForm();
+      setShowEditor(false);
+    } else {
       alert('Failed to save blog');
-    } finally {
-      setSaving(false);
     }
-  };
+  } catch (error) {
+    console.error('Error saving blog:', error);
+    alert('Failed to save blog');
+  } finally {
+    setSaving(false);
+  }
+};
 
   const handleEdit = (blog: BlogPost) => {
     setEditingBlog(blog);

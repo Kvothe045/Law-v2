@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { CalendarIcon, UserIcon, ArrowRightIcon, SearchIcon } from "lucide-react";
+import { CalendarIcon, UserIcon, ArrowRightIcon, Sparkles, BookOpen, TrendingUp, Star } from "lucide-react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
@@ -24,10 +24,11 @@ export default function NewsPage() {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     fetchBlogs();
+    setIsVisible(true);
   }, []);
 
   const fetchBlogs = async () => {
@@ -55,23 +56,21 @@ export default function NewsPage() {
     });
   };
 
-  const filteredBlogs = blogs.filter(blog =>
-    blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    blog.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    blog.summary.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 flex flex-col">
         <div className="sticky top-0 z-50">
           <Header />
           <Navbar />
         </div>
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <div className="text-xl text-gray-700 font-medium">Loading news articles...</div>
+            <div className="relative mb-8">
+              <div className="animate-spin rounded-full h-16 w-16 border-4 border-amber-200 border-t-amber-500 mx-auto shadow-lg"></div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/20 to-yellow-500/20 blur-xl animate-pulse"></div>
+            </div>
+            <div className="text-2xl text-slate-700 font-bold mb-2">Loading Latest News</div>
+            <div className="text-slate-500">Fetching the most recent articles...</div>
           </div>
         </main>
         <Footer />
@@ -81,21 +80,24 @@ export default function NewsPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 flex flex-col">
         <div className="sticky top-0 z-50">
           <Header />
           <Navbar />
         </div>
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center max-w-md mx-auto px-6">
-            <div className="text-6xl text-gray-300 mb-6">📰</div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">Unable to load news</h1>
-            <p className="text-gray-600 mb-8 leading-relaxed">{error}</p>
+            <div className="w-24 h-24 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
+              <BookOpen className="w-12 h-12 text-white" />
+            </div>
+            <h1 className="text-3xl font-bold text-slate-800 mb-4">Unable to Load News</h1>
+            <p className="text-slate-600 mb-8 leading-relaxed">{error}</p>
             <button
               onClick={() => window.location.reload()}
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 shadow-lg"
+              className="group inline-flex items-center space-x-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-8 py-4 rounded-full font-bold shadow-2xl hover:shadow-amber-500/50 hover:scale-105 transition-all duration-300"
             >
-              Try Again
+              <span>Try Again</span>
+              <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </button>
           </div>
         </main>
@@ -105,113 +107,177 @@ export default function NewsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
       <div className="sticky top-0 z-50">
         <Header />
         <Navbar />
       </div>
 
-      <main className="flex-grow">
-        {/* Hero Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h1 className="text-4xl sm:text-5xl font-bold mb-4">Latest News & Updates</h1>
-              <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-                Stay informed with our latest articles, insights, and industry updates
-              </p>
-              
-              {/* Search Bar */}
-              <div className="max-w-md mx-auto relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <SearchIcon className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  type="text"
-                  placeholder="Search articles..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 text-gray-900 bg-white rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent"
-                />
+      {/* Hero Section */}
+      <section className="relative py-8 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 opacity-95"></div>
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400"></div>
+          
+          {/* Animated Background Shapes */}
+          <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-amber-400/20 to-yellow-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-br from-blue-500/20 to-indigo-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className={`text-center space-y-8 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            {/* Header Badge */}
+            <div className="inline-flex items-center space-x-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-900 px-8 py-4 rounded-full text-sm font-bold shadow-2xl border border-amber-300/30 backdrop-blur-sm hover:shadow-3xl hover:scale-105 transition-all duration-300 cursor-pointer group">
+              <BookOpen className="w-5 h-5 animate-bounce group-hover:animate-spin transition-all duration-300" />
+              <span className="tracking-wide">Latest News & Insights</span>
+              <Sparkles className="w-4 h-4 animate-pulse group-hover:animate-bounce transition-all duration-300" />
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
+              Stay{' '}
+              <span className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 bg-clip-text text-transparent animate-pulse">
+                Informed
+              </span>
+            </h1>
+
+            {/* Subheading */}
+            <p className="text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
+              Explore our latest articles, legal insights, and industry updates to stay ahead 
+              in the ever-evolving world of law and business
+            </p>
+
+            {/* Stats */}
+            <div className="flex flex-wrap justify-center gap-8 pt-8">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-amber-400">{(blogs.length)}+</div>
+                <div className="text-blue-100 text-sm">Articles</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-amber-400">50K+</div>
+                <div className="text-blue-100 text-sm">Readers</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-amber-400">Weekly</div>
+                <div className="text-blue-100 text-sm">Updates</div>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Articles Section */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          {filteredBlogs.length === 0 ? (
+      {/* Articles Section */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {blogs.length === 0 ? (
             <div className="text-center py-16">
-              <div className="text-6xl text-gray-300 mb-6">🔍</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">No articles found</h3>
-              <p className="text-gray-600">
-                {searchTerm ? 'Try adjusting your search terms' : 'No articles are available at the moment'}
-              </p>
+              <div className="w-32 h-32 bg-gradient-to-br from-slate-100 to-blue-100 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl">
+                <TrendingUp className="w-16 h-16 text-slate-400" />
+              </div>
+              <h3 className="text-3xl font-bold text-slate-800 mb-4">No Articles Available</h3>
+              <p className="text-slate-600 text-lg">Check back soon for the latest news and insights</p>
             </div>
           ) : (
-            <div className="space-y-8">
-              {filteredBlogs.map((blog) => (
-                <article
-                  key={blog.id}
-                  className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 overflow-hidden group cursor-pointer"
-                  onClick={() => router.push(`/news/${blog.id}`)}
-                >
-                  <div className="flex flex-col md:flex-row">
-                    {/* Image Section */}
-                    <div className="md:w-1/3 relative overflow-hidden">
-                      <img
-                        src={blog.image}
-                        alt={blog.title}
-                        className="w-full h-64 md:h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = '/api/placeholder/400/300';
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </div>
+            <div className="space-y-12">
+              {/* Section Header */}
+              <div className="text-center mb-16">
+                <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-6">
+                  <Star className="w-4 h-4 text-amber-400" />
+                  <span>Featured Articles</span>
+                </div>
+                <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 leading-tight">
+                  Latest{' '}
+                  <span className="bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
+                    Legal Insights
+                  </span>
+                </h2>
+              </div>
 
-                    {/* Content Section */}
-                    <div className="md:w-2/3 p-8 flex flex-col justify-between">
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-200 line-clamp-2">
-                          {blog.title}
-                        </h2>
-                        
-                        <p className="text-gray-600 mb-6 leading-relaxed line-clamp-3">
-                          {blog.summary}
-                        </p>
-                      </div>
-
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-6">
-                          <div className="flex items-center space-x-2">
-                            <div className="bg-blue-100 p-1.5 rounded-full">
-                              <UserIcon className="w-4 h-4 text-blue-600" />
-                            </div>
-                            <span className="text-sm font-medium text-gray-700">{blog.author}</span>
-                          </div>
+              {/* Articles Grid */}
+              <div className="space-y-8">
+                {blogs.map((blog, index) => (
+                  <article
+                    key={blog.id}
+                    className={`group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-100 overflow-hidden cursor-pointer transform hover:scale-[1.02] ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                    style={{ animationDelay: `${index * 150}ms` }}
+                    onClick={() => router.push(`/news/${blog.id}`)}
+                  >
+                    {/* Background Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div className="relative z-10 flex flex-col lg:flex-row">
+                      {/* Image Section */}
+                      <div className="lg:w-2/5 relative overflow-hidden">
+                        <div className="relative h-80 lg:h-full">
+                          <img
+                            src={blog.image}
+                            alt={blog.title}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).src = '/api/placeholder/600/400';
+                            }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                           
-                          <div className="flex items-center space-x-2">
-                            <div className="bg-green-100 p-1.5 rounded-full">
-                              <CalendarIcon className="w-4 h-4 text-green-600" />
-                            </div>
-                            <span className="text-sm text-gray-500">{formatDate(blog.createdAt)}</span>
+                          {/* Floating Badge */}
+                          <div className="absolute top-6 left-6 bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg backdrop-blur-sm">
+                            Latest
                           </div>
                         </div>
+                      </div>
 
-                        <div className="flex items-center space-x-2 text-blue-600 font-medium group-hover:text-blue-800 transition-colors duration-200">
-                          <span className="text-sm">Read More</span>
-                          <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                      {/* Content Section */}
+                      <div className="lg:w-3/5 p-8 lg:p-12 flex flex-col justify-between">
+                        <div className="space-y-6">
+                          <h2 className="text-2xl lg:text-3xl font-bold text-slate-800 group-hover:text-blue-900 transition-colors duration-300 leading-tight">
+                            {blog.title}
+                          </h2>
+                          
+                          <p className="text-slate-600 text-lg leading-relaxed line-clamp-3">
+                            {blog.summary}
+                          </p>
+                        </div>
+
+                        <div className="flex items-center justify-between pt-8 border-t border-slate-100 mt-8">
+                          <div className="flex items-center space-x-6">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-full flex items-center justify-center shadow-lg">
+                                <UserIcon className="w-5 h-5 text-white" />
+                              </div>
+                              <div>
+                                <div className="text-sm font-bold text-slate-800">{blog.author}</div>
+                                <div className="text-xs text-slate-500">Author</div>
+                              </div>
+                            </div>
+                            
+                            <div className="flex items-center space-x-3">
+                              <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-full flex items-center justify-center shadow-lg">
+                                <CalendarIcon className="w-5 h-5 text-white" />
+                              </div>
+                              <div>
+                                <div className="text-sm font-bold text-slate-800">{formatDate(blog.createdAt)}</div>
+                                <div className="text-xs text-slate-500">Published</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center space-x-3 text-blue-600 font-bold group-hover:text-amber-600 transition-colors duration-300">
+                            <span className="text-lg">Read Article</span>
+                            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 group-hover:from-amber-500 group-hover:to-yellow-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
+                              <ArrowRightIcon className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                ))}
+              </div>
             </div>
           )}
         </div>
-      </main>
+      </section>
 
       <Footer />
     </div>
