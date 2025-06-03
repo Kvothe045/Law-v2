@@ -9,18 +9,18 @@ const PracticeAreas: React.FC = () => {
     { name: 'Property Disputes', href: '/property', icon: '🏢' },
     { name: 'Matrimonial Disputes', href: '/matrimonial', icon: '💍' },
     { name: 'Insolvency & Bankruptcy', href: '/insolvency', icon: '📊' },
-    { name: 'Arbitration / ADR', href: '/adr', icon: '🤝' },
+    { name: 'Arbitration / ADR', href: '/arbitration', icon: '🤝' },
   ];
 
   const otherServices = [
-    'Corporate & Commercial Matters',
-    'Banking Laws & DRT Matters',
-    'Recovery & Financial Matters',
-    'Competition Laws',
-    'Information Technology Cyber Cases',
-    'Mergers & Acquisitions',
-    'Environmental Law & NGT Matters',
-    'Service, Labour & Industrial Laws Cases'
+    {name: 'Corporate & Commercial Matters', href: '/corporate', icon: '🏢' },
+    {name: 'Banking Laws & DRT Matters', href: '/banking', icon: '🏦' },
+    {name: 'Recovery & Financial Matters', href: '/recovery', icon: '💰' },
+    {name: 'Competition Laws', href: '/competition', icon: '📈' },
+    {name: 'Information Technology Cyber Cases', href: '/cyber', icon: '💻' } ,
+    {name: 'Mergers & Acquisitions', href: '/mergers', icon: '🔗' },
+    {name: 'Environmental Law & NGT Matters', href: '/environment_law', icon: '🌍' },
+    {name: 'Service, Labour & Industrial Laws Cases', href: '/labour', icon: '👷‍♂️' },
   ];
 
   return (
@@ -87,16 +87,20 @@ const PracticeAreas: React.FC = () => {
           <h3 className="text-2xl font-semibold text-slate-800 mb-8 text-center">
             Other Services
           </h3>
-          <div className="bg-white rounded-lg shadow-lg p-8 border border-cream-200">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {otherServices.map((service, index) => (
-                <div key={index} className="flex items-center space-x-3 p-3 hover:bg-slate-50 rounded-lg transition-colors duration-300">
-                  <div className="w-2 h-2 bg-amber-400 rounded-full flex-shrink-0"></div>
-                  <span className="text-slate-700 text-sm">{service}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <div className="space-y-2">
+          {otherServices.map((service, index) => (
+            <Link href={service.href} key={index}>
+              <div className="flex items-center space-x-3 p-3 hover:bg-slate-50 rounded-lg transition-all duration-300 cursor-pointer group">
+                <span className="text-lg group-hover:scale-110 transition-transform duration-300">
+                  {service.icon}
+                </span>
+                <span className="text-slate-700 text-sm group-hover:text-amber-600 transition-colors duration-300">
+                  {service.name}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
         </div>
       </div>
     </section>

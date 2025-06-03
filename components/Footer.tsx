@@ -17,8 +17,10 @@ import {
   FileText,
   Briefcase,
   Shield,
+  Navigation,
   Gavel
 } from 'lucide-react';
+import { div } from "framer-motion/client";
 
 const Footer = () => {
   const containerVariants = {
@@ -105,6 +107,17 @@ const Footer = () => {
                       Sohna Road, Gurugram 122018<br />
                       Haryana, INDIA
                     </p>
+                  </div>
+                   <div className="mb-4  ml-6">
+                    <a
+                      href="https://www.google.com/maps?q=836-A,+8th+Floor,+Tower+B-3,+Spaze+I-Tech+Park,+Sector+49,+Sohna+Road,+Gurugram+122018,+Haryana,+India"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition"
+                    >
+                      <Navigation className="w-5 h-5" />
+                      View on Map
+                    </a>
                   </div>
                   <div className="flex items-center gap-3 mb-3">
                     <Phone className="w-5 h-5 text-amber-600" />
