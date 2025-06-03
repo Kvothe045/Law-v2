@@ -149,7 +149,7 @@ export default function NewsPage() {
             </p>
 
             {/* Stats */}
-            <div className="flex flex-wrap justify-center gap-8 pt-8">
+            <div className="flex flex-wrap justify-center gap-20 pt-8">
               <div className="text-center">
                 <div className="text-3xl font-bold text-amber-400">{(blogs.length)}+</div>
                 <div className="text-blue-100 text-sm">Articles</div>
