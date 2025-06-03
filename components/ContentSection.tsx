@@ -45,9 +45,9 @@ const ContentSection: React.FC<ContentSectionProps> = ({
                   {listItems.map((item, index) => (
                     <div
                       key={index}
-                      className="flex items-start space-x-3 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:transform hover:scale-105"
+                      className="flex items-center space-x-3 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:transform hover:scale-105"
                     >
-                      <div className="flex-shrink-0 w-2 h-2 bg-amber-400 rounded-full mt-3"></div>
+                      <div className="flex-shrink-0 w-2 h-2 bg-amber-400 rounded-full"></div>
                       <span className="text-slate-700 font-medium">{item}</span>
                     </div>
                   ))}
