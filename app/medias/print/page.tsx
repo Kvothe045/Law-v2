@@ -6,42 +6,7 @@ import { X, ZoomIn, Download, ChevronLeft, ChevronRight, Grid3X3, RotateCcw } fr
 import Navbar from '@/components/Navbar'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-
-// ============================================
-// IMAGES CONFIGURATION
-// ============================================
-const newspaperImages = [
-  {
-    src: '/award.png',
-    alt: 'Award Recognition',
-    title: 'Legal Excellence Award',
-    category: 'Awards',
-    date: '2024'
-  },
-  {
-    src: '/criminal.png',
-    alt: 'Criminal Law Coverage',
-    title: 'Criminal Law Expertise',
-    category: 'Legal Practice',
-    date: '2024'
-  }
-  // Add more images here easily:
-  // {
-  //   src: '/images/corporate.png',
-  //   alt: 'Corporate Law',
-  //   title: 'Corporate Legal Services',
-  //   category: 'Corporate',
-  //   date: '2024'
-  // }
-]
-
-interface ImageItem {
-  src: string
-  alt: string
-  title: string
-  category: string
-  date: string
-}
+import { newspaperImages, ImageItem } from '@/data/newspaperImages'
 
 export default function NewspaperPage() {
   const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null)
@@ -238,20 +203,20 @@ export default function NewspaperPage() {
               disabled={newspaperImages.length <= 1}
               className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={() => navigateImage('next')}
               disabled={newspaperImages.length <= 1}
               className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5" />
             </button>
             <button
               onClick={closeFullscreen}
               className="w-12 h-12 bg-red-500/20 backdrop-blur-sm border border-red-400/30 rounded-full flex items-center justify-center text-white hover:bg-red-500/30 transition-all duration-300"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             </button>
           </div>
 
@@ -277,7 +242,7 @@ export default function NewspaperPage() {
           </div>
 
           {/* Image Info */}
-          <div className="absolute bottom-6 left-6 right-6 z-10">
+          {/* <div className="absolute bottom-6 left-6 right-6 z-10">
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center">
               <h2 className="text-2xl font-bold text-white mb-2">{selectedImage.title}</h2>
               <div className="flex items-center justify-center space-x-4 text-white/80">
@@ -287,7 +252,7 @@ export default function NewspaperPage() {
                 <span className="text-sm">{selectedImage.date}</span>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Click outside to close */}
           <div
