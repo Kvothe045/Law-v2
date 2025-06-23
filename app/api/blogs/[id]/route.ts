@@ -38,7 +38,7 @@ export async function PUT(
     }
 
     const body = await request.json();
-    const { title, author, summary, content, image } = body;
+    const { title, author, content, image } = body;
 
     if (!title || !content) {
       return NextResponse.json({ error: 'Title and content are required' }, { status: 400 });
@@ -47,7 +47,6 @@ export async function PUT(
     const updatedBlog = await BlogService.updateBlog(params.id, {
       title,
       author: author || 'By Yatish Kumar Goel, Advocate',
-      summary: summary || '',
       content,
       image: image || '',
     });

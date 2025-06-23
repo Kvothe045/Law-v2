@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
     const blog = await BlogService.createBlog({
       title,
       author: author || 'By Yatish Kumar Goel, Advocate',
-      summary: summary || '',
+      // summary: summary || '',
       content,
       image: image || '',
     });
