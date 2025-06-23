@@ -9,31 +9,6 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 
-const tvLearningFeatures = [
-  {
-    title: "क्या है National Green Tribunal - Yatish Goel की कानून की पाठशाला",
-    description:
-      "Advocate Yatish Kumar Goel sheds light on the role and powers of the National Green Tribunal (NGT) in environmental justice.",
-    url: "https://www.youtube.com/watch?v=rfCXmT-0dCk",
-    thumbnail: "https://img.youtube.com/vi/rfCXmT-0dCk/hqdefault.jpg",
-  },
-  {
-    title: "Bail के नियम - Yatish Goel की कानून की पाठशाला",
-    description:
-      "Advocate Yatish Kumar Goel explains the essential rules and legal procedures around bail in India—simplified for public understanding.",
-    url: "https://www.youtube.com/watch?v=dyApOJM6T1s",
-    thumbnail: "https://img.youtube.com/vi/dyApOJM6T1s/hqdefault.jpg",
-  },
-  {
-    title:
-      "क्या है Defamation? जानिए इसके नियम - Yatish Goel की कानून की पाठशाला",
-    description:
-      "Advocate Yatish Kumar Goel explains the concept of defamation, its types, and the legal remedies available under Indian law in this insightful session.",
-    url: "https://www.youtube.com/watch?v=AMltYA8AiQc",
-    thumbnail: "https://img.youtube.com/vi/AMltYA8AiQc/hqdefault.jpg",
-  },
-];
-
 const tvFeatures = [
   {
     title: "Legal Awareness Session by Mr Yatish Kumar Goel",
@@ -185,7 +160,7 @@ export default function TVChannelsPage() {
       </section>
 
       {/* Youtube Learning Section */}
-      <section className="py-20 bg-gradient-to-br from-pink-100 via-yellow-100 to-orange-100">
+      {/* <section className="py-20 bg-gradient-to-br from-pink-100 via-yellow-100 to-orange-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-800">
             Know the Law:{" "}
@@ -229,7 +204,7 @@ export default function TVChannelsPage() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Recognition Impact Section - YouTube Media Focus */}
       <section className="py-20 bg-gradient-to-br from-orange-200 via-blue-400 to-orange-200">

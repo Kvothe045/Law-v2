@@ -110,7 +110,7 @@ const Footer = () => {
                   </div>
                    <div className="mb-4  ml-6">
                     <a
-                      href="https://www.google.com/maps?q=836-A,+8th+Floor,+Tower+B-3,+Spaze+I-Tech+Park,+Sector+49,+Sohna+Road,+Gurugram+122018,+Haryana,+India"
+                      href="https://maps.app.goo.gl/ZTTHiYsSTZeVFVgz6"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition"

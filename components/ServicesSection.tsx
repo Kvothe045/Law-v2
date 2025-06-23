@@ -121,7 +121,7 @@ export default function ServicesSection() {
                   <div className="relative z-20 h-full flex flex-col">
                     {/* Category Badge */}
                     <div className="inline-flex items-center mb-4">
-                      <span className="text-xs font-semibold text-slate-500 bg-white/60 px-3 py-1 rounded-full border border-slate-200/50">
+                      <span className="text-xs font-semibold text-slate-500 bg-white/60 px-3  rounded-full border border-slate-200/50">
                         {service.category}
                       </span>
                     </div>
@@ -143,7 +143,7 @@ export default function ServicesSection() {
 />
 
                     {/* Content */}
-                    <h3 className={`text-xl font-bold ${service.accentColor} group-hover:text-slate-800 transition-colors duration-300 mb-4 leading-tight`}>
+                    <h3 className={`text-xl font-bold ${service.accentColor} group-hover:text-slate-800 transition-colors duration-300 mb-4 mt-2 leading-tight`}>
                       {service.title}
                     </h3>
 
@@ -152,14 +152,14 @@ export default function ServicesSection() {
                     </p>
 
                     {/* Features */}
-                    <div className="space-y-2 mb-6">
+                    {/* <div className="space-y-2 mb-6">
                       {service.features.slice(0, 3).map((feature, idx) => (
                         <div key={idx} className="flex items-center text-xs text-slate-500">
                           <CheckCircle className="w-3 h-3 text-green-500 mr-2 flex-shrink-0" />
                           <span>{feature}</span>
                         </div>
                       ))}
-                    </div>
+                    </div> */}
 
                     {/* Learn More Link */}
                     <Link 

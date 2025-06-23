@@ -40,10 +40,9 @@ export default function Header() {
           {/* Center & Right Section */}
           <div className="flex items-center space-x-8">
             {/* Download Brochure - Premium Design */}
-            <Link
-              href="https://www.gcsl.in/wp-content/uploads/2020/01/GROW-ON-CONSULTANCY-SERVICES-23-dec.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+            <a
+              href="/brochure.pdf"
+              download
               className="group relative hidden md:flex items-center space-x-3 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 hover:from-amber-400 hover:via-amber-500 hover:to-amber-600 text-slate-800 px-6 py-3 rounded-2xl font-semibold text-sm transition-all duration-500 transform hover:scale-105 shadow-lg hover:shadow-xl overflow-hidden"
             >
               {/* Animated background overlay */}
@@ -54,7 +53,7 @@ export default function Header() {
                 <Download className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
                 <span className="font-bold tracking-wide">Download Brochure</span>
               </div>
-            </Link>
+            </a>
 
             {/* Social Links - Ultra Modern Design */}
             <div className="flex items-center space-x-3">
