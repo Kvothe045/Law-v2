@@ -1,5 +1,5 @@
-// app/api/blogs/route.ts
 import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth/next';
 import { BlogService, initializeDatabase } from '@/lib/db';
 
 // Initialize database on first request
@@ -12,8 +12,20 @@ async function ensureDbInitialized() {
   }
 }
 
-export async function GET() {
+async function checkAuth(request: NextRequest) {
+  // Check session token from cookies
+  const session = await getServerSession();
+  return session !== null;
+}
+
+export async function GET(request: NextRequest) {
   try {
+    // Check authentication for admin routes
+    const isAuthenticated = await checkAuth(request);
+    if (!isAuthenticated) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     await ensureDbInitialized();
     const blogs = await BlogService.getAllBlogs();
     return NextResponse.json(blogs);
@@ -25,9 +37,15 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
+    // Check authentication
+    const isAuthenticated = await checkAuth(request);
+    if (!isAuthenticated) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     await ensureDbInitialized();
     const body = await request.json();
-    const { title, author, content, image } = body;
+    const { title, author, summary, content, image } = body;
 
     if (!title || !content) {
       return NextResponse.json({ error: 'Title and content are required' }, { status: 400 });
@@ -36,8 +54,9 @@ export async function POST(request: NextRequest) {
     const blog = await BlogService.createBlog({
       title,
       author: author || 'By Yatish Kumar Goel, Advocate',
+      summary: summary || '',
       content,
-      image,
+      image: image || '',
     });
 
     return NextResponse.json(blog, { status: 201 });

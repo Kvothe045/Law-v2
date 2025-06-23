@@ -1,6 +1,12 @@
-// app/api/blogs/[id]/route.ts
 import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth/next';
 import { BlogService } from '@/lib/db';
+
+async function checkAuth(request: NextRequest) {
+  // Check session token from cookies
+  const session = await getServerSession();
+  return session !== null;
+}
 
 export async function GET(
   request: NextRequest,
@@ -25,8 +31,14 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   try {
+    // Check authentication for admin operations
+    const isAuthenticated = await checkAuth(request);
+    if (!isAuthenticated) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const body = await request.json();
-    const { title, author, content, image } = body;
+    const { title, author, summary, content, image } = body;
 
     if (!title || !content) {
       return NextResponse.json({ error: 'Title and content are required' }, { status: 400 });
@@ -35,8 +47,9 @@ export async function PUT(
     const updatedBlog = await BlogService.updateBlog(params.id, {
       title,
       author: author || 'By Yatish Kumar Goel, Advocate',
+      summary: summary || '',
       content,
-      image,
+      image: image || '',
     });
 
     if (!updatedBlog) {
@@ -55,6 +68,12 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
+    // Check authentication for admin operations
+    const isAuthenticated = await checkAuth(request);
+    if (!isAuthenticated) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const deleted = await BlogService.deleteBlog(params.id);
     
     if (!deleted) {

@@ -2,7 +2,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { PlusIcon, EditIcon, TrashIcon, ImageIcon, SaveIcon, XIcon, CalendarIcon, UserIcon, EyeIcon } from "lucide-react";
+import { useSession, signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { PlusIcon, EditIcon, TrashIcon, ImageIcon, SaveIcon, XIcon, CalendarIcon, UserIcon, EyeIcon, LogOutIcon, ShieldIcon } from "lucide-react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
@@ -19,6 +21,8 @@ interface BlogPost {
 }
 
 export default function BlogAdminPage() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [showEditor, setShowEditor] = useState(false);
@@ -33,9 +37,25 @@ export default function BlogAdminPage() {
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
 
+  // Redirect to login if not authenticated
   useEffect(() => {
-    fetchBlogs();
-  }, []);
+    if (status === 'loading') return; // Still loading
+    
+    if (status === 'unauthenticated') {
+      router.push('/login');
+      return;
+    }
+  }, [status, router]);
+
+  useEffect(() => {
+    if (session) {
+      fetchBlogs();
+    }
+  }, [session]);
+
+
+
+
 
   const fetchBlogs = async () => {
     try {
