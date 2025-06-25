@@ -97,7 +97,7 @@ interface Video {
   title: string;
   description: string;
   videoUrl: string;
-  thumbnailUrl: string;
+  thumbnail: string;
 }
 
 export default function EducationalSeries() {
@@ -151,7 +151,7 @@ export default function EducationalSeries() {
                 {/* Left Thumbnail */}
                 <div className="relative w-full md:w-1/3 h-60 md:h-[250px] min-w-[200px]">
                   <img
-                    src={video.thumbnailUrl}
+                    src={video.thumbnail}
                     alt={video.title}
                     className="w-full h-full object-cover"
                   />
