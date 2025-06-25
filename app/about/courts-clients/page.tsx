@@ -169,7 +169,7 @@ export default function CourtsClientsPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-r from-orange-100 to-blue-50/50">
+      {/* <section className="py-16 bg-gradient-to-r from-orange-100 to-blue-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {courtsStats.map((stat, index) => (
@@ -190,13 +190,13 @@ export default function CourtsClientsPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Courts Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-4">
               <Scale className="w-4 h-4 text-amber-400" />
               <span>Courts of Practice</span>
             </div>
@@ -206,7 +206,7 @@ export default function CourtsClientsPage() {
                 Court Coverage
               </span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 max-w-4xl mx-auto">
               Our firm represents clients across all levels of the Indian judicial system, 
               from the Supreme Court to specialized tribunals
             </p>
@@ -216,7 +216,7 @@ export default function CourtsClientsPage() {
             {courtTypes.map((court, index) => (
               <div 
                 key={court.title}
-                className={`group relative bg-gradient-to-br ${court.gradient} p-8 rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 cursor-pointer overflow-hidden`}
+                className={`group relative bg-gradient-to-br ${court.gradient} p-6 rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 cursor-pointer overflow-hidden`}
                 style={{ animationDelay: court.delay }}
               >
                 {/* Background Pattern */}
@@ -269,20 +269,20 @@ export default function CourtsClientsPage() {
       </section>
 
       {/* Clients Section */}
-      <section className="py-20 bg-gradient-to-br from-orange-100 to-blue-100">
+      <section className="py-16 bg-gradient-to-br from-orange-100 to-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-6">
               <Users className="w-4 h-4 text-amber-400" />
               <span>Our Clients</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 leading-tight mb-6">
+            <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 leading-tight mb-2">
               Diverse{' '}
               <span className="bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
                 Client Portfolio
               </span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-base text-slate-600 max-w-4xl mx-auto">
               Serving a wide range of clients from multinational corporations 
               to individuals, partnerships, and professional associations
             </p>
@@ -292,7 +292,7 @@ export default function CourtsClientsPage() {
             {clientCategories.map((category, index) => (
               <div 
                 key={category.title}
-                className={`group bg-gradient-to-br ${category.gradient} p-8 rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 text-white overflow-hidden relative`}
+                className={`group bg-gradient-to-br ${category.gradient} p-4 rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 text-white overflow-hidden relative`}
               >
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
@@ -300,15 +300,17 @@ export default function CourtsClientsPage() {
                 </div>
                 
                 <div className="relative z-10">
-                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 backdrop-blur-sm">
-                    <category.icon className="w-8 h-8 text-white" />
-                  </div>
+                  <div className="flex items-center space-x-3 group">
+  <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 backdrop-blur-sm">
+    <category.icon className="w-6 h-6 text-white" />
+  </div>
+
+  <h3 className="text-2xl font-bold group-hover:text-yellow-100 transition-colors duration-300">
+    {category.title}
+  </h3>
+</div>
                   
-                  <h3 className="text-2xl font-bold mb-4 group-hover:text-yellow-100 transition-colors duration-300">
-                    {category.title}
-                  </h3>
-                  
-                  <p className="text-white/90 mb-6 leading-relaxed">
+                  <p className="text-white/90 mb-4 leading-relaxed">
                     {category.description}
                   </p>
                   
@@ -347,7 +349,7 @@ export default function CourtsClientsPage() {
                 </h2>
                 
                 <div className="space-y-4 text-slate-600 leading-relaxed">
-                  <p className="text-lg">
+                  <p className="text-base">
                     Our diverse clientele spans across industries and jurisdictions, 
                     reflecting our capability to handle complex legal matters with precision and expertise.
                   </p>
@@ -359,7 +361,7 @@ export default function CourtsClientsPage() {
               </div>
 
               {/* Key Achievements */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {[
                   'Successfully represented Fortune 500 companies',
                   'Handled complex cross-border legal matters',

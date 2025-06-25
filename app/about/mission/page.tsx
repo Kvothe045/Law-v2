@@ -185,7 +185,7 @@ export default function MissionPage() {
       {/* Mission Pillars Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-6">
               <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
               <span>Mission Pillars</span>
@@ -198,7 +198,7 @@ export default function MissionPage() {
               </span>
             </h2>
             
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
               Four core pillars that drive our mission to deliver exceptional legal services worldwide
             </p>
           </div>
@@ -207,7 +207,7 @@ export default function MissionPage() {
             {missionPillars.map((pillar, index) => (
               <div 
                 key={pillar.title}
-                className={`group relative ${pillar.bg} border-l-4 border-slate-800 p-8 rounded-r-3xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500 cursor-pointer overflow-hidden ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                className={`group relative ${pillar.bg} border-l-4 border-slate-800 p-6 rounded-r-3xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500 cursor-pointer overflow-hidden ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ 
                   animationDelay: `${index * 200}ms`,
                   borderLeftColor: pillar.color.includes('blue') ? '#2563eb' : 
@@ -238,15 +238,15 @@ export default function MissionPage() {
       </section>
 
       {/* Core Values Section */}
-      <section className="py-20 bg-gradient-to-br from-orange-100 to-blue-50/50">
+      <section className="py-12 bg-gradient-to-br from-orange-100 to-blue-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-6">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-4">
               <Shield className="w-4 h-4 text-amber-400 animate-pulse" />
               <span>Core Values</span>
             </div>
             
-            <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 mb-6">
+            <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 mb-4">
               Values That{' '}
               <span className="bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
                 Drive Us
@@ -292,7 +292,7 @@ export default function MissionPage() {
       </section>
 
       {/* Our Commitment Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-800 via-blue-900 to-slate-800">
+      <section className="py-12 bg-gradient-to-br from-slate-800 via-blue-900 to-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-900 px-6 py-3 rounded-full text-sm font-bold shadow-xl mb-6">
@@ -300,14 +300,14 @@ export default function MissionPage() {
               <span>Our Commitment</span>
             </div>
             
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
               Promise of{' '}
               <span className="bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent">
                 Excellence
               </span>
             </h2>
             
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-lg text-blue-100 max-w-3xl mx-auto">
               Our unwavering dedication to delivering exceptional results and exceeding client expectations
             </p>
           </div>
@@ -316,7 +316,7 @@ export default function MissionPage() {
             {commitments.map((commitment, index) => (
               <div 
                 key={commitment.title}
-                className={`group relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 hover:bg-white/20 hover:scale-105 transform transition-all duration-700 cursor-pointer overflow-hidden ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                className={`group relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 hover:scale-105 transform transition-all duration-700 cursor-pointer overflow-hidden ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ animationDelay: `${index * 250}ms` }}
               >
                 {/* Background Pattern */}

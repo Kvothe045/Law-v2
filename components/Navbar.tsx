@@ -137,9 +137,9 @@ export default function Navbar() {
   }
 // sticky top-[88px]
   return (
-    <nav className="bg-white shadow-md sticky top-[82px] z-50 border-b border-gray-200">
+    <nav className="bg-white shadow-md sticky top-[80px] z-50 border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-14">
           {/* Logo */}
           <div className="flex-shrink-0">
   <Link href="/" className="text-2xl font-bold text-blue-900 hover:text-blue-700 transition-colors">

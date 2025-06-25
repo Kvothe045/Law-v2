@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <header className="bg-gradient-to-r from-amber-100 via-blue-100 to-amber-100 border-b border-amber-300/40 sticky top-0 z-50 shadow-md">
       <div className="max-w-7xl mx-auto px-3">
-      <div className="flex justify-between items-center h-24">
+      <div className="flex justify-between items-center h-20">
   {/* Logo Section */}
   <div className="flex items-center">
     <div className="relative group">

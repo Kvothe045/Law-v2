@@ -61,7 +61,7 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section className="relative py-10 overflow-hidden">
+    <section className="relative py-2 overflow-hidden">
       {/* Sophisticated Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 via-white to-blue-50/40">
         {/* Animated Orbs */}
@@ -83,23 +83,23 @@ export default function ServicesSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Enhanced Header */}
-        <div className="text-center space-y-6 mb-16 animate-in slide-in-from-bottom duration-1000">
+        <div className="text-center space-y-6 mb-8 animate-in slide-in-from-bottom duration-1000">
           <div className="inline-flex items-center space-x-3 bg-gradient-to-r from-slate-800 via-blue-900 to-slate-800 text-white px-8 py-4 rounded-full text-sm font-semibold shadow-2xl border border-white/10 backdrop-blur-sm hover:shadow-3xl hover:scale-105 hover:from-blue-900 hover:via-slate-800 hover:to-blue-900 transition-all duration-300 ease-in-out cursor-pointer group">
             <Sparkles className="w-5 h-5 text-amber-300 animate-pulse group-hover:text-amber-200 group-hover:scale-110 transition-all duration-300" />
-            <span className="tracking-wide group-hover:tracking-wider transition-all duration-300">Our Practice Areas</span>
+            <span className="tracking-wide group-hover:tracking-wider transition-all duration-300">Our Services</span>
             <div className="h-2 w-2 bg-amber-400 rounded-full animate-ping group-hover:bg-amber-300 group-hover:scale-125 transition-all duration-300"></div>
           </div>
 
-          <h2 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-tight">
+          <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 leading-tight">
             Legal Services We{' '}
             <span className="bg-gradient-to-r from-blue-700 via-indigo-800 to-slate-800 bg-clip-text text-transparent animate-pulse">
               Specialize In
             </span>
           </h2>
 
-          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+          {/* <p className="text-base text-slate-600 max-w-4xl mx-auto leading-relaxed">
             Our comprehensive legal expertise covers a wide range of practice areas, ensuring professional representation for all your legal needs with dedication and excellence.
-          </p>
+          </p> */}
         </div>
 
         {/* Enhanced Services Grid with Images */}
@@ -120,11 +120,11 @@ export default function ServicesSection() {
 
                   <div className="relative z-20 h-full flex flex-col">
                     {/* Category Badge */}
-                    <div className="inline-flex items-center mb-4">
+                    {/* <div className="inline-flex items-center mb-4">
                       <span className="text-xs font-semibold text-slate-500 bg-white/60 px-3  rounded-full border border-slate-200/50">
                         {service.category}
                       </span>
-                    </div>
+                    </div> */}
 
                     <img
   src={service.image}
@@ -143,7 +143,7 @@ export default function ServicesSection() {
 />
 
                     {/* Content */}
-                    <h3 className={`text-xl font-bold ${service.accentColor} group-hover:text-slate-800 transition-colors duration-300 mb-4 mt-2 leading-tight`}>
+                    <h3 className={`text-lg font-bold ${service.accentColor} group-hover:text-slate-800 transition-colors duration-300 mb-4 mt-2 leading-tight`}>
                       {service.title}
                     </h3>
 
@@ -180,7 +180,7 @@ export default function ServicesSection() {
         </div>
 
         {/* Enhanced CTA Section */}
-        <div className="text-center animate-in slide-in-from-bottom duration-1000 delay-1000">
+        <div className="text-center max-w-9xl mb-12 animate-in slide-in-from-bottom duration-1000 delay-1000">
           <div className="relative bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 rounded-3xl p-10 overflow-hidden shadow-2xl border border-slate-700/50">
             {/* Enhanced Background Elements */}
             <div className="absolute inset-0">
@@ -197,41 +197,42 @@ export default function ServicesSection() {
                 <Sparkles className="w-4 h-4 animate-pulse" />
                 <span>Premium Legal Services</span>
               </div>
-              <h3 className="text-4xl font-bold text-white mb-6 animate-fade-in">
-                Need Professional Legal Assistance?
-              </h3>
-              <p className="text-blue-200 mb-8 max-w-3xl mx-auto text-lg leading-relaxed animate-fade-in delay-200">
-                Our experienced legal team is ready to help you navigate complex legal challenges with expertise, dedication, and a proven track record of success.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <button 
-                  onClick={() => {
-                    const phoneNumber = "919990733308"; 
-                    const message = "Good day! I would like to schedule a free consultation regarding my legal matter. When would be a convenient time for you? Thank you.";
-                    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                    window.open(whatsappURL, '_blank');
-                  }}
-                  className="group relative bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-10 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <span className="relative flex items-center space-x-2">
-                    <span>Schedule Free Consultation</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
-                </button>
+              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-5 lg:mb-6 animate-fade-in text-center">
+  Need Professional Legal Assistance?
+</h3>
 
-                <a 
-                  href="tel:+919990733308" 
-                  className="group border-2 border-amber-400/50 text-amber-300 hover:bg-amber-400 hover:text-slate-900 px-10 py-4 rounded-2xl font-semibold transition-all duration-300 hover:scale-105 relative overflow-hidden block"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-amber-400/0 to-amber-400/0 group-hover:from-amber-400/100 group-hover:to-amber-300/100 transition-all duration-300"></div>
-                  <span className="relative flex items-center justify-center space-x-2">
-                    <Phone className="w-4 h-4 group-hover:animate-pulse" />
-                    <span>Call +91-99907 33308</span>
-                  </span>
-                </a>
-              </div>
+<p className="text-base sm:text-base md:text-lg text-blue-200 mb-6 sm:mb-7 lg:mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200 text-center">
+  Our experienced legal team is ready to help you navigate complex legal challenges with expertise, dedication, and a proven track record of success.
+</p>
+              
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center px-4">
+  <button 
+    onClick={() => {
+      const phoneNumber = "919990733308"; 
+      const message = "Good day! I would like to schedule a free consultation regarding my legal matter. When would be a convenient time for you? Thank you.";
+      const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappURL, '_blank');
+    }}
+    className="group relative bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-10 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl overflow-hidden w-full sm:w-auto"
+  >
+    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    <span className="relative flex items-center space-x-2 justify-center">
+      <span>Schedule Free Consultation</span>
+      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+    </span>
+  </button>
+
+  <a 
+    href="tel:+919990733308" 
+    className="group border-2 border-amber-400/50 text-amber-300 hover:bg-amber-400 hover:text-slate-900 px-10 py-4 rounded-2xl font-semibold transition-all duration-300 hover:scale-105 relative overflow-hidden block w-full sm:w-auto"
+  >
+    <div className="absolute inset-0 bg-gradient-to-r from-amber-400/0 to-amber-400/0 group-hover:from-amber-400/100 group-hover:to-amber-300/100 transition-all duration-300"></div>
+    <span className="relative flex items-center justify-center space-x-2">
+      <Phone className="w-4 h-4 group-hover:animate-pulse" />
+      <span>Call +91-99907 33308</span>
+    </span>
+  </a>
+</div>
             </div>
           </div>
         </div>

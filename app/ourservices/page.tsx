@@ -33,7 +33,7 @@ const services = [
   {
     icon: Shield,
     title: 'Criminal Litigation',
-    description: 'Expert representation in criminal matters across all courts with a proven track record of successful defense strategies and case outcomes.',
+    description: 'Expert representation in criminal matters across all courts with a proven track record of successful defense strategies and outcomes.',
     features: ['High Court Appeals', 'Bail Applications', 'Trial Defense', 'Investigation Support'],
     gradient: 'from-red-600 to-rose-700',
     cardGradient: 'from-red-50/90 via-cream-50 to-rose-50/80',
@@ -85,7 +85,7 @@ const services = [
   {
     icon: Scale,
     title: 'Arbitration / ADR',
-    description: 'Alternative dispute resolution through arbitration, mediation, and conciliation for efficient conflict resolution.',
+    description: 'Alternative dispute resolution through arbitration, mediation, and conciliation for efficient resolution.',
     features: ['Commercial Arbitration', 'International ADR', 'Mediation Services', 'Enforcement'],
     gradient: 'from-purple-600 to-violet-700',
     cardGradient: 'from-purple-50/90 via-cream-50 to-violet-50/80',
@@ -98,7 +98,7 @@ const services = [
   {
     icon: Briefcase,
     title: 'Corporate & Commercial',
-    description: 'Comprehensive corporate legal services including compliance, contracts, and commercial transaction advisory.',
+    description: 'Corporate legal services including compliance, contracts, and commercial advisory.',
     features: ['Corporate Compliance', 'Contract Drafting', 'Joint Ventures', 'Business Advisory'],
     gradient: 'from-slate-600 to-gray-700',
     cardGradient: 'from-slate-50/90 via-cream-50 to-gray-50/80',
@@ -215,7 +215,7 @@ export default function OurServicesPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-16 pb-16 overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-indigo-100/30 rounded-full -translate-x-48 -translate-y-48 animate-pulse blur-3xl"></div>
@@ -236,20 +236,20 @@ export default function OurServicesPage() {
               <div className="h-2 w-2 bg-amber-400 rounded-full animate-ping"></div>
             </div>
 
-            <h1 className="text-6xl lg:text-8xl font-bold text-slate-900 leading-tight">
+            <h1 className="text-4xl lg:text-6xl font-bold text-slate-900 leading-tight">
               Our{' '}
               <span className="bg-gradient-to-r from-blue-700 via-indigo-800 to-blue-900 bg-clip-text text-transparent">
                 Legal Services
               </span>
             </h1>
 
-            <p className="text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
               Comprehensive legal expertise across diverse practice areas, delivering exceptional results with unwavering commitment to client success.
             </p>
           </div>
 
           {/* Stats Section */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 animate-in slide-in-from-bottom duration-1000 delay-300">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 animate-in slide-in-from-bottom duration-1000 delay-300">
             {stats.map((stat, index) => {
               const Icon = stat.icon
               return (
@@ -269,7 +269,7 @@ export default function OurServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-24 relative">
+      <section className="py-12 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20 animate-in slide-in-from-bottom duration-1000">
             <h2 className="text-5xl font-bold text-slate-900 mb-6">
@@ -278,7 +278,7 @@ export default function OurServicesPage() {
                 Specializations
               </span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 max-w-4xl mx-auto">
               Our experienced legal team provides expert representation across multiple domains of law, ensuring comprehensive coverage for all your legal requirements.
             </p>
           </div>
@@ -323,23 +323,23 @@ export default function OurServicesPage() {
   }}
 />
                       {/* Content */}
-                      <h3 className={`text-xl font-bold ${service.accentColor} group-hover:text-slate-800 transition-colors duration-300 mb-4 leading-tight`}>
+                      <h3 className={`text-lg font-bold ${service.accentColor} group-hover:text-slate-800 transition-colors duration-300 mt-2 mb-4 leading-tight`}>
                         {service.title}
                       </h3>
 
-                      <p className="text-slate-600 text-sm leading-relaxed mb-6 group-hover:text-slate-700 transition-colors duration-300 flex-grow">
+                      <p className="text-slate-600 text-sm leading-relaxed mb-4 group-hover:text-slate-700 transition-colors duration-300 flex-grow">
                         {service.description}
                       </p>
 
                       {/* Features */}
-                      <div className="space-y-2 mb-6">
+                      {/* <div className="space-y-2 mb-6">
                         {service.features.slice(0, 3).map((feature, idx) => (
                           <div key={idx} className="flex items-center text-xs text-slate-500">
                             <CheckCircle className="w-3 h-3 text-green-500 mr-2 flex-shrink-0" />
                             <span>{feature}</span>
                           </div>
                         ))}
-                      </div>
+                      </div> */}
 
                       {/* Learn More Link */}
                       <div className={`inline-flex items-center space-x-2 ${service.accentColor} font-semibold group-hover:translate-x-1 transition-all duration-300 text-sm mt-auto`}>
@@ -359,9 +359,9 @@ export default function OurServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 relative">
+      <section className="py-12 relative">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900 rounded-3xl p-16 overflow-hidden shadow-2xl border border-blue-800/50">
+          <div className="relative bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900 rounded-3xl p-12 overflow-hidden shadow-2xl border border-blue-800/50">
             {/* Background Effects */}
             <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-950/30 to-transparent animate-pulse"></div>
             <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-amber-400/10 to-yellow-300/5 rounded-full translate-x-40 -translate-y-40 animate-bounce"></div>
@@ -373,7 +373,7 @@ export default function OurServicesPage() {
                 <span>Ready to Get Started?</span>
               </div>
 
-              <h3 className="text-5xl font-bold text-white mb-6 leading-tight">
+              <h3 className="text-4xl font-bold text-white mb-6 leading-tight">
                 Expert Legal Representation
                 <br />
                 <span className="bg-gradient-to-r from-amber-300 to-yellow-300 bg-clip-text text-transparent">
@@ -381,7 +381,7 @@ export default function OurServicesPage() {
                 </span>
               </h3>
 
-              <p className="text-blue-200 text-xl mb-12 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-blue-200 text-lg mb-12 max-w-3xl mx-auto leading-relaxed">
                 Don't navigate complex legal challenges alone. Our experienced team is here to provide the expert guidance and representation you deserve.
               </p>
 

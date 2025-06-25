@@ -18,14 +18,14 @@ const ContactUsPage: React.FC = () => {
         <Navbar />
       </div>
 
-      <section className="relative bg-gradient-to-br from-amber-300 via-blue-400 to-amber-300 text-black py-20 px-6 md:px-12">
+      <section className="relative bg-gradient-to-br from-amber-300 via-blue-400 to-amber-300 text-black py-12 px-6 md:px-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start gap-10">
           <div className="md:w-1/2 space-y-10">
             <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-blue-900">
+              <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-blue-900">
                 Get in Touch with GCS Law Firm
               </h1>
-              <p className="text-lg md:text-xl leading-relaxed max-w-xl text-gray-900">
+              <p className="text-base md:text-lg leading-relaxed max-w-xl text-gray-900">
                 Whether you need expert legal advice or representation, our
                 dedicated team is here to assist you. Reach out today and take
                 the first step towards a better legal outcome.

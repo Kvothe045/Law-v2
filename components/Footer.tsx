@@ -81,7 +81,7 @@ const Footer = () => {
       </div>
 
       <motion.div 
-        className="container mx-auto px-6 py-16 relative z-10"
+        className="container mx-auto px-6 py-8 relative z-10"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -213,17 +213,17 @@ const Footer = () => {
               {/* Download Brochure */}
               <div>
                 <motion.a
-                  href="https://www.gcsl.in/wp-content/uploads/2020/01/GROW-ON-CONSULTANCY-SERVICES-23-dec.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 group shadow-lg hover:shadow-amber-600/25"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Download className="w-5 h-5 group-hover:animate-bounce" />
-                  Download Brochure
-                  <ExternalLink className="w-4 h-4" />
-                </motion.a>
+  href="/brochure.pdf"
+  download
+  className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 group shadow-lg hover:shadow-amber-600/25"
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+>
+  <Scale className="w-4 h-4 text-white" />
+  <Download className="w-5 h-5 group-hover:animate-bounce" />
+  Download Brochure
+</motion.a>
+
               </div>
 
               {/* Contact CTA */}
@@ -251,7 +251,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <motion.div 
           variants={itemVariants}
-          className="mt-16 pt-8 border-t border-gray-300"
+          className="mt-8 pt-4 border-t border-gray-300"
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2">

@@ -184,20 +184,20 @@ export default function MagazinesPage() {
       {/* Magazine Features Section */}
       <section className="py-20 bg-gradient-to-br from-orange-100 to-blue-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-6">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-4">
               <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
               <span>Featured Publications</span>
             </div>
             
-            <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 mb-6">
+            <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 mb-4">
               Media{' '}
               <span className="bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
                 Recognition
               </span>
             </h2>
             
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 max-w-4xl mx-auto">
               Leading business magazines have recognized our excellence and featured GCS Law Firm 
               for our outstanding contributions to the legal industry
             </p>

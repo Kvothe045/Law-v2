@@ -121,15 +121,15 @@ export default function EducationalSeries() {
   }, []);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-orange-50 via-white to-blue-50/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-20">
+    <section className="py-16 bg-gradient-to-br from-orange-50 via-white to-blue-50/30">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
         <h2 className="text-4xl lg:text-5xl font-bold text-slate-800">
           Know the Law:{" "}
           <span className="bg-gradient-to-r from-blue-500 to-teal-500 bg-clip-text text-transparent">
             Video Series
           </span>
         </h2>
-        <p className="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
+        <p className="mt-4 text-base text-slate-600 max-w-4xl mx-auto">
           Watch our curated video series on our YouTube channel designed to
           educate, empower, and inspire through real-world legal insights and
           public discourse.
@@ -143,7 +143,7 @@ export default function EducationalSeries() {
           <div className="text-center text-slate-500">No videos found.</div>
         ) : (
           videos.map((video, index) => (
-            <div key={index} className="max-w-6xl mx-auto">
+            <div key={index} className="max-w-7xl mx-auto">
               <div
                 className="flex flex-col md:flex-row bg-white rounded-2xl shadow-2xl hover:shadow-lg transform hover:scale-[1.01] transition-all duration-300 overflow-hidden cursor-pointer"
                 onClick={() => window.open(video.videoUrl, "_blank")}

@@ -92,18 +92,18 @@ export default function InternationalPage() {
       </section>
 
       {/* Century International Gold Quality Era Award Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
             <div className="space-y-8">
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-900 px-6 py-3 rounded-full text-sm font-bold shadow-xl">
                   <Crown className="w-4 h-4" />
                   <span>International Award</span>
                 </div>
                 
-                <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 leading-tight">
+                <h2 className="text-3xl lg:text-4xl font-bold text-slate-800 leading-tight">
                   <span className="bg-gradient-to-r from-amber-600 to-yellow-700 bg-clip-text text-transparent">
                     Century International
                   </span>
@@ -111,14 +111,14 @@ export default function InternationalPage() {
                   Gold Quality Era Award
                 </h2>
                 
-                <div className="space-y-6 text-slate-600 leading-relaxed">
-                  <p className="text-lg">
+                <div className="space-y-4 text-slate-600 leading-relaxed text-base">
+                  <p className="text-base">
                     Over the years, owing to its commitment to provide the best legal remedies and solutions to its clients, 
                     <span className="font-bold text-slate-800"> GCS</span> has gained International repute in the field of 
                     legal consultancy services.
                   </p>
                   
-                  <div className="bg-gradient-to-br from-amber-50 to-yellow-50 border-l-4 border-amber-500 p-6 rounded-r-2xl shadow-lg">
+                  <div className="bg-gradient-to-br text-base from-amber-50 to-yellow-50 border-l-4 border-amber-500 p-6 rounded-r-2xl shadow-lg">
                     <p className="text-slate-700">
                       <span className="font-bold text-slate-800">GCS</span> was awarded the{' '}
                       <span className="font-bold text-amber-700">Century International Gold Quality Era Award</span> and{' '}
@@ -146,7 +146,7 @@ export default function InternationalPage() {
                   'Global repute in legal consultancy services'
                 ].map((highlight, index) => (
                   <div key={index} className="flex items-center space-x-3 group">
-                    <div className="w-6 h-6 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-6 h-6 text-base bg-gradient-to-br from-amber-500 to-yellow-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                       <CheckCircle className="w-4 h-4 text-white" />
                     </div>
                     <span className="text-slate-700 font-medium group-hover:text-slate-900 transition-colors duration-300">{highlight}</span>

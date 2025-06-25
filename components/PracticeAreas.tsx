@@ -118,7 +118,7 @@ const practiceAreas = [
 
 export default function PracticeAreasSection() {
   return (
-    <section className="relative py-6 overflow-hidden bg-gray-50">
+    <section className="relative py-12 overflow-hidden bg-gray-50">
       {/* Clean Modern Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-blue-50/30"></div>
@@ -141,18 +141,18 @@ export default function PracticeAreasSection() {
             </span>
           </h2>
           
-          <p className="text-base text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base text-gray-600 max-w-4xl mx-auto">
             Expert legal services across diverse practice areas with deep industry knowledge and unwavering commitment to excellence.
           </p>
         </div>
 
         {/* Modern Practice Areas Grid - Centered Layout */}
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
           {practiceAreas.map((area, index) => (
             <Link
               key={area.title}
               href={area.href}
-              className={`group relative bg-white rounded-2xl shadow-lg ${area.hoverShadow} hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer border ${area.borderColor} overflow-hidden flex flex-col w-40 h-40 sm:w-48 sm:h-48 lg:w-44 lg:h-44 xl:w-48 xl:h-48`}
+              className={`group relative bg-white rounded-2xl shadow-lg ${area.hoverShadow} hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer border ${area.borderColor} overflow-hidden flex flex-col w-40 h-40 sm:w-44 sm:h-44 lg:w-40 lg:h-40 xl:w-40 xl:h-40`}
               style={{ animationDelay: `${index * 50}ms` }}
             >
               {/* Hover Overlay */}

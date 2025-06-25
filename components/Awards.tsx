@@ -51,9 +51,9 @@ const Awards = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-8"
+          className="text-center mb-4"
         >
-          <motion.div
+          {/* <motion.div
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -69,7 +69,7 @@ const Awards = () => {
                 <Sparkles className="w-6 h-6 text-amber-500" />
               </motion.div>
             </div>
-          </motion.div>
+          </motion.div> */}
           
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -84,7 +84,7 @@ const Awards = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-base text-slate-600 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed"
           >
             Celebrating our commitment to delivering exceptional legal solutions and achieving international recognition
           </motion.p>
@@ -177,7 +177,7 @@ const Awards = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.9 }}
-                        className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-yellow-600 via-amber-600 to-yellow-700 bg-clip-text text-transparent leading-tight"
+                        className="text-xl md:text-2xl font-bold bg-gradient-to-r from-yellow-600 via-amber-600 to-yellow-700 bg-clip-text text-transparent leading-tight"
                       >
                         Century International Gold Quality Era Award
                       </motion.h3>
@@ -215,7 +215,7 @@ const Awards = () => {
                     </motion.div>
 
                     {/* Award Stats */}
-                    <motion.div
+                    {/* <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 1.1 }}
@@ -233,7 +233,7 @@ const Awards = () => {
                         <div className="text-xl font-bold text-yellow-600">Gold</div>
                         <div className="text-slate-600 text-xs">Quality Era</div>
                       </div>
-                    </motion.div>
+                    </motion.div> */}
                   </motion.div>
                 </div>
               </div>
@@ -242,7 +242,7 @@ const Awards = () => {
         </div>
 
         {/* Bottom Decorative Elements */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
@@ -259,7 +259,7 @@ const Awards = () => {
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

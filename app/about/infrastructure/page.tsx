@@ -120,13 +120,13 @@ export default function InfrastructurePage() {
             </h1>
 
             {/* Subheading */}
-            <p className="text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg lg:text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
               Modern facilities, comprehensive resources, and professional networks 
               designed to deliver exceptional legal services
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
               <Link 
                 href="/contact"
                 className="group relative inline-flex items-center space-x-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-900 px-8 py-4 rounded-full font-bold shadow-2xl hover:shadow-amber-500/50 hover:scale-105 transition-all duration-300 border border-amber-300/30"
@@ -147,7 +147,7 @@ export default function InfrastructurePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-r from-orange-100 to-blue-50/50">
+      <section className="py-6 bg-gradient-to-r from-orange-100 to-blue-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {infrastructureStats.map((stat, index) => (
@@ -157,12 +157,12 @@ export default function InfrastructurePage() {
                 style={{ animationDelay: `${index * 200}ms` }}
               >
                 <div className="relative mb-4">
-                  <div className="w-20 h-20 bg-gradient-to-br from-orange-800 to-blue-900 rounded-2xl flex items-center justify-center mx-auto shadow-2xl group-hover:shadow-blue-500/50 transition-all duration-300 group-hover:rotate-6">
-                    <stat.icon className="w-10 h-10 text-amber-400 group-hover:scale-110 transition-transform duration-300" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-800 to-blue-900 rounded-2xl flex items-center justify-center mx-auto shadow-2xl group-hover:shadow-blue-500/50 transition-all duration-300 group-hover:rotate-6">
+                    <stat.icon className="w-8 h-8 text-amber-400 group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full animate-pulse"></div>
                 </div>
-                <h3 className="text-3xl lg:text-4xl font-bold text-slate-800 mb-2">{stat.number}</h3>
+                <h3 className="text-2xl lg:text-3xl font-bold text-slate-800">{stat.number}</h3>
                 <p className="text-slate-600 font-medium">{stat.label}</p>
               </div>
             ))}
@@ -171,10 +171,10 @@ export default function InfrastructurePage() {
       </section>
 
       {/* Office Infrastructure Section */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-4">
               <Building2 className="w-4 h-4 text-amber-400" />
               <span>Office Infrastructure</span>
             </div>
@@ -184,17 +184,17 @@ export default function InfrastructurePage() {
                 Legal Facilities
               </span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 max-w-4xl mx-auto">
               Our centralized office in Gurgaon, Haryana features cutting-edge technology 
               and comprehensive resources to serve our clients effectively
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-16">
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
             {infrastructureFeatures.map((feature, index) => (
               <div 
                 key={feature.title}
-                className={`group relative bg-gradient-to-br ${feature.gradient} p-8 rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 cursor-pointer overflow-hidden`}
+                className={`group relative bg-gradient-to-br ${feature.gradient} p-6 rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 cursor-pointer overflow-hidden`}
                 style={{ animationDelay: feature.delay }}
               >
                 {/* Background Pattern */}
@@ -241,11 +241,11 @@ export default function InfrastructurePage() {
                 </h2>
                 
                 <div className="space-y-4 text-slate-600 leading-relaxed">
-                  <p className="text-lg">
+                  <p className="text-base">
                     The firm believes in delivering research-oriented innovative solutions for its clients, 
                     whilst providing an updated view of Indian Law.
                   </p>
-                  <p>
+                  <p className="text-base">
                     Our illustrated library houses the best books on law and provides access to all journals 
                     containing leading cases. Interactive thinking and serious thoughts are expressed with 
                     a legal point of view after suitable deliberations.
@@ -254,7 +254,7 @@ export default function InfrastructurePage() {
               </div>
 
               {/* Key Points */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {[
                   'Comprehensive legal library with best law books',
                   'Access to all leading case journals and publications',
@@ -291,20 +291,20 @@ export default function InfrastructurePage() {
       </section>
 
       {/* Team & Network Section */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-4">
               <Users className="w-4 h-4 text-amber-400" />
               <span>Professional Team & Network</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 leading-tight mb-6">
+            <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 leading-tight mb-4">
               Qualified Professionals &{' '}
               <span className="bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
                 Networks
               </span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-base text-slate-600 max-w-4xl mx-auto">
               Our approach rests on traditions of integrity and professionalism, 
               supported by diverse expertise and established networks
             </p>
@@ -314,7 +314,7 @@ export default function InfrastructurePage() {
             {teamFeatures.map((feature, index) => (
               <div 
                 key={feature.title}
-                className="group bg-gradient-to-br from-slate-800 to-blue-900 p-8 rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 text-white"
+                className="group bg-gradient-to-br from-slate-800 to-blue-900 p-6 rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 text-white"
               >
                 <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                   <feature.icon className="w-8 h-8 text-slate-900" />

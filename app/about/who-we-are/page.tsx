@@ -140,14 +140,14 @@ export default function WhoWeArePage() {
           <Star className="w-4 h-4 animate-spin group-hover:animate-pulse" />
         </div>
 
-        <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
+        <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight">
           Meet{' '}
           <span className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 bg-clip-text text-transparent">
             GCS Law Firm
           </span>
         </h1>
 
-        <p className="text-xl lg:text-2xl text-blue-200 max-w-4xl mx-auto leading-relaxed">
+        <p className="text-lg lg:text-xl text-blue-200 max-w-4xl mx-auto leading-relaxed">
           A distinguished full-service law firm committed to delivering exceptional legal solutions 
           with unmatched expertise and international exposure
         </p>
@@ -220,7 +220,7 @@ export default function WhoWeArePage() {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-xl font-bold text-slate-800 group-hover:text-slate-900 transition-colors duration-300">
+                        <h3 className="text-lg font-bold text-slate-800 group-hover:text-slate-900 transition-colors duration-300">
                           {item.title}
                         </h3>
                         <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all duration-300" />
@@ -238,9 +238,9 @@ export default function WhoWeArePage() {
       </section>
 
       {/* Our Principles Section */}
-      <section className="py-20 bg-gradient-to-br from-orange-100 to-blue-50/50">
+      <section className="py-12 bg-gradient-to-br from-orange-100 to-blue-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-6">
               <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
               <span>Our Core Principles</span>
@@ -253,7 +253,7 @@ export default function WhoWeArePage() {
               </span>
             </h2>
             
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 max-w-4xl mx-auto">
               Our unique approach and unwavering commitment to excellence set us apart in the legal landscape
             </p>
           </div>
@@ -271,8 +271,8 @@ export default function WhoWeArePage() {
                   <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-br from-white to-transparent rounded-full blur-2xl"></div>
                 </div>
                 
-                <div className="relative z-10 text-center space-y-6">
-                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto backdrop-blur-sm group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                <div className="relative z-10 text-center space-y-4">
+                  <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto backdrop-blur-sm group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
                     <principle.icon className="w-8 h-8 text-white" />
                   </div>
                   
@@ -299,9 +299,9 @@ export default function WhoWeArePage() {
       </section>
 
       {/* Achievements Section */}
-      <section className="py-20 bg-gradient-to-br from-amber-600 via-blue-600 to-amber-600">
+      <section className="py-16 bg-gradient-to-br from-amber-600 via-blue-600 to-amber-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-900 px-6 py-3 rounded-full text-sm font-bold shadow-xl mb-6">
               <Trophy className="w-4 h-4 animate-bounce" />
               <span>Recognition & Awards</span>
@@ -329,7 +329,7 @@ export default function WhoWeArePage() {
                 {/* Hover Effect */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${achievement.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-2xl`}></div>
                 
-                <div className="relative z-10 text-center space-y-6">
+                <div className="relative z-10 text-center space-y-4">
                   <div className="space-y-4">
                     <div className={`w-16 h-16 bg-gradient-to-br ${achievement.gradient} rounded-2xl flex items-center justify-center mx-auto shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
                       <achievement.icon className="w-8 h-8 text-white" />
@@ -376,11 +376,11 @@ export default function WhoWeArePage() {
                 </h2>
                 
                 <div className="space-y-4 text-slate-600 leading-relaxed">
-                  <p className="text-lg">
+                  <p className="text-base">
                     With enterprising and dynamic personnel, GCS's strength lies in its human capital. 
                     Our team has extensive experience in all types of legal matters.
                   </p>
-                  <p>
+                  <p className="text-base">
                     The extensive training and experience enables us to advise quickly and efficiently 
                     on even the most complex legal issues. Our team members make sure that they deliver 
                     on commitments and promised solutions.
@@ -389,7 +389,7 @@ export default function WhoWeArePage() {
               </div>
 
               {/* Key Strengths */}
-              <div className="space-y-4">
+              <div className="space-y-4 text-base">
                 {[
                   'Highly professionalized junior advocates',
                   'Experience across different branches of law',

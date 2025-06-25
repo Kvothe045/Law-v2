@@ -88,7 +88,7 @@ export default function AboutPage() {
           <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-br from-blue-500/20 to-indigo-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
 
-        <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 relative z-10">
           <div className={`text-center space-y-8 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             {/* Header Badge */}
             <div className="inline-flex items-center space-x-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-900 px-8 py-4 rounded-full text-sm font-bold shadow-2xl border border-amber-300/30 backdrop-blur-sm hover:shadow-3xl hover:scale-105 transition-all duration-300 cursor-pointer group">
@@ -98,7 +98,7 @@ export default function AboutPage() {
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
+            <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight">
               Excellence in{' '}
               <span className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 bg-clip-text text-transparent animate-pulse">
                 Legal Services
@@ -106,13 +106,12 @@ export default function AboutPage() {
             </h1>
 
             {/* Subheading */}
-            <p className="text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
-              A full-service law firm delivering cutting-edge legal solutions to corporations, 
-              individuals, and international entities across the globe
+            <p className="text-lg lg:text-lg text-blue-100 max-w-5xl mx-auto leading-relaxed">
+              A full-service law firm delivering cutting-edge legal solutions to corporations, individuals, and international entities worldwide.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
               <Link 
                 href="/about/who-we-are"
                 className="group relative inline-flex items-center space-x-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-900 px-8 py-4 rounded-full font-bold shadow-2xl hover:shadow-amber-500/50 hover:scale-105 transition-all duration-300 border border-amber-300/30"
@@ -133,7 +132,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-r from-orange-100 to-blue-50/50">
+      <section className="py-12 bg-gradient-to-r from-orange-100 to-blue-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -142,13 +141,13 @@ export default function AboutPage() {
                 className={`text-center group transform transition-all duration-700 hover:scale-110 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ animationDelay: `${index * 200}ms` }}
               >
-                <div className="relative mb-4">
-                  <div className="w-20 h-20 bg-gradient-to-br from-orange-800 to-blue-900 rounded-2xl flex items-center justify-center mx-auto shadow-2xl group-hover:shadow-blue-500/50 transition-all duration-300 group-hover:rotate-6">
-                    <stat.icon className="w-10 h-10 text-amber-400 group-hover:scale-110 transition-transform duration-300" />
+                <div className="relative mb-2">
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-800 to-blue-900 rounded-2xl flex items-center justify-center mx-auto shadow-2xl group-hover:shadow-blue-500/50 transition-all duration-300 group-hover:rotate-6">
+                    <stat.icon className="w-6 h-6 text-amber-400 group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full animate-pulse"></div>
                 </div>
-                <h3 className="text-3xl lg:text-4xl font-bold text-slate-800 mb-2">{stat.number}</h3>
+                <h3 className="text-2xl lg:text-3xl font-bold text-slate-800">{stat.number}</h3>
                 <p className="text-slate-600 font-medium">{stat.label}</p>
               </div>
             ))}
@@ -157,7 +156,7 @@ export default function AboutPage() {
       </section>
 
       {/* Main Content Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
@@ -176,12 +175,12 @@ export default function AboutPage() {
                 </h2>
                 
                 <div className="space-y-4 text-slate-600 leading-relaxed">
-                  <p className="text-lg">
+                  <p className="text-base">
                     GCS Law Firm is a distinguished full-service law firm based in India, with headquarters 
                     in Gurgaon. We offer a cutting-edge blend of capabilities to corporations, individuals, 
                     and international entities across the globe.
                   </p>
-                  <p>
+                  <p className="text-base">
                     Led by Advocate Yatish Kumar Goel, who brings extensive experience in Criminal Law, 
                     Property Matters, Family Law, and Corporate matters, our firm is supported by a team 
                     of highly professionalized junior advocates with expertise across different branches of law.
@@ -197,7 +196,7 @@ export default function AboutPage() {
                   'Expert team with diverse specializations',
                   'Commitment to exceeding client expectations'
                 ].map((point, index) => (
-                  <div key={index} className="flex items-center space-x-3 group">
+                  <div key={index} className="flex items-center space-x-3 group  text-base">
                     <div className="w-6 h-6 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                       <CheckCircle className="w-4 h-4 text-white" />
                     </div>

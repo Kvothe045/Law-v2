@@ -41,7 +41,6 @@ const educationContent = [
       'Workplace Compliance Requirements',
       'Prevention and Redressal Mechanisms',
       'Legal Obligations for Employers',
-      'Case Studies and Best Practices'
     ],
     gradient: 'from-pink-600 to-rose-700',
     icon: Scale
@@ -52,14 +51,13 @@ const educationContent = [
     subtitle: 'Featured on Haryana News TV Channel',
     instructor: 'Mr Yatish Kumar Goel, Advocate, GCS',
     type: 'TV Programme - Legal Point',
-    youtubeId: 'v_DlcA1c-ZU',
+    youtubeId: 'LM116Oujf6o',
     description: 'Expert insights on property law, real estate transactions, and legal safeguards for property buyers and sellers.',
     topics: [
       'Property Registration Process',
       'Due Diligence in Real Estate',
       'Legal Documentation Requirements',
       'Common Property Disputes',
-      'Rights and Remedies'
     ],
     gradient: 'from-blue-600 to-indigo-700',
     icon: Tv
@@ -79,7 +77,7 @@ export default function EducationPage() {
   }
 
   const getYouTubeThumbnail = (youtubeId: string) => {
-    return `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`
+    return `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`
   }
 
   return (
@@ -183,7 +181,7 @@ export default function EducationPage() {
               </span>
             </h2>
             
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
               Watch our comprehensive legal training sessions and awareness programs 
               led by experienced legal professionals
             </p>
@@ -206,7 +204,7 @@ export default function EducationPage() {
                       </div>
                       
                       <div>
-                        <h3 className="text-3xl lg:text-4xl font-bold text-slate-800 leading-tight mb-3">
+                        <h3 className="text-2xl lg:text-3xl font-bold text-slate-800 leading-tight mb-3">
                           {content.title}
                         </h3>
                         {content.subtitle && (
