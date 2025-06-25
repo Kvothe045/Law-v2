@@ -151,7 +151,7 @@ export default function EducationalSeries() {
                 {/* Left Thumbnail */}
                 <div className="relative w-full md:w-1/3 h-60 md:h-[250px] min-w-[200px]">
                   <img
-                    src={video.thumbnail}
+                    src={video.thumbnailUrl}
                     alt={video.title}
                     className="w-full h-full object-cover"
                   />
