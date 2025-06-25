@@ -33,7 +33,7 @@ export default function LoginPage() {
       } else {
         // Refresh session
         await getSession();
-        router.push('/blog');
+        router.push('/admin');
         router.refresh();
       }
     } catch (error) {

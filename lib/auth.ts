@@ -1,25 +1,10 @@
-// lib/auth.ts
-import { getServerSession } from 'next-auth/next'
-import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth/next';
+import { NextRequest, NextResponse } from 'next/server';
+import { authOptions } from './authOptions';
 
-export async function checkAuth(request: NextRequest) {
-  // For API routes, check authorization header or session
-  const authHeader = request.headers.get('authorization')
-  
-  if (authHeader && authHeader.startsWith('Bearer ')) {
-    // You can implement JWT verification here if needed
-    // For now, we'll rely on session-based auth
-    return true
-  }
-  
-  // Check if user is authenticated (this is a simplified check)
-  // In a real app, you'd verify the session token
-  const cookie = request.headers.get('cookie')
-  if (cookie && cookie.includes('next-auth.session-token')) {
-    return true
-  }
-  
-  return false
+export async function checkAuth() {
+  const session = await getServerSession(authOptions);
+  return session !== null;
 }
 
 export function createAuthResponse() {
@@ -27,4 +12,13 @@ export function createAuthResponse() {
     { error: 'Unauthorized' },
     { status: 401 }
   )
+}
+
+// Add this function for API routes
+export async function verifyApiRequest(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return createAuthResponse();
+  }
+  return null;
 }

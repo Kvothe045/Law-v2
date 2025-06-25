@@ -18,6 +18,16 @@ export interface BlogPost {
   updatedAt: string;
 }
 
+export interface VideoPost {
+  id: string;
+  title: string;
+  description: string;
+  url: string;
+  thumbnail: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 // Initialize database tables
 export async function initializeDatabase() {
   try {
@@ -32,6 +42,19 @@ export async function initializeDatabase() {
         summary TEXT,
         content TEXT NOT NULL,
         image VARCHAR(500),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Create videos table
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS videos (
+        id VARCHAR(255) PRIMARY KEY,
+        title VARCHAR(500) NOT NULL,
+        description TEXT,
+        url VARCHAR(500) NOT NULL,
+        thumbnail VARCHAR(500),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
@@ -234,5 +257,165 @@ export class BlogService {
     }
   }
 }
+
+export class VideoService {
+  static async getAllVideos(): Promise<VideoPost[]> {
+    const client = await pool.connect();
+    try {
+      const result = await client.query(`
+        SELECT 
+          id,
+          title,
+          description,
+          url,
+          thumbnail,
+          created_at as "createdAt",
+          updated_at as "updatedAt"
+        FROM videos 
+        ORDER BY created_at DESC
+      `);
+      
+      return result.rows.map(row => ({
+        ...row,
+        createdAt: row.createdAt.toISOString(),
+        updatedAt: row.updatedAt.toISOString(),
+      }));
+    } finally {
+      client.release();
+    }
+  }
+
+  static async getVideoById(id: string): Promise<VideoPost | null> {
+    const client = await pool.connect();
+    try {
+      const result = await client.query(`
+        SELECT 
+          id,
+          title,
+          description,
+          url,
+          thumbnail,
+          created_at as "createdAt",
+          updated_at as "updatedAt"
+        FROM videos 
+        WHERE id = $1
+      `, [id]);
+      
+      if (result.rows.length === 0) return null;
+      
+      const row = result.rows[0];
+      return {
+        ...row,
+        createdAt: row.createdAt.toISOString(),
+        updatedAt: row.updatedAt.toISOString(),
+      };
+    } finally {
+      client.release();
+    }
+  }
+
+  static async createVideo(videoData: {
+    title: string;
+    description: string;
+    url: string;
+    thumbnail?: string;
+  }): Promise<VideoPost> {
+    const client = await pool.connect();
+    try {
+      const id = `video_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      const now = new Date();
+      
+      const result = await client.query(`
+        INSERT INTO videos (id, title, description, url, thumbnail, created_at, updated_at)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        RETURNING 
+          id,
+          title,
+          description,
+          url,
+          thumbnail,
+          created_at as "createdAt",
+          updated_at as "updatedAt"
+      `, [
+        id,
+        videoData.title,
+        videoData.description || '',
+        videoData.url,
+        videoData.thumbnail || '',
+        now,
+        now
+      ]);
+      
+      const row = result.rows[0];
+      return {
+        ...row,
+        createdAt: row.createdAt.toISOString(),
+        updatedAt: row.updatedAt.toISOString(),
+      };
+    } finally {
+      client.release();
+    }
+  }
+
+  static async updateVideo(id: string, videoData: {
+    title: string;
+    description: string;
+    url: string;
+    thumbnail?: string;
+  }): Promise<VideoPost | null> {
+    const client = await pool.connect();
+    try {
+      const now = new Date();
+      
+      const result = await client.query(`
+        UPDATE videos 
+        SET 
+          title = $2,
+          description = $3,
+          url = $4,
+          thumbnail = $5,
+          updated_at = $6
+        WHERE id = $1
+        RETURNING 
+          id,
+          title,
+          description,
+          url,
+          thumbnail,
+          created_at as "createdAt",
+          updated_at as "updatedAt"
+      `, [
+        id,
+        videoData.title,
+        videoData.description,
+        videoData.url,
+        videoData.thumbnail,
+        now
+      ]);
+      
+      if (result.rows.length === 0) return null;
+      
+      const row = result.rows[0];
+      return {
+        ...row,
+        createdAt: row.createdAt.toISOString(),
+        updatedAt: row.updatedAt.toISOString(),
+      };
+    } finally {
+      client.release();
+    }
+  }
+
+  static async deleteVideo(id: string): Promise<boolean> {
+    const client = await pool.connect();
+    try {
+      const result = await client.query('DELETE FROM videos WHERE id = $1', [id]);
+      return (result.rowCount ?? 0) > 0;
+    } finally {
+      client.release();
+    }
+  }
+}
+initializeDatabase().catch(console.error);
 
 export default pool;

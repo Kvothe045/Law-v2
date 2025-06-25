@@ -1,21 +1,19 @@
-import { withAuth } from "next-auth/middleware"
+import { withAuth } from 'next-auth/middleware'
 
-export default withAuth(
-  function middleware(req) {
-    // Add any additional middleware logic here if needed
+export default withAuth({
+  callbacks: {
+    authorized: ({ token }) => !!token,
   },
-  {
-    callbacks: {
-      authorized: ({ token }) => !!token
-    },
+  pages: {
+    signIn: '/login',
   }
-)
+})
 
-// Protect these routes
-export const config = {
+export const config = { 
   matcher: [
-    "/blog/:path*",
-    "/api/blogs/:path*",
-    "/api/upload/:path*"
-  ]
+    '/admin/:path*',
+    '/api/videos/[id]:path*',
+    '/api/blogs/:path*',
+    '/api/upload/:path*',
+  ] 
 }
