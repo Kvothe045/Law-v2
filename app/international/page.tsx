@@ -98,18 +98,21 @@ export default function InternationalPage() {
             {/* Left Content */}
             <div className="space-y-8">
               <div className="space-y-4">
-                <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-900 px-6 py-3 rounded-full text-sm font-bold shadow-xl">
-                  <Crown className="w-4 h-4" />
-                  <span>International Award</span>
-                </div>
-                
-                <h2 className="text-3xl lg:text-4xl font-bold text-slate-800 leading-tight">
-                  <span className="bg-gradient-to-r from-amber-600 to-yellow-700 bg-clip-text text-transparent">
-                    Century International
-                  </span>
-                  <br />
-                  Gold Quality Era Award
-                </h2>
+                <div className="flex flex-col items-center text-center px-4 sm:px-6">
+  <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-900 px-6 py-3 rounded-full text-sm font-bold shadow-xl mb-4">
+    <Crown className="w-4 h-4" />
+    <span>International Award</span>
+  </div>
+
+  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-800 leading-tight">
+    <span className="bg-gradient-to-r from-amber-600 to-yellow-700 bg-clip-text text-transparent">
+      Century International
+    </span>
+    <br />
+    Gold Quality Era Award
+  </h2>
+</div>
+
                 
                 <div className="space-y-4 text-slate-600 leading-relaxed text-base">
                   <p className="text-base">

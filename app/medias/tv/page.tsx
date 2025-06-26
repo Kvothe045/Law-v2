@@ -213,17 +213,19 @@ export default function TVChannelsPage() {
             {/* Left Content */}
             <div className="space-y-8">
               <div className="space-y-6">
-                <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full text-sm font-bold shadow-xl">
-                  <PlayCircle className="w-4 h-4" />
-                  <span>YouTube Presence</span>
-                </div>
+                <div className="flex flex-col items-center text-center px-4 sm:px-6">
+  <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full text-sm font-bold shadow-xl mb-4">
+    <PlayCircle className="w-4 h-4" />
+    <span>YouTube Presence</span>
+  </div>
 
-                <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
-                  Why Media{" "}
-                  <span className="bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent">
-                    Chooses Us
-                  </span>
-                </h2>
+  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+    Why Media{' '}
+    <span className="bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent">
+      Chooses Us
+    </span>
+  </h2>
+</div>
 
                 <div className="space-y-4 text-red-900 leading-relaxed">
                   <p className="text-lg">

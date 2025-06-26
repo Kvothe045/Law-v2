@@ -202,7 +202,7 @@ const services = [
 ]
 
 const stats = [
-  { number: '500+', label: 'Cases Won', icon: Award },
+  { number: '500+', label: 'Cases Successful', icon: Award },
   { number: '15+', label: 'Years Experience', icon: Star },
   { number: '98%', label: 'Success Rate', icon: CheckCircle },
   { number: '50+', label: 'Corporate Clients', icon: Globe }

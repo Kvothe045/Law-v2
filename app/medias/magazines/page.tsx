@@ -288,17 +288,19 @@ export default function MagazinesPage() {
             {/* Left Content */}
             <div className="space-y-8">
               <div className="space-y-6">
-                <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-900 px-6 py-3 rounded-full text-sm font-bold shadow-xl">
-                  <Award className="w-4 h-4" />
-                  <span>Industry Recognition</span>
-                </div>
-                
-                <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
-                  Why Media{' '}
-                  <span className="bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent">
-                    Chooses Us
-                  </span>
-                </h2>
+                <div className="flex flex-col items-center text-center px-4 sm:px-6">
+  <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-900 px-6 py-3 rounded-full text-sm font-bold shadow-xl mb-4">
+    <Award className="w-4 h-4" />
+    <span>Industry Recognition</span>
+  </div>
+
+  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+    Why Media{' '}
+    <span className="bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent">
+      Chooses Us
+    </span>
+  </h2>
+</div>
                 
                 <div className="space-y-4 text-blue-100 leading-relaxed">
                   <p className="text-lg">

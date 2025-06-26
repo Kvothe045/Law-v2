@@ -228,17 +228,20 @@ export default function InfrastructurePage() {
             {/* Left Content */}
             <div className="space-y-8">
               <div className="space-y-6">
-                <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl">
-                  <BookOpen className="w-4 h-4 text-amber-400" />
-                  <span>Legal Research</span>
-                </div>
-                
-                <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 leading-tight">
-                  Research-Oriented{' '}
-                  <span className="bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
-                    Innovation
-                  </span>
-                </h2>
+                <div className="flex flex-col items-center text-center px-4 sm:px-6">
+  <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-800 to-blue-900 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-4">
+    <BookOpen className="w-4 h-4 text-amber-400" />
+    <span>Legal Research</span>
+  </div>
+
+  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-800 leading-tight">
+    Research-Oriented{' '}
+    <span className="bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
+      Innovation
+    </span>
+  </h2>
+</div>
+
                 
                 <div className="space-y-4 text-slate-600 leading-relaxed">
                   <p className="text-base">
