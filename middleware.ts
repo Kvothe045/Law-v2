@@ -12,8 +12,7 @@ export default withAuth({
 export const config = { 
   matcher: [
     '/admin/:path*',
-    '/api/videos/[id]:path*',
-    '/api/blogs/:path*',
+    '/api/videos/[id]/:path*',
     '/api/upload/:path*',
   ] 
 }

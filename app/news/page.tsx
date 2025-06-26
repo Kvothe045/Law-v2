@@ -205,11 +205,10 @@ export default function NewsPage() {
                   >
                     {/* Background Gradient */}
                     <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
                     <div className="relative z-10 flex flex-col lg:flex-row">
                       {/* Image Section */}
                       <div className="lg:w-2/5 relative overflow-hidden">
-                        <div className="relative h-80 lg:h-full">
+                        <div className="relative h-auto lg:h-full min-h-[20rem]">
                           <img
                             src={blog.image}
                             alt={blog.title}
@@ -219,7 +218,7 @@ export default function NewsPage() {
                             }}
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                          
+
                           {/* Floating Badge */}
                           <div className="absolute top-6 left-6 bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg backdrop-blur-sm">
                             Latest
@@ -228,49 +227,62 @@ export default function NewsPage() {
                       </div>
 
                       {/* Content Section */}
-                      <div className="lg:w-3/5 p-8 lg:p-12 flex flex-col justify-between">
+                      <div className="lg:w-3/5 p-4 sm:p-6 lg:p-12 flex flex-col justify-between">
                         <div className="space-y-6">
-                          <h2 className="text-2xl lg:text-3xl font-bold text-slate-800 group-hover:text-blue-900 transition-colors duration-300 leading-tight">
+                          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-800 group-hover:text-blue-900 transition-colors duration-300 leading-tight">
                             {blog.title}
                           </h2>
-                          
-                          <p className="text-slate-600 text-lg leading-relaxed line-clamp-3">
+
+                          <p className="break-words text-slate-600 text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
                             {blog.summary}
                           </p>
                         </div>
-
-                        <div className="flex items-center justify-between pt-8 border-t border-slate-100 mt-8">
-                          <div className="flex items-center space-x-6">
-                            <div className="flex items-center space-x-3">
-                              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-full flex items-center justify-center shadow-lg">
+                        
+                        <div className="flex flex-col-reverse sm:flex-row items-start justify-between pt-6 sm:pt-8 border-t border-slate-100 mt-6 sm:mt-8">
+                          <div className="flex flex-col sm:flex-row w-full sm:w-auto mt-5 sm:mt-0 gap-4 sm:gap-6">
+                            {/* Author */}
+                            <div className="flex items-center">
+                              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-full flex-shrink-0 flex items-center justify-center shadow-lg">
                                 <UserIcon className="w-5 h-5 text-white" />
                               </div>
-                              <div>
-                                <div className="text-sm font-bold text-slate-800">{blog.author}</div>
+                              <div className="ml-3">
+                                <div className="text-sm font-bold text-slate-800 line-clamp-1">{blog.author}</div>
                                 <div className="text-xs text-slate-500">Author</div>
                               </div>
                             </div>
-                            
-                            <div className="flex items-center space-x-3">
-                              <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-full flex items-center justify-center shadow-lg">
+
+                            {/* Date */}
+                            <div className="flex items-center">
+                              <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-full flex-shrink-0 flex items-center justify-center shadow-lg">
                                 <CalendarIcon className="w-5 h-5 text-white" />
                               </div>
-                              <div>
+                              <div className="ml-3">
                                 <div className="text-sm font-bold text-slate-800">{formatDate(blog.createdAt)}</div>
                                 <div className="text-xs text-slate-500">Published</div>
                               </div>
                             </div>
                           </div>
 
-                          <div className="flex items-center space-x-3 text-blue-600 font-bold group-hover:text-amber-600 transition-colors duration-300">
-                            <span className="text-lg">Read Article</span>
-                            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 group-hover:from-amber-500 group-hover:to-yellow-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
-                              <ArrowRightIcon className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                          {/* Read Button */}
+                          <div className="flex items-center justify-end sm:justify-start w-full sm:w-auto">
+                            <div className="flex items-center group transition-colors duration-300">
+                              <span className="text-blue-600 font-bold text-lg group-hover:text-amber-600 transition-colors duration-300">
+                                Read Article
+                              </span>
+                              <div className="ml-3 w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 group-hover:from-amber-500 group-hover:to-yellow-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
+                                <ArrowRightIcon className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                              </div>
                             </div>
                           </div>
                         </div>
+
+
+
+
                       </div>
                     </div>
+
+                    
                   </article>
                 ))}
               </div>

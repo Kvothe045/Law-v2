@@ -21,10 +21,6 @@ async function checkAuth(request: NextRequest) {
 export async function GET(request: NextRequest) {
   try {
     // Check authentication for admin routes
-    const isAuthenticated = await checkAuth(request);
-    if (!isAuthenticated) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
 
     await ensureDbInitialized();
     const blogs = await BlogService.getAllBlogs();
