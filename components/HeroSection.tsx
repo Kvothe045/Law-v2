@@ -7,7 +7,7 @@ export default function HeroSection() {
   return (
     <section className="relative overflow-hidden min-h-screen">
       {/* Background with translucent overlay */}
-      <div className="absolute inset-0 h-screen lg:h-[85vh]">
+      <div className="absolute inset-0">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -84,26 +84,21 @@ export default function HeroSection() {
 
           {/* Right Content - Clean Image Container */}
           <div className="relative animate-in slide-in-from-right duration-1000 delay-300 flex justify-center">
-            <div className="relative group/container">
-              {/* Main image container */}
-              <div className="relative w-80 h-80 sm:w-96 sm:h-96 lg:w-[420px] lg:h-[420px]">
-                {/* Main image frame */}
-                <div className="relative bg-white/95 backdrop-blur-sm rounded-full p-4 shadow-2xl border border-white/70 group-hover/container:shadow-3xl group-hover/container:border-blue-200/60 group-hover/container:scale-105 transition-all duration-500 ease-out overflow-hidden">
-                  {/* Image */}
-                  <img 
-                    src="man.png" 
-                    alt="Advocate Yatish Kumar Goel" 
-                    className="w-full h-full object-cover rounded-full group-hover/container:scale-105 group-hover/container:brightness-110 transition-all duration-500 ease-out"
-                  />
-                  
-                  {/* Professional badge */}
-                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-slate-800 to-slate-900 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-xl group-hover/container:from-blue-800 group-hover/container:to-slate-800 group-hover/container:scale-110 transition-all duration-300 border border-white/20">
-                    <span className="tracking-wide">Lead Advocate</span>
-                  </div>
-                </div>
-              </div>
+      <div className="relative group/container w-64 sm:w-80 md:w-96">
+        <div className="relative w-full h-64 sm:h-80 md:h-96">
+          <div className="relative bg-white/95 backdrop-blur-sm rounded-full p-4 shadow-2xl border border-white/70 group-hover/container:shadow-3xl group-hover/container:border-blue-200/60 group-hover/container:scale-105 transition-all duration-500 ease-out overflow-hidden">
+            <img 
+              src="man.png" 
+              alt="Advocate Yatish Kumar Goel" 
+              className="w-full h-full object-cover rounded-full group-hover/container:scale-105 group-hover/container:brightness-110 transition-all duration-500 ease-out"
+            />
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-slate-800 to-slate-900 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-xl group-hover/container:from-blue-800 group-hover/container:to-slate-800 group-hover/container:scale-110 transition-all duration-300 border border-white/20">
+              <span className="tracking-wide">Lead Advocate</span>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
         </div>
       </div>
 

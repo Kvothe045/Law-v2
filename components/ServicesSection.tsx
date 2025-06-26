@@ -61,7 +61,7 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section className="relative py-2 overflow-hidden">
+    <section className="relative py-12 overflow-hidden">
       {/* Sophisticated Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 via-white to-blue-50/40">
         {/* Animated Orbs */}

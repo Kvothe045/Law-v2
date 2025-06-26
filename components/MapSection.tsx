@@ -15,12 +15,12 @@ L.Icon.Default.mergeOptions({
 const position: [number, number] = [28.41886, 77.06744];
 
 const MapSection = () => (
-  <div className="md:w-1/2 rounded-xl overflow-hidden shadow-xl max-h-[40rem] relative z-0">
+  <div className="w-full md:w-[60%] lg:w-[90%] rounded-xl overflow-hidden shadow-xl h-[400px] relative z-0">
     <MapContainer
       center={position}
       zoom={15}
       scrollWheelZoom={true}
-      style={{ height: "100%", minHeight: "700px", width: "100%" }}
+      className="h-full w-full"
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
