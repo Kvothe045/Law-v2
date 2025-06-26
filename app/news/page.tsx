@@ -204,83 +204,86 @@ export default function NewsPage() {
                     onClick={() => router.push(`/news/${blog.id}`)}
                   >
                     {/* Background Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="relative z-10 flex flex-col lg:flex-row">
-                      {/* Image Section */}
-                      <div className="lg:w-2/5 relative overflow-hidden">
-                        <div className="relative h-auto lg:h-full min-h-[20rem]">
-                          <img
-                            src={blog.image}
-                            alt={blog.title}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).src = '/api/placeholder/600/400';
-                            }}
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="group relative z-10 overflow-hidden rounded-xl shadow-sm">
+  {/* Background gradient hover effect */}
+  <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                          {/* Floating Badge */}
-                          <div className="absolute top-6 left-6 bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg backdrop-blur-sm">
-                            Latest
-                          </div>
-                        </div>
-                      </div>
+  <div className="relative z-10 flex flex-col lg:flex-row">
+    {/* Image Section */}
+    <div className="lg:w-2/5 relative overflow-hidden">
+      <div className="relative h-64 sm:h-80 lg:h-full">
+        <img
+          src={blog.image}
+          alt={blog.title}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = '/api/placeholder/600/400';
+          }}
+        />
+        {/* Top dark gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                      {/* Content Section */}
-                      <div className="lg:w-3/5 p-4 sm:p-6 lg:p-12 flex flex-col justify-between">
-                        <div className="space-y-6">
-                          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-800 group-hover:text-blue-900 transition-colors duration-300 leading-tight">
-                            {blog.title}
-                          </h2>
+        {/* Floating Badge */}
+        <div className="absolute top-4 left-4 bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold shadow-md backdrop-blur-sm">
+          Latest
+        </div>
+      </div>
+    </div>
 
-                          <p className="break-words text-slate-600 text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
-                            {blog.summary}
-                          </p>
-                        </div>
-                        
-                        <div className="flex flex-col-reverse sm:flex-row items-start justify-between pt-6 sm:pt-8 border-t border-slate-100 mt-6 sm:mt-8">
-                          <div className="flex flex-col sm:flex-row w-full sm:w-auto mt-5 sm:mt-0 gap-4 sm:gap-6">
-                            {/* Author */}
-                            <div className="flex items-center">
-                              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-full flex-shrink-0 flex items-center justify-center shadow-lg">
-                                <UserIcon className="w-5 h-5 text-white" />
-                              </div>
-                              <div className="ml-3">
-                                <div className="text-sm font-bold text-slate-800 line-clamp-1">{blog.author}</div>
-                                <div className="text-xs text-slate-500">Author</div>
-                              </div>
-                            </div>
+    {/* Content Section */}
+    <div className="lg:w-3/5 p-4 sm:p-6 lg:p-10 flex flex-col justify-between bg-white">
+      {/* Title & Summary */}
+      <div className="space-y-4">
+        <h2 className="text-lg sm:text-xl lg:text-3xl font-bold text-slate-800 group-hover:text-blue-900 transition-colors duration-300 leading-snug">
+          {blog.title}
+        </h2>
+        <p className="text-slate-600 text-sm sm:text-base leading-relaxed break-words line-clamp-3 sm:line-clamp-none">
+          {blog.summary}
+        </p>
+      </div>
 
-                            {/* Date */}
-                            <div className="flex items-center">
-                              <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-full flex-shrink-0 flex items-center justify-center shadow-lg">
-                                <CalendarIcon className="w-5 h-5 text-white" />
-                              </div>
-                              <div className="ml-3">
-                                <div className="text-sm font-bold text-slate-800">{formatDate(blog.createdAt)}</div>
-                                <div className="text-xs text-slate-500">Published</div>
-                              </div>
-                            </div>
-                          </div>
+      {/* detail Section */}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center justify-between mt-6 pt-6 border-t border-slate-100">
+        {/* Author & Date */}
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
+          {/* Author */}
+          <div className="flex items-center">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-full flex items-center justify-center shadow-md">
+              <UserIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+            </div>
+            <div className="ml-2 sm:ml-3">
+              <div className="text-sm font-semibold text-slate-800">{blog.author}</div>
+              <div className="text-xs text-slate-500">Author</div>
+            </div>
+          </div>
 
-                          {/* Read Button */}
-                          <div className="flex items-center justify-end sm:justify-start w-full sm:w-auto">
-                            <div className="flex items-center group transition-colors duration-300">
-                              <span className="text-blue-600 font-bold text-lg group-hover:text-amber-600 transition-colors duration-300">
-                                Read Article
-                              </span>
-                              <div className="ml-3 w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 group-hover:from-amber-500 group-hover:to-yellow-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
-                                <ArrowRightIcon className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform duration-300" />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+          {/* Date */}
+          <div className="flex items-center">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-full flex items-center justify-center shadow-md">
+              <CalendarIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+            </div>
+            <div className="ml-2 sm:ml-3">
+              <div className="text-sm font-semibold text-slate-800">{formatDate(blog.createdAt)}</div>
+              <div className="text-xs text-slate-500">Published</div>
+            </div>
+          </div>
+        </div>
 
-
-
-
-                      </div>
-                    </div>
+        {/* Read Article CTA */}
+        <div className="flex items-center justify-end sm:justify-start">
+          <div className="flex items-center gap-2 sm:gap-3 group cursor-pointer">
+            <span className="text-sm sm:text-base text-amber-400 font-semibold group-hover:text-amber-600 transition-colors duration-300">
+              Read Article
+            </span>
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-amber-400 to-amber-500 group-hover:from-amber-500 group-hover:to-yellow-600 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <ArrowRightIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
                     
                   </article>

@@ -96,7 +96,7 @@ interface Video {
   id: string;
   title: string;
   description: string;
-  videoUrl: string;
+  url: string;
   thumbnail: string;
 }
 
@@ -146,7 +146,7 @@ export default function EducationalSeries() {
             <div key={index} className="max-w-7xl mx-auto">
               <div
                 className="flex flex-col md:flex-row bg-white rounded-2xl shadow-2xl hover:shadow-lg transform hover:scale-[1.01] transition-all duration-300 overflow-hidden cursor-pointer"
-                onClick={() => window.open(video.videoUrl, "_blank")}
+                onClick={() => window.open(video.url, "_blank")}
               >
                 {/* Left Thumbnail */}
                 <div className="relative w-full md:w-1/3 h-60 md:h-[250px] min-w-[200px]">
