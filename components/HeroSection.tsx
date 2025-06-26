@@ -26,12 +26,15 @@ export default function HeroSection() {
           {/* Left Content */}
           <div className="space-y-8 animate-in slide-in-from-left duration-1000">
             <div className="space-y-6">
-              <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight drop-shadow-lg">
-                Welcome to{' '}
-                <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                  GCS Law Firm
-                </span>
-              </h1>
+              <div className="flex flex-col items-center text-center px-4 sm:px-6">
+  <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight drop-shadow-lg">
+    Welcome to{' '}
+    <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+      GCS Law Firm
+    </span>
+  </h1>
+</div>
+
               
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-white/60">
   <p className="text-sm sm:text-base md:text-lg text-slate-800 leading-relaxed mb-4 font-medium">
