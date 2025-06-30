@@ -1,4 +1,3 @@
-// lib/db.ts
 import { Pool } from 'pg';
 
 // Create a connection pool
@@ -26,6 +25,29 @@ export interface VideoPost {
   thumbnail: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface NewspaperCutting {
+  id: string;
+  category: string;
+  title: string;
+  description: string;
+  date: string;
+  image: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateNewspaperCutting {
+  category?: string;
+  title: string;
+  description?: string;
+  date: string;
+  image: string;
+}
+
+export interface UpdateNewspaperCutting extends Partial<CreateNewspaperCutting> {
+  id: string;
 }
 
 // Initialize database tables
@@ -59,10 +81,30 @@ export async function initializeDatabase() {
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
+
+    // Create newspaper_cuttings table
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS newspaper_cuttings (
+        id VARCHAR(255) PRIMARY KEY,
+        category VARCHAR(255),
+        title VARCHAR(500) NOT NULL,
+        description TEXT,
+        date DATE NOT NULL,
+        image VARCHAR(500) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
     
-    // Create index for better performance
+    // Create indexes for better performance
     await client.query(`
       CREATE INDEX IF NOT EXISTS idx_blogs_created_at ON blogs(created_at DESC)
+    `);
+    await client.query(`
+      CREATE INDEX IF NOT EXISTS idx_videos_created_at ON videos(created_at DESC)
+    `);
+    await client.query(`
+      CREATE INDEX IF NOT EXISTS idx_newspaper_cuttings_created_at ON newspaper_cuttings(created_at DESC)
     `);
     
     client.release();
@@ -250,7 +292,6 @@ export class BlogService {
     const client = await pool.connect();
     try {
       const result = await client.query('DELETE FROM blogs WHERE id = $1', [id]);
-    //   return result.rowCount > 0;
       return (result.rowCount ?? 0) > 0;
     } finally {
       client.release();
@@ -416,6 +457,163 @@ export class VideoService {
     }
   }
 }
+
+export class NewspaperCuttingService {
+  static async getAllNewspaperCuttings(): Promise<NewspaperCutting[]> {
+    const client = await pool.connect();
+    try {
+      const result = await client.query(`
+        SELECT 
+          id,
+          category,
+          title,
+          description,
+          TO_CHAR(date, 'YYYY-MM-DD') as date,
+          image,
+          created_at as "createdAt",
+          updated_at as "updatedAt"
+        FROM newspaper_cuttings 
+        ORDER BY created_at DESC
+      `);
+      
+      return result.rows.map(row => ({
+        ...row,
+        createdAt: row.createdAt.toISOString(),
+        updatedAt: row.updatedAt.toISOString(),
+      }));
+    } finally {
+      client.release();
+    }
+  }
+
+  static async getNewspaperCuttingById(id: string): Promise<NewspaperCutting | null> {
+    const client = await pool.connect();
+    try {
+      const result = await client.query(`
+        SELECT 
+          id,
+          category,
+          title,
+          description,
+          TO_CHAR(date, 'YYYY-MM-DD') as date,
+          image,
+          created_at as "createdAt",
+          updated_at as "updatedAt"
+        FROM newspaper_cuttings 
+        WHERE id = $1
+      `, [id]);
+      
+      if (result.rows.length === 0) return null;
+      
+      const row = result.rows[0];
+      return {
+        ...row,
+        createdAt: row.createdAt.toISOString(),
+        updatedAt: row.updatedAt.toISOString(),
+      };
+    } finally {
+      client.release();
+    }
+  }
+
+  static async createNewspaperCutting(cuttingData: CreateNewspaperCutting): Promise<NewspaperCutting> {
+    const client = await pool.connect();
+    try {
+      const id = `cutting_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      const now = new Date();
+      
+      const result = await client.query(`
+        INSERT INTO newspaper_cuttings (id, category, title, description, date, image, created_at, updated_at)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        RETURNING 
+          id,
+          category,
+          title,
+          description,
+          TO_CHAR(date, 'YYYY-MM-DD') as date,
+          image,
+          created_at as "createdAt",
+          updated_at as "updatedAt"
+      `, [
+        id,
+        cuttingData.category || '',
+        cuttingData.title,
+        cuttingData.description || '',
+        cuttingData.date,
+        cuttingData.image,
+        now,
+        now
+      ]);
+      
+      const row = result.rows[0];
+      return {
+        ...row,
+        createdAt: row.createdAt.toISOString(),
+        updatedAt: row.updatedAt.toISOString(),
+      };
+    } finally {
+      client.release();
+    }
+  }
+
+  static async updateNewspaperCutting(id: string, cuttingData: Partial<CreateNewspaperCutting>): Promise<NewspaperCutting | null> {
+    const client = await pool.connect();
+    try {
+      const now = new Date();
+      
+      const result = await client.query(`
+        UPDATE newspaper_cuttings 
+        SET 
+          category = $2,
+          title = $3,
+          description = $4,
+          date = $5,
+          image = $6,
+          updated_at = $7
+        WHERE id = $1
+        RETURNING 
+          id,
+          category,
+          title,
+          description,
+          TO_CHAR(date, 'YYYY-MM-DD') as date,
+          image,
+          created_at as "createdAt",
+          updated_at as "updatedAt"
+      `, [
+        id,
+        cuttingData.category || '',
+        cuttingData.title || '',
+        cuttingData.description || '',
+        cuttingData.date || '',
+        cuttingData.image || '',
+        now
+      ]);
+      
+      if (result.rows.length === 0) return null;
+      
+      const row = result.rows[0];
+      return {
+        ...row,
+        createdAt: row.createdAt.toISOString(),
+        updatedAt: row.updatedAt.toISOString(),
+      };
+    } finally {
+      client.release();
+    }
+  }
+
+  static async deleteNewspaperCutting(id: string): Promise<boolean> {
+    const client = await pool.connect();
+    try {
+      const result = await client.query('DELETE FROM newspaper_cuttings WHERE id = $1', [id]);
+      return (result.rowCount ?? 0) > 0;
+    } finally {
+      client.release();
+    }
+  }
+}
+
 initializeDatabase().catch(console.error);
 
 export default pool;

@@ -1,12 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useSession, signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { PlusIcon, EditIcon, TrashIcon, ImageIcon, SaveIcon, XIcon, CalendarIcon, UserIcon, EyeIcon, LogOutIcon, ShieldIcon, VideoIcon } from "lucide-react";
+import { PlusIcon, EditIcon, TrashIcon, ImageIcon, SaveIcon, XIcon, CalendarIcon, UserIcon, EyeIcon, ShieldIcon, VideoIcon, NewspaperIcon } from "lucide-react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
+import NewspaperCuttingModal from "./newspapercutting";
 
 interface BlogPost {
   id: string;
@@ -29,19 +30,33 @@ interface VideoPost {
   updatedAt: string;
 }
 
+interface NewspaperCutting {
+  id: string;
+  category: string;
+  title: string;
+  description: string;
+  date: string;
+  image: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export default function BlogAdminPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [videos, setVideos] = useState<VideoPost[]>([]);
+  const [newspaperCuttings, setNewspaperCuttings] = useState<NewspaperCutting[]>([]);
   const [blogsLoading, setBlogsLoading] = useState(true);
   const [videosLoading, setVideosLoading] = useState(true);
+  const [newspaperCuttingsLoading, setNewspaperCuttingsLoading] = useState(true);
   const [initialLoad, setInitialLoad] = useState(true);
   const [showEditor, setShowEditor] = useState(false);
   const [showVideoEditor, setShowVideoEditor] = useState(false);
+  const [showNewspaperEditor, setShowNewspaperEditor] = useState(false);
   const [editingBlog, setEditingBlog] = useState<BlogPost | null>(null);
   const [editingVideo, setEditingVideo] = useState<VideoPost | null>(null);
-  const [activeTab, setActiveTab] = useState<'articles' | 'videos'>('articles');
+  const [editingNewspaper, setEditingNewspaper] = useState<NewspaperCutting | null>(null);
   const [formData, setFormData] = useState({
     title: '',
     author: 'By Yatish Kumar Goel, Advocate',
@@ -55,22 +70,29 @@ export default function BlogAdminPage() {
     url: '',
     thumbnail: ''
   });
+  const [newspaperFormData, setNewspaperFormData] = useState({
+    category: '',
+    title: '',
+    description: '',
+    date: '',
+    image: ''
+  });
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [activeTab, setActiveTab] = useState<'articles' | 'videos' | 'newspaper'>('articles');
 
   // Redirect to login if not authenticated
   useEffect(() => {
-    
     if (status === 'unauthenticated') {
       router.push('/login');
     }
   }, [status, router]);
-  
 
   useEffect(() => {
     if (session) {
       fetchBlogs();
       fetchVideos();
+      fetchNewspaperCuttings();
     }
   }, [session]);
 
@@ -90,21 +112,56 @@ export default function BlogAdminPage() {
     }
   };
 
+  const fetchVideos = async () => {
+    setVideosLoading(true);
+    try {
+      const response = await fetch('/api/videos');
+      if (response.ok) {
+        const data = await response.json();
+        setVideos(data);
+      }
+    } catch (error) {
+      console.error('Error fetching videos:', error);
+    } finally {
+      setVideosLoading(false);
+      if (initialLoad) setInitialLoad(false);
+    }
+  };
 
-  const handleImageUpload = async (file: File) => {
+  const fetchNewspaperCuttings = async () => {
+    setNewspaperCuttingsLoading(true);
+    try {
+      const response = await fetch('/api/newspaper-cuttings');
+      if (response.ok) {
+        const data = await response.json();
+        setNewspaperCuttings(data);
+      }
+    } catch (error) {
+      console.error('Error fetching newspaper cuttings:', error);
+    } finally {
+      setNewspaperCuttingsLoading(false);
+      if (initialLoad) setInitialLoad(false);
+    }
+  };
+
+  const handleImageUpload = async (file: File, isNewspaper = false) => {
     setUploading(true);
     try {
       const uploadFormData = new FormData();
       uploadFormData.append('file', file);
-  
+
       const response = await fetch('/api/upload', {
         method: 'POST',
         body: uploadFormData,
       });
-  
+
       if (response.ok) {
         const data = await response.json();
-        setFormData(prev => ({ ...prev, image: data.imageUrl }));
+        if (isNewspaper) {
+          setNewspaperFormData(prev => ({ ...prev, image: data.imageUrl }));
+        } else {
+          setFormData(prev => ({ ...prev, image: data.imageUrl }));
+        }
       } else {
         alert('Failed to upload image');
       }
@@ -150,6 +207,78 @@ export default function BlogAdminPage() {
     }
   };
 
+  const handleSaveVideo = async () => {
+    if (!videoFormData.title.trim() || !videoFormData.url.trim()) {
+      alert('Title and URL are required');
+      return;
+    }
+
+    setSaving(true);
+    try {
+      const isEditing = !!editingVideo;
+      const url = isEditing ? `/api/videos/${editingVideo.id}` : '/api/videos';
+      const method = isEditing ? 'PUT' : 'POST';
+
+      const response = await fetch(url, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(videoFormData),
+      });
+
+      if (response.ok) {
+        await fetchVideos();
+        resetVideoForm();
+        setShowVideoEditor(false);
+      } else {
+        const errorData = await response.json();
+        alert(`Failed to save video: ${errorData.error || 'Unknown error'}`);
+      }
+    } catch (error) {
+      console.error('Error saving video:', error);
+      alert('Failed to save video. Please check console for details.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleSaveNewspaper = async () => {
+    if (!newspaperFormData.title.trim() || !newspaperFormData.date.trim() || !newspaperFormData.image.trim()) {
+      alert('Title, date, and image are required');
+      return;
+    }
+
+    setSaving(true);
+    try {
+      const isEditing = !!editingNewspaper;
+      const url = isEditing ? `/api/newspaper-cuttings/${editingNewspaper.id}` : '/api/newspaper-cuttings';
+      const method = isEditing ? 'PUT' : 'POST';
+
+      const response = await fetch(url, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newspaperFormData),
+      });
+
+      if (response.ok) {
+        await fetchNewspaperCuttings();
+        resetNewspaperForm();
+        setShowNewspaperEditor(false);
+      } else {
+        const errorData = await response.json();
+        alert(`Failed to save newspaper cutting: ${errorData.error || 'Unknown error'}`);
+      }
+    } catch (error) {
+      console.error('Error saving newspaper cutting:', error);
+      alert('Failed to save newspaper cutting. Please check console for details.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
   const handleEdit = (blog: BlogPost) => {
     setEditingBlog(blog);
     setFormData({
@@ -160,6 +289,29 @@ export default function BlogAdminPage() {
       image: blog.image
     });
     setShowEditor(true);
+  };
+
+  const handleEditVideo = (video: VideoPost) => {
+    setEditingVideo(video);
+    setVideoFormData({
+      title: video.title,
+      description: video.description,
+      url: video.url,
+      thumbnail: video.thumbnail
+    });
+    setShowVideoEditor(true);
+  };
+
+  const handleEditNewspaper = (cutting: NewspaperCutting) => {
+    setEditingNewspaper(cutting);
+    setNewspaperFormData({
+      category: cutting.category,
+      title: cutting.title,
+      description: cutting.description,
+      date: cutting.date,
+      image: cutting.image
+    });
+    setShowNewspaperEditor(true);
   };
 
   const handleDelete = async (id: string) => {
@@ -181,94 +333,46 @@ export default function BlogAdminPage() {
     }
   };
 
-  const fetchVideos = async () => {
-    setVideosLoading(true);
-    try {
-      const response = await fetch('/api/videos');
-      if (response.ok) {
-        const data = await response.json();
-        setVideos(data);
-      }
-    } catch (error) {
-      console.error('Error fetching videos:', error);
-    } finally {
-      setVideosLoading(false);
-      if (initialLoad) setInitialLoad(false);
-    }
-  };
-
-  const handleSaveVideo = async () => {
-    if (!videoFormData.title.trim() || !videoFormData.url.trim()) {
-      alert('Title and URL are required');
-      return;
-    }
-  
-    setSaving(true);
-    try {
-      // Determine if we're creating or updating
-      const isEditing = !!editingVideo;
-      const url = isEditing 
-        ? `/api/videos/${editingVideo.id}` 
-        : '/api/videos';
-        
-      const method = isEditing ? 'PUT' : 'POST';
-  
-      const response = await fetch(url, {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(videoFormData),
-      });
-  
-      if (response.ok) {
-        await fetchVideos();
-        resetVideoForm();
-        setShowVideoEditor(false);
-      } else {
-        const errorData = await response.json();
-        alert(`Failed to save video: ${errorData.error}`);
-      }
-    } catch (error) {
-      console.error('Error saving video:', error);
-      alert('Failed to save video. Please check console for details.');
-    } finally {
-      setSaving(false);
-    }
-  };
-
-  const handleEditVideo = (video: VideoPost) => {
-    setEditingVideo(video);
-    setVideoFormData({
-      title: video.title,
-      description: video.description,
-      url: video.url,
-      thumbnail: video.thumbnail
-    });
-    setShowVideoEditor(true);
-  };
-
-
-
   const handleDeleteVideo = async (id: string) => {
     if (!confirm('Are you sure you want to delete this video?')) return;
-  
+
     try {
-      const response = await fetch(`/api/videos/${id}`, {  // Using query parameter
+      const response = await fetch(`/api/videos/${id}`, {
         method: 'DELETE',
       });
-  
+
       if (response.ok) {
         await fetchVideos();
       } else {
-        const errorData = await response.json(); // Get error details
-        alert(`Failed to delete video: ${errorData.error}`);
+        const errorData = await response.json();
+        alert(`Failed to delete video: ${errorData.error || 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Error deleting video:', error);
       alert('Failed to delete video. Please check console for details.');
     }
   };
+
+  const handleDeleteNewspaper = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this newspaper cutting?')) return;
+
+    try {
+      const response = await fetch(`/api/newspaper-cuttings/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        await fetchNewspaperCuttings();
+      } else {
+        const errorData = await response.json();
+        alert(`Failed to delete newspaper cutting: ${errorData.error || 'Unknown error'}`);
+      }
+    } catch (error) {
+      console.error('Error deleting newspaper cutting:', error);
+      alert('Failed to delete newspaper cutting. Please check console for details.');
+    }
+  };
+
   const resetForm = () => {
     setFormData({
       title: '',
@@ -290,6 +394,17 @@ export default function BlogAdminPage() {
     setEditingVideo(null);
   };
 
+  const resetNewspaperForm = () => {
+    setNewspaperFormData({
+      category: '',
+      title: '',
+      description: '',
+      date: '',
+      image: ''
+    });
+    setEditingNewspaper(null);
+  };
+
   const handleCancel = () => {
     resetForm();
     setShowEditor(false);
@@ -300,9 +415,20 @@ export default function BlogAdminPage() {
     setShowVideoEditor(false);
   };
 
+  const handleNewspaperCancel = () => {
+    resetNewspaperForm();
+    setShowNewspaperEditor(false);
+  };
+
   const truncateText = (text: string, maxLength: number) => {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength).trim() + '...';
+  };
+
+  const extractYouTubeID = (url: string): string | null => {
+    const regex = /(?:youtube\.com.*(?:\?|&)v=|youtu\.be\/)([^&\n?#]+)/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
   };
 
   if (initialLoad) {
@@ -315,13 +441,6 @@ export default function BlogAdminPage() {
       </div>
     );
   }
-
-  function extractYouTubeID(url: string): string | null {
-    const regex = /(?:youtube\.com.*(?:\?|&)v=|youtu\.be\/)([^&\n?#]+)/;
-    const match = url.match(regex);
-    return match ? match[1] : null;
-  }
-  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-cream-50 to-blue-50 flex flex-col">
@@ -338,11 +457,15 @@ export default function BlogAdminPage() {
               <p className="text-slate-600 text-lg">Create, edit, and manage your legal content</p>
             </div>
             <button
-              onClick={() => activeTab === 'articles' ? setShowEditor(true) : setShowVideoEditor(true)}
+              onClick={() => {
+                if (activeTab === 'articles') setShowEditor(true);
+                else if (activeTab === 'videos') setShowVideoEditor(true);
+                else setShowNewspaperEditor(true);
+              }}
               className="bg-gradient-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-2xl font-semibold flex items-center space-x-3 hover:from-amber-600 hover:to-amber-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               <PlusIcon className="w-6 h-6" />
-              <span>New {activeTab === 'articles' ? 'Article' : 'Video'}</span>
+              <span>New {activeTab === 'articles' ? 'Article' : activeTab === 'videos' ? 'Video' : 'Newspaper Cutting'}</span>
             </button>
           </div>
 
@@ -364,6 +487,14 @@ export default function BlogAdminPage() {
             >
               Videos
             </button>
+            <button
+              onClick={() => setActiveTab('newspaper')}
+              className={`px-6 py-3 font-semibold text-lg transition-colors ${activeTab === 'newspaper' 
+                ? 'text-blue-900 border-b-2 border-blue-900' 
+                : 'text-slate-600 hover:text-blue-800'}`}
+            >
+              Newspaper Cuttings
+            </button>
           </div>
 
           {/* Blog Editor Modal */}
@@ -383,8 +514,6 @@ export default function BlogAdminPage() {
                 </div>
 
                 <div className="space-y-8">
-                  {/* Title */}
-
                   <div>
                     <label className="block text-sm font-semibold text-blue-900 mb-3">
                       Article Title
@@ -398,7 +527,6 @@ export default function BlogAdminPage() {
                     />
                   </div>
 
-                  {/* Author */}
                   <div>
                     <label className="block text-sm font-semibold text-blue-900 mb-3">
                       Author
@@ -411,7 +539,6 @@ export default function BlogAdminPage() {
                     />
                   </div>
 
-                  {/* Summary */}
                   <div>
                     <label className="block text-sm font-semibold text-blue-900 mb-3">
                       Article Summary
@@ -425,7 +552,6 @@ export default function BlogAdminPage() {
                     />
                   </div>
 
-                  {/* Image Upload */}
                   <div>
                     <label className="block text-sm font-semibold text-blue-900 mb-3">
                       Header Image
@@ -461,7 +587,6 @@ export default function BlogAdminPage() {
                     </div>
                   </div>
 
-                  {/* Content */}
                   <div>
                     <label className="block text-sm font-semibold text-blue-900 mb-3">
                       Article Content
@@ -478,7 +603,6 @@ export default function BlogAdminPage() {
                     />
                   </div>
 
-                  {/* Actions */}
                   <div className="flex justify-end space-x-4 pt-6 border-t border-amber-200">
                     <button
                       onClick={handleCancel}
@@ -500,128 +624,137 @@ export default function BlogAdminPage() {
             </div>
           )}
 
-                      {/* Video Editor Modal */}
-                    {showVideoEditor && (
-              <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-                <div className="bg-white rounded-3xl p-8 w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl border border-amber-200">
-                  <div className="flex justify-between items-center mb-8">
-                    <h2 className="text-3xl font-bold text-blue-900">
-                      {editingVideo ? 'Edit Video' : 'Add New Video'}
-                    </h2>
-                    <button
-                      onClick={handleVideoCancel}
-                      className="p-3 hover:bg-slate-100 rounded-xl transition-colors"
-                    >
-                      <XIcon className="w-6 h-6 text-slate-600" />
-                    </button>
+          {/* Video Editor Modal */}
+          {showVideoEditor && (
+            <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+              <div className="bg-white rounded-3xl p-8 w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl border border-amber-200">
+                <div className="flex justify-between items-center mb-8">
+                  <h2 className="text-3xl font-bold text-blue-900">
+                    {editingVideo ? 'Edit Video' : 'Add New Video'}
+                  </h2>
+                  <button
+                    onClick={handleVideoCancel}
+                    className="p-3 hover:bg-slate-100 rounded-xl transition-colors"
+                  >
+                    <XIcon className="w-6 h-6 text-slate-600" />
+                  </button>
+                </div>
+
+                <div className="space-y-8">
+                  <div>
+                    <label className="block text-sm font-semibold text-blue-900 mb-3">
+                      Video Title
+                    </label>
+                    <input
+                      type="text"
+                      value={videoFormData.title}
+                      onChange={(e) => setVideoFormData(prev => ({ ...prev, title: e.target.value }))}
+                      className="w-full px-6 py-4 border-2 border-amber-200 rounded-2xl focus:ring-2 focus:ring-amber-400 focus:border-transparent text-slate-800 text-lg"
+                      placeholder="Enter video title..."
+                    />
                   </div>
 
-                  <div className="space-y-8">
-                    {/* Title */}
+                  <div>
+                    <label className="block text-sm font-semibold text-blue-900 mb-3">
+                      Video Description
+                    </label>
+                    <textarea
+                      value={videoFormData.description}
+                      onChange={(e) => setVideoFormData(prev => ({ ...prev, description: e.target.value }))}
+                      rows={3}
+                      className="w-full px-6 py-4 border-2 border-amber-200 rounded-2xl focus:ring-2 focus:ring-amber-400 focus:border-transparent text-slate-800 resize-vertical"
+                      placeholder="Enter video description..."
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-blue-900 mb-3">
+                      YouTube URL
+                    </label>
+                    <input
+                      type="text"
+                      value={videoFormData.url}
+                      onChange={(e) => {
+                        const url = e.target.value;
+                        const videoId = extractYouTubeID(url);
+                        const thumbnail = videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '';
+                        setVideoFormData(prev => ({
+                          ...prev,
+                          url,
+                          thumbnail
+                        }));
+                      }}
+                      className="w-full px-6 py-4 border-2 border-amber-200 rounded-2xl focus:ring-2 focus:ring-amber-400 focus:border-transparent text-slate-800"
+                      placeholder="https://www.youtube.com/watch?v=..."
+                    />
+                  </div>
+
+                  {videoFormData.thumbnail && (
                     <div>
                       <label className="block text-sm font-semibold text-blue-900 mb-3">
-                        Video Title
+                        Thumbnail Preview
                       </label>
-                      <input
-                        type="text"
-                        value={videoFormData.title}
-                        onChange={(e) => setVideoFormData(prev => ({ ...prev, title: e.target.value }))}
-                        className="w-full px-6 py-4 border-2 border-amber-200 rounded-2xl focus:ring-2 focus:ring-amber-400 focus:border-transparent text-slate-800 text-lg"
-                        placeholder="Enter video title..."
-                      />
-                    </div>
-
-                    {/* Description */}
-                    <div>
-                      <label className="block text-sm font-semibold text-blue-900 mb-3">
-                        Video Description
-                      </label>
-                      <textarea
-                        value={videoFormData.description}
-                        onChange={(e) => setVideoFormData(prev => ({ ...prev, description: e.target.value }))}
-                        rows={3}
-                        className="w-full px-6 py-4 border-2 border-amber-200 rounded-2xl focus:ring-2 focus:ring-amber-400 focus:border-transparent text-slate-800 resize-vertical"
-                        placeholder="Enter video description..."
-                      />
-                    </div>
-
-                    {/* YouTube URL */}
-                    <div>
-                      <label className="block text-sm font-semibold text-blue-900 mb-3">
-                        YouTube URL
-                      </label>
-                      <input
-                        type="text"
-                        value={videoFormData.url}
-                        onChange={(e) => {
-                          const url = e.target.value;
-                          const videoId = extractYouTubeID(url);
-                          const thumbnail = videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '';
-                          setVideoFormData(prev => ({
-                            ...prev,
-                            url,
-                            thumbnail
-                          }));
-                        }}
-                        className="w-full px-6 py-4 border-2 border-amber-200 rounded-2xl focus:ring-2 focus:ring-amber-400 focus:border-transparent text-slate-800"
-                        placeholder="https://www.youtube.com/watch?v=..."
-                      />
-                    </div>
-
-                    {/* Thumbnail Preview */}
-                    {videoFormData.thumbnail && (
-                      <div>
-                        <label className="block text-sm font-semibold text-blue-900 mb-3">
-                          Thumbnail Preview
-                        </label>
-                        <div className="flex items-center space-x-6">
-                          <div className="relative">
-                            <img
-                              src={videoFormData.thumbnail}
-                              alt="Thumbnail preview"
-                              className="w-48 h-36 object-cover rounded-xl border-2 border-amber-200 shadow-md"
-                              onError={(e) => {
-                                const target = e.target as HTMLImageElement;
-                                target.src = "https://via.placeholder.com/480x360?text=Thumbnail+Not+Found";
-                              }}
-                            />
-                          </div>
-                          <div className="text-sm text-slate-600">
-                            <p>Preview of the YouTube thumbnail</p>
-                            <p className="mt-2">Recommended size: 480×360</p>
-                          </div>
+                      <div className="flex items-center space-x-6">
+                        <div className="relative">
+                          <img
+                            src={videoFormData.thumbnail}
+                            alt="Thumbnail preview"
+                            className="w-48 h-36 object-cover rounded-xl border-2 border-amber-200 shadow-md"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.src = "https://via.placeholder.com/480x360?text=Thumbnail+Not+Found";
+                            }}
+                          />
+                        </div>
+                        <div className="text-sm text-slate-600">
+                          <p>Preview of the YouTube thumbnail</p>
+                          <p className="mt-2">Recommended size: 480x360</p>
                         </div>
                       </div>
-                    )}
-
-                    {/* Actions */}
-                    <div className="flex justify-end space-x-4 pt-6 border-t border-amber-200">
-                      <button
-                        onClick={handleVideoCancel}
-                        className="px-8 py-3 border-2 border-slate-300 text-slate-700 rounded-xl hover:bg-slate-50 transition-colors font-semibold"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        onClick={handleSaveVideo}
-                        disabled={saving}
-                        className="bg-gradient-to-r from-blue-700 to-blue-800 text-white px-8 py-3 rounded-xl font-semibold flex items-center space-x-2 hover:from-blue-800 hover:to-blue-900 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
-                      >
-                        <SaveIcon className="w-5 h-5" />
-                        <span>{saving ? 'Saving...' : 'Save Video'}</span>
-                      </button>
                     </div>
+                  )}
+
+                  <div className="flex justify-end space-x-4 pt-6 border-t border-amber-200">
+                    <button
+                      onClick={handleVideoCancel}
+                      className="px-8 py-3 border-2 border-slate-300 text-slate-700 rounded-xl hover:bg-slate-50 transition-colors font-semibold"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={handleSaveVideo}
+                      disabled={saving}
+                      className="bg-gradient-to-r from-blue-700 to-blue-800 text-white px-8 py-3 rounded-xl font-semibold flex items-center space-x-2 hover:from-blue-800 hover:to-blue-900 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                    >
+                      <SaveIcon className="w-5 h-5" />
+                      <span>{saving ? 'Saving...' : 'Save Video'}</span>
+                    </button>
                   </div>
                 </div>
               </div>
-            )}
+            </div>
+          )}
 
+          {/* Newspaper Cutting Modal */}
+          {showNewspaperEditor && (
+            <NewspaperCuttingModal
+              isOpen={showNewspaperEditor}
+              editingNewspaper={editingNewspaper}
+              newspaperFormData={newspaperFormData}
+              setNewspaperFormData={setNewspaperFormData}
+              uploading={uploading}
+              saving={saving}
+              onCancel={handleNewspaperCancel}
+              onSave={handleSaveNewspaper}
+              onImageUpload={(file) => handleImageUpload(file, true)}
+            />
+          )}
 
           {/* Content Area */}
-          {activeTab === 'articles' ? (
-            /* Articles List */
-            <div className="grid gap-8">
-              {blogsLoading ? (
+          <div className="grid gap-8">
+            {activeTab === 'articles' ? (
+              /* Articles List */
+              blogsLoading ? (
                 <div className="text-center py-20 bg-white rounded-3xl shadow-lg border border-amber-200">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto mb-4"></div>
                   <div className="text-xl text-blue-900 font-semibold">Loading Articles...</div>
@@ -644,7 +777,6 @@ export default function BlogAdminPage() {
                 blogs.map((blog) => (
                   <div key={blog.id} className="bg-white rounded-3xl shadow-lg p-8 border border-amber-200 hover:shadow-xl transition-all duration-300">
                     <div className="flex flex-col lg:flex-row gap-6">
-                      {/* Content Section */}
                       <div className="flex-1">
                         <div className="flex flex-wrap items-center gap-4 mb-4">
                           <div className="flex items-center gap-2 text-blue-700">
@@ -665,7 +797,7 @@ export default function BlogAdminPage() {
                           </p>
                         )}
                         
-                        <p className="text-slate-500 mb-6 leading-relaxed">
+                        <p className="text-slate-600 mb-6 leading-relaxed">
                           {truncateText(blog.content.replace(/<[^>]*>/g, ''), 200)}
                         </p>
                         
@@ -676,7 +808,6 @@ export default function BlogAdminPage() {
                           )}
                         </div>
 
-                        {/* Action Buttons */}
                         <div className="flex flex-wrap gap-3">
                           <a
                             href={`/news/${blog.id}`}
@@ -704,7 +835,6 @@ export default function BlogAdminPage() {
                         </div>
                       </div>
 
-                      {/* Image Section */}
                       {blog.image && (
                         <div className="lg:w-80 flex-shrink-0">
                           <img
@@ -717,12 +847,10 @@ export default function BlogAdminPage() {
                     </div>
                   </div>
                 ))
-              )}
-            </div>
-          ) : (
-            /* Videos List */
-            <div className="grid gap-8">
-              {videosLoading ? (
+              )
+            ) : activeTab === 'videos' ? (
+              /* Videos List */
+              videosLoading ? (
                 <div className="text-center py-20 bg-white rounded-3xl shadow-lg border border-amber-200">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto mb-4"></div>
                   <div className="text-xl text-blue-900 font-semibold">Loading Videos...</div>
@@ -745,7 +873,6 @@ export default function BlogAdminPage() {
                 videos.map((video) => (
                   <div key={video.id} className="bg-white rounded-3xl shadow-lg p-8 border border-amber-200 hover:shadow-xl transition-all duration-300">
                     <div className="flex flex-col lg:flex-row gap-8">
-                      {/* Thumbnail */}
                       <div className="lg:w-96 flex-shrink-0">
                         {video.thumbnail ? (
                           <img
@@ -764,7 +891,6 @@ export default function BlogAdminPage() {
                         )}
                       </div>
 
-                      {/* Content */}
                       <div className="flex-1">
                         <div className="flex flex-wrap items-center gap-4 mb-4">
                           <div className="flex items-center gap-2 text-slate-500">
@@ -786,7 +912,6 @@ export default function BlogAdminPage() {
                           )}
                         </div>
 
-                        {/* Action Buttons */}
                         <div className="flex flex-wrap gap-3">
                           <a
                             href={video.url}
@@ -816,9 +941,107 @@ export default function BlogAdminPage() {
                     </div>
                   </div>
                 ))
-              )}
-            </div>
-          )}
+              )
+            ) : (
+              /* Newspaper Cuttings List */
+              newspaperCuttingsLoading ? (
+                <div className="text-center py-20 bg-white rounded-3xl shadow-lg border border-amber-200">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto mb-4"></div>
+                  <div className="text-xl text-blue-900 font-semibold">Loading Newspaper Cuttings...</div>
+                </div>
+              ) : newspaperCuttings.length === 0 ? (
+                <div className="text-center py-20 bg-white rounded-3xl shadow-lg border border-amber-200">
+                  <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <NewspaperIcon className="w-12 h-12 text-blue-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-blue-900 mb-4">No Newspaper Cuttings Yet</h3>
+                  <p className="text-slate-600 text-lg mb-8">Get started by adding your first newspaper cutting.</p>
+                  <button
+                    onClick={() => setShowNewspaperEditor(true)}
+                    className="bg-gradient-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-2xl font-semibold hover:from-amber-600 hover:to-amber-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  >
+                    Add First Newspaper Cutting
+                  </button>
+                </div>
+              ) : (
+                newspaperCuttings.map((cutting) => (
+                  <div key={cutting.id} className="bg-white rounded-3xl shadow-lg p-8 border border-amber-200 hover:shadow-xl transition-all duration-300">
+                    <div className="flex flex-col lg:flex-row gap-8">
+                      <div className="lg:w-96 flex-shrink-0">
+                        {cutting.image ? (
+                          <img
+                            src={cutting.image}
+                            alt={cutting.title}
+                            className="w-full h-56 object-cover rounded-2xl border border-amber-200 shadow-md"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.src = "https://via.placeholder.com/480x360?text=Image+Not+Found";
+                            }}
+                          />
+                        ) : (
+                          <div className="bg-gray-200 border-2 border-dashed rounded-2xl w-full h-56 flex items-center justify-center">
+                            <NewspaperIcon className="w-16 h-16 text-gray-400" />
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="flex-1">
+                        <div className="flex flex-wrap items-center gap-4 mb-4">
+                          <div className="flex items-center gap-2 text-blue-700">
+                            <ShieldIcon className="w-4 h-4" />
+                            <span className="text-sm font-medium">{cutting.category}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-slate-500">
+                            <CalendarIcon className="w-4 h-4" />
+                            <span className="text-sm">{new Date(cutting.date).toLocaleDateString()}</span>
+                          </div>
+                        </div>
+                        
+                        <h3 className="text-2xl lg:text-3xl font-bold text-blue-900 mb-4 leading-tight">{cutting.title}</h3>
+                        
+                        <p className="text-slate-600 mb-6 leading-relaxed">
+                          {truncateText(cutting.description, 200)}
+                        </p>
+                        
+                        <div className="text-sm text-slate-400 mb-6">
+                          <span>Created: {new Date(cutting.createdAt).toLocaleDateString()}</span>
+                          {cutting.updatedAt !== cutting.createdAt && (
+                            <span className="ml-4">Updated: {new Date(cutting.updatedAt).toLocaleDateString()}</span>
+                          )}
+                        </div>
+
+                        <div className="flex flex-wrap gap-3">
+                          <a
+                            href={cutting.image}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center space-x-2 px-6 py-3 text-blue-700 hover:bg-blue-50 rounded-xl transition-colors font-semibold border border-blue-200"
+                          >
+                            <EyeIcon className="w-4 h-4" />
+                            <span>View Image</span>
+                          </a>
+                          <button
+                            onClick={() => handleEditNewspaper(cutting)}
+                            className="flex items-center space-x-2 px-6 py-3 text-amber-700 hover:bg-amber-50 rounded-xl transition-colors font-semibold border border-amber-200"
+                          >
+                            <EditIcon className="w-4 h-4" />
+                            <span>Edit</span>
+                          </button>
+                          <button
+                            onClick={() => handleDeleteNewspaper(cutting.id)}
+                            className="flex items-center space-x-2 px-6 py-3 text-red-600 hover:bg-red-50 rounded-xl transition-colors font-semibold border border-red-200"
+                          >
+                            <TrashIcon className="w-4 h-4" />
+                            <span>Delete</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )
+            )}
+          </div>
         </div>
       </main>
 

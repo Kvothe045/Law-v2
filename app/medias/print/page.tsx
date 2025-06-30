@@ -15,19 +15,34 @@ import {
 import Navbar from "@/components/Navbar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { newspaperImages, ImageItem } from "@/data/newspaperImages";
+import { NewspaperCutting } from "@/types/newspapercutting";
 
 export default function NewspaperPage() {
-  const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null);
+  const [newspaperCuttings, setNewspaperCuttings] = useState<NewspaperCutting[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState<NewspaperCutting | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
   const [isVisible, setIsVisible] = useState(false);
   const [imageLoaded, setImageLoaded] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
+    async function fetchNewspaperCuttings() {
+      try {
+        const res = await fetch("/api/newspaper-cuttings");
+        const data = await res.json();
+        setNewspaperCuttings(data);
+      } catch (err) {
+        console.error("Failed to load newspaper cuttings", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchNewspaperCuttings();
     setIsVisible(true);
   }, []);
 
-  const openFullscreen = (image: ImageItem, index: number) => {
+  const openFullscreen = (image: NewspaperCutting, index: number) => {
     setSelectedImage(image);
     setSelectedIndex(index);
     document.body.style.overflow = "hidden";
@@ -43,12 +58,12 @@ export default function NewspaperPage() {
     if (selectedIndex === -1) return;
     let newIndex =
       direction === "next"
-        ? (selectedIndex + 1) % newspaperImages.length
+        ? (selectedIndex + 1) % newspaperCuttings.length
         : selectedIndex === 0
-        ? newspaperImages.length - 1
+        ? newspaperCuttings.length - 1
         : selectedIndex - 1;
 
-    setSelectedImage(newspaperImages[newIndex]);
+    setSelectedImage(newspaperCuttings[newIndex]);
     setSelectedIndex(newIndex);
   };
 
@@ -136,62 +151,68 @@ export default function NewspaperPage() {
               }
             `}</style>
 
-            {newspaperImages.map((image, index) => {
-              const isEven = index % 2 === 0;
-              return (
-                <div
-                  key={image.src}
-                  className={`news-card group grid grid-cols-1 lg:grid-cols-2 items-center gap-6 sm:gap-8 rounded-xl bg-[#fffaf0] shadow-2xl border border-gray-200 ${
-                    isVisible ? "animate-fadeIn" : "opacity-0"
-                  }`}
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  {/* Image Section */}
-                  <div className={`relative w-full h-64 sm:h-72 lg:h-[28rem] overflow-hidden ${isEven ? "order-1" : "lg:order-2"}`}>
-                    {!imageLoaded[image.src] && (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-8 h-8 sm:w-10 sm:h-10 border-[3px] border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-                      </div>
-                    )}
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      className="news-image object-cover rounded-xl shadow-md transition-transform duration-700"
-                      onLoad={() => handleImageLoad(image.src)}
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
-
-                  {/* Text Section */}
-                  <div className={`relative px-4 sm:px-6 lg:px-10 py-6 sm:py-8 ${isEven ? "lg:order-2" : "order-1"}`}>
-                    <div className="absolute top-0 left-2 w-20 sm:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500" />
-                    <div className="flex items-center gap-3 mb-3 sm:mb-4">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-blue-600/90 backdrop-blur-sm">
-                        {image.category}
-                      </span>
-                      <span className="text-xs text-gray-500">{image.date}</span>
+            {loading ? (
+              <div className="text-center text-slate-500">Loading newspaper cuttings...</div>
+            ) : newspaperCuttings.length === 0 ? (
+              <div className="text-center text-slate-500">No newspaper cuttings found.</div>
+            ) : (
+              newspaperCuttings.map((image, index) => {
+                const isEven = index % 2 === 0;
+                return (
+                  <div
+                    key={image.id}
+                    className={`news-card group grid grid-cols-1 lg:grid-cols-2 items-center gap-6 sm:gap-8 rounded-xl bg-[#fffaf0] shadow-2xl border border-gray-200 ${
+                      isVisible ? "animate-fadeIn" : "opacity-0"
+                    }`}
+                    style={{ animationDelay: `${index * 150}ms` }}
+                  >
+                    {/* Image Section */}
+                    <div className={`relative w-full h-64 sm:h-72 lg:h-[28rem] overflow-hidden ${isEven ? "order-1" : "lg:order-2"}`}>
+                      {!imageLoaded[image.image] && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-8 h-8 sm:w-10 sm:h-10 border-[3px] border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+                      )}
+                      <Image
+                        src={image.image}
+                        alt={image.title}
+                        fill
+                        className="news-image object-cover rounded-xl shadow-md transition-transform duration-700"
+                        onLoad={() => handleImageLoad(image.image)}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
                     </div>
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
-                      {image.title}
-                    </h3>
-                    <p className="text-gray-700 mb-4 text-sm sm:text-base">
-                      {image.description || "Brief description goes here..."}
-                    </p>
-                    <button
-                      className="text-sm text-blue-600 font-medium flex items-center group hover:underline"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        openFullscreen(image, index);
-                      }}
-                    >
-                      Read full story
-                      <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                    </button>
+
+                    {/* Text Section */}
+                    <div className={`relative px-4 sm:px-6 lg:px-10 py-6 sm:py-8 ${isEven ? "lg:order-2" : "order-1"}`}>
+                      <div className="absolute top-0 left-2 w-20 sm:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500" />
+                      <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-blue-600/90 backdrop-blur-sm">
+                          {image.category || "News"}
+                        </span>
+                        <span className="text-xs text-gray-500">{image.date}</span>
+                      </div>
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
+                        {image.title}
+                      </h3>
+                      <p className="text-gray-700 mb-4 text-sm sm:text-base">
+                        {image.description || "Brief description goes here..."}
+                      </p>
+                      <button
+                        className="text-sm text-blue-600 font-medium flex items-center group hover:underline"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openFullscreen(image, index);
+                        }}
+                      >
+                        Read full story
+                        <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
         </div>
       </section>
@@ -203,14 +224,14 @@ export default function NewspaperPage() {
           <div className="absolute top-4 sm:top-6 right-4 sm:right-6 z-10 flex items-center space-x-2 sm:space-x-3">
             <button
               onClick={() => navigateImage("prev")}
-              disabled={newspaperImages.length <= 1}
+              disabled={newspaperCuttings.length <= 1}
               className="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={() => navigateImage("next")}
-              disabled={newspaperImages.length <= 1}
+              disabled={newspaperCuttings.length <= 1}
               className="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <ChevronRight className="w-5 h-5" />
@@ -226,7 +247,7 @@ export default function NewspaperPage() {
           {/* Counter */}
           <div className="absolute top-4 sm:top-6 left-4 sm:left-6 z-10">
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 sm:px-4 py-1 sm:py-2 text-white text-xs sm:text-sm font-medium">
-              {selectedIndex + 1} of {newspaperImages.length}
+              {selectedIndex + 1} of {newspaperCuttings.length}
             </div>
           </div>
 
@@ -234,8 +255,8 @@ export default function NewspaperPage() {
           <div className="relative max-w-full max-h-[90vh] w-full h-full flex items-center justify-center">
             <div className="relative w-full h-full flex items-center justify-center">
               <Image
-                src={selectedImage.src}
-                alt={selectedImage.alt}
+                src={selectedImage.image}
+                alt={selectedImage.title}
                 width={1200}
                 height={800}
                 className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl"
