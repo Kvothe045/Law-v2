@@ -4,16 +4,26 @@
 import React, { useState } from 'react';
 import { signIn, getSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { LockIcon, UserIcon, EyeIcon, EyeOffIcon } from 'lucide-react';
+import { LockIcon, UserIcon, EyeIcon, EyeOffIcon, KeyIcon } from 'lucide-react';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 export default function LoginPage() {
   const [credentials, setCredentials] = useState({
-    username: '',
+    email: '',
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showPasswordReset, setShowPasswordReset] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
+  const [resetLoading, setResetLoading] = useState(false);
+  const [resetMessage, setResetMessage] = useState('');
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -23,15 +33,14 @@ export default function LoginPage() {
 
     try {
       const result = await signIn('credentials', {
-        username: credentials.username,
+        email: credentials.email,
         password: credentials.password,
         redirect: false,
       });
 
       if (result?.error) {
-        setError('Invalid username or password');
+        setError('Invalid email or password');
       } else {
-        // Refresh session
         await getSession();
         router.push('/admin');
         router.refresh();
@@ -40,6 +49,30 @@ export default function LoginPage() {
       setError('An error occurred during login');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handlePasswordReset = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setResetLoading(true);
+    setResetMessage('');
+
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
+        redirectTo: `${window.location.origin}/reset-password`,
+      });
+
+      if (error) {
+        setResetMessage('Error sending reset email. Please try again.');
+      } else {
+        setResetMessage('Password reset email sent! Check your inbox.');
+        setShowPasswordReset(false);
+        setResetEmail('');
+      }
+    } catch (error) {
+      setResetMessage('An error occurred. Please try again.');
+    } finally {
+      setResetLoading(false);
     }
   };
 
@@ -61,60 +94,116 @@ export default function LoginPage() {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label className="block text-sm font-semibold text-blue-900 mb-3">
-                Username
-              </label>
-              <div className="relative">
-                <UserIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
-                <input
-                  type="text"
-                  value={credentials.username}
-                  onChange={(e) => setCredentials(prev => ({ ...prev, username: e.target.value }))}
-                  className="w-full pl-12 pr-4 py-4 border-2 border-amber-200 rounded-2xl focus:ring-2 focus:ring-amber-400 focus:border-transparent text-slate-800"
-                  placeholder="Enter username"
-                  required
-                />
-              </div>
+          {resetMessage && (
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
+              <p className="text-blue-700 text-sm font-medium">{resetMessage}</p>
             </div>
+          )}
 
-            <div>
-              <label className="block text-sm font-semibold text-blue-900 mb-3">
-                Password
-              </label>
-              <div className="relative">
-                <LockIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={credentials.password}
-                  onChange={(e) => setCredentials(prev => ({ ...prev, password: e.target.value }))}
-                  className="w-full pl-12 pr-12 py-4 border-2 border-amber-200 rounded-2xl focus:ring-2 focus:ring-amber-400 focus:border-transparent text-slate-800"
-                  placeholder="Enter password"
-                  required
-                />
+          {!showPasswordReset ? (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-sm font-semibold text-blue-900 mb-3">
+                  Email
+                </label>
+                <div className="relative">
+                  <UserIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  <input
+                    type="email"
+                    value={credentials.email}
+                    onChange={(e) => setCredentials(prev => ({ ...prev, email: e.target.value }))}
+                    className="w-full pl-12 pr-4 py-4 border-2 border-amber-200 rounded-2xl focus:ring-2 focus:ring-amber-400 focus:border-transparent text-slate-800"
+                    placeholder="Enter email"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-blue-900 mb-3">
+                  Password
+                </label>
+                <div className="relative">
+                  <LockIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    value={credentials.password}
+                    onChange={(e) => setCredentials(prev => ({ ...prev, password: e.target.value }))}
+                    className="w-full pl-12 pr-12 py-4 border-2 border-amber-200 rounded-2xl focus:ring-2 focus:ring-amber-400 focus:border-transparent text-slate-800"
+                    placeholder="Enter password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  >
+                    {showPassword ? <EyeOffIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
+                  </button>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-gradient-to-r from-blue-700 to-blue-800 text-white py-4 rounded-2xl font-semibold hover:from-blue-800 hover:to-blue-900 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              >
+                {isLoading ? 'Signing in...' : 'Sign In'}
+              </button>
+
+              <div className="text-center">
                 <button
                   type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  onClick={() => setShowPasswordReset(true)}
+                  className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center justify-center gap-2 mx-auto"
                 >
-                  {showPassword ? <EyeOffIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
+                  <KeyIcon className="w-4 h-4" />
+                  Forgot Password?
                 </button>
               </div>
-            </div>
+            </form>
+          ) : (
+            <form onSubmit={handlePasswordReset} className="space-y-6">
+              <div>
+                <label className="block text-sm font-semibold text-blue-900 mb-3">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <UserIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  <input
+                    type="email"
+                    value={resetEmail}
+                    onChange={(e) => setResetEmail(e.target.value)}
+                    className="w-full pl-12 pr-4 py-4 border-2 border-amber-200 rounded-2xl focus:ring-2 focus:ring-amber-400 focus:border-transparent text-slate-800"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+              </div>
 
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full bg-gradient-to-r from-blue-700 to-blue-800 text-white py-4 rounded-2xl font-semibold hover:from-blue-800 hover:to-blue-900 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >
-              {isLoading ? 'Signing in...' : 'Sign In'}
-            </button>
-          </form>
+              <button
+                type="submit"
+                disabled={resetLoading}
+                className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-4 rounded-2xl font-semibold hover:from-green-700 hover:to-green-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              >
+                {resetLoading ? 'Sending...' : 'Send Reset Email'}
+              </button>
+
+              <div className="text-center">
+                <button
+                  type="button"
+                  onClick={() => setShowPasswordReset(false)}
+                  className="text-slate-600 hover:text-slate-800 text-sm font-medium"
+                >
+                  Back to Login
+                </button>
+              </div>
+            </form>
+          )}
 
           <div className="mt-8 text-center">
             <p className="text-xs text-slate-500">
-              Authorized personnel only. All access is logged and monitored.
+              Authorized personnel only. Session expires on browser close.
             </p>
           </div>
         </div>

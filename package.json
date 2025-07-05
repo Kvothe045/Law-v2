@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.50.3",
     "@types/pg": "^8.15.4",
     "@vercel/postgres": "^0.10.0",
     "cloudinary": "^2.6.1",
