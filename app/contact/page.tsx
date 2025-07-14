@@ -142,8 +142,8 @@ const ContactUsPage: React.FC = () => {
             </div>
             <div className="flex items-center space-x-4">
               <Mail className="w-6 h-6 text-amber-500" />
-              <a href="mailto:info@gcsl.in" className="hover:underline">
-                info@gcsl.in
+              <a href="mailto:info@gcslawfirm.in" className="hover:underline">
+                info@gcslawfirm.in
               </a>
             </div>
           </div>
